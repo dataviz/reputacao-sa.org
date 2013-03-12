@@ -72,11 +72,20 @@ section
                 .no
                   span[style="font-size: #{(no*0.5).to_i}px;"] •
 
-section.most-frequent-complaint-types
+section.most-frequent-complaint-types.top-types
   .wrapper
     h2
       | Top 10: Tipos de reclamação mais frequentes
-    ul.top-types
+    .context
+      a[href='#']
+        | Todos os anos
+      a[href='#']
+        | 2009
+      a[href='#']
+        | 2010
+      a[href='#']
+        | 2011
+    ul
       // #REFACTOR LOG?
       ruby:
         @complaints = [

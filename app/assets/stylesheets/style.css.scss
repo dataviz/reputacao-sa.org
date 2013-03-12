@@ -25,11 +25,27 @@ section {
     color: $white;
   }
 }
-
 .top-types {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  .context {
+    margin: 1em 0;
+    a {
+      display: inline-block;
+      margin: 0 1em 0 0;
+      padding: .15em .25em;
+      border-radius: 4px;
+      color: $turquoise;
+      text-decoration: none;
+      &:hover {
+        background-color: $turquoise;
+        color: $white;
+      }
+    }
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
   li {
     display: block;
     margin: 0 0 1px 0;
