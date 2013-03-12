@@ -12,20 +12,20 @@ head
       | sindec - procon
     meta name='description' content=''
     meta name='viewport' content='width=device-width'
-    link rel='stylesheet' href='css/normalize.css'
-    link rel='stylesheet' href='css/main.css'
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
     link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'
-    script src='js/vendor/modernizr-2.6.2.min.js'
+    /
+      script src='js/vendor/modernizr-2.6.2.min.js'
 body
   = yield
   = javascript_include_tag 'application'
   script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
   javascript:
     window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
-  script src='js/plugins.js'
-  script src='js/main.js'
+  /
+    script src='js/plugins.js'
+    script src='js/main.js'
   - if Rails.env === 'production'
     / Google Analytics: change UA-XXXXX-X to be your site's ID.
     javascript:
