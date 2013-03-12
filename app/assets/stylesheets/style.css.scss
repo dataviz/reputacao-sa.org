@@ -1,5 +1,6 @@
 @import 'helpers';
 @import 'colours';
+@import 'statelybrazil.css';
 
 body {
   font-family: 'Lato', sans-serif;
@@ -149,10 +150,33 @@ section {
     max-width: 50%;
     background: $belize-hole;
     height: 50px;
-    border-right: 2px solid $sun-flower;//peter-river;
+    border-right: 2px solid $sun-flower;
   }
 }
 
+.choropleth-map {
+  ul {
+    list-style-type: none;
+    display: inline-block;
+  }
+  .statelybrazil {
+    color: $pumpkin;
+  }
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    .big-number {
+      color: $pumpkin;
+      font-size: 1.25em;
+      vertical-align: middle;
+      width: 4em;
+      text-align: right;
+      margin-right: .5em;
+      display: inline-block;
+    }
+  }
+}
 // RESPONSIVE STUFF
 @media all and (min-width:1280px){
   .wrapper {

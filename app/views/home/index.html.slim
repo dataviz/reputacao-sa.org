@@ -248,6 +248,52 @@ section.choropleth-map
   .wrapper
     h2
       | Reclamações por estado
+    ul.statelybrazil
+      ruby:
+        @states = [
+          { acronym:"AC", name: "Acre"                 , letter: "A" },
+          { acronym:"AL", name: "Alagoas"              , letter: "B" },
+          { acronym:"AP", name: "Amapá"                , letter: "C" },
+          { acronym:"AM", name: "Amazonas"             , letter: "D" },
+          { acronym:"BA", name: "Bahia"                , letter: "E" },
+          { acronym:"CE", name: "Ceará"                , letter: "F" },
+          { acronym:"DF", name: "Distrito Federal"     , letter: "G" },
+          { acronym:"ES", name: "Espírito Santo"       , letter: "H" },
+          { acronym:"GO", name: "Goiás"                , letter: "I" },
+          { acronym:"MA", name: "Maranhão"             , letter: "J" },
+          { acronym:"MT", name: "Mato Grosso"          , letter: "K" },
+          { acronym:"MS", name: "Mato Grosso do Sul"   , letter: "L" },
+          { acronym:"MG", name: "Minas Gerais"         , letter: "M" },
+          { acronym:"PA", name: "Pará"                 , letter: "N" },
+          { acronym:"PB", name: "Paraíba"              , letter: "O" },
+          { acronym:"PR", name: "Paraná"               , letter: "P" },
+          { acronym:"PE", name: "Pernambuco"           , letter: "Q" },
+          { acronym:"PI", name: "Piauí"                , letter: "R" },
+          { acronym:"RJ", name: "Rio de Janeiro"       , letter: "S" },
+          { acronym:"RN", name: "Rio Grande do Norte"  , letter: "T" },
+          { acronym:"RS", name: "Rio Grande do Sul"    , letter: "U" },
+          { acronym:"RO", name: "Rondônia"             , letter: "V" },
+          { acronym:"RR", name: "Roraima"              , letter: "W" },
+          { acronym:"SC", name: "Santa Catarina"       , letter: "X" },
+          { acronym:"SP", name: "São Paulo"            , letter: "Y" },
+          { acronym:"SE", name: "Sergipe"              , letter: "Z" },
+          { acronym:"TO", name: "Tocantins"            , letter: "a" }
+        ]
+      - @states.each do |state|
+        - data = (rand*9).to_i + 1
+        li[data-state-acronym=state[:acronym]
+          class="statelybrazil-state-#{state[:acronym]} statelybrazil-state"
+          data-state-name=state[:name]
+          data-state-complaints=data
+          style="opacity:0.#{data}"]
+          | #{state[:letter]}
+    ul.state-list
+      - @states.each do |state|
+        li
+          h3
+            span.big-number = (rand*6000).to_i
+            | #{state[:name]}
+
 
 section
   .wrapper
