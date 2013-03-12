@@ -15,17 +15,14 @@ head
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
     link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'
-    /
-      script src='js/vendor/modernizr-2.6.2.min.js'
+    = javascript_include_tag 'modernizr'
 body
   = yield
-  = javascript_include_tag 'application'
   script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
   javascript:
     window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
-  /
-    script src='js/plugins.js'
-    script src='js/main.js'
+  = javascript_include_tag 'plugins'
+  = javascript_include_tag 'application'
   - if Rails.env === 'production'
     / Google Analytics: change UA-XXXXX-X to be your site's ID.
     javascript:
