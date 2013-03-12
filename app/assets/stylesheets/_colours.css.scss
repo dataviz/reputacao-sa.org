@@ -1,13 +1,86 @@
+$turquoise:     #1ABC9C;
+$green-sea:     #16A085;
+$emerland:      #2ECC71;
+$nephritis:     #27AE60;
+$peter-river:   #3498DB;
+$belize-hole:   #2980B9;
+$amethyst:      #9B59B6;
+$wisteria:      #8E44AD;
+$wet-asphalt:   #34495E;
 $midnight-blue: #2C3E50;
-$turquoise: #1ABC9C;
-$nephritis: #27AE60;
-$pomegranate: #C0392B;
-$peter-river: #3498DB;
-$belize-hole: #2980B9;
-$clouds: #ECF0F1;
-$sun-flower: #F1C40F;
-$concrete: #95A5A6;
-$silver: #BDC3C7;
-
+$sun-flower:    #F1C40F;
+$orange:        #f39C12;
+$carrot:        #e67E22;
+$pumpkin:       #d35400;
+$alizarin:      #E74C3C;
+$pomegranate:   #C0392B;
+$clouds:        #ecF0F1;
+$silver:        #bdC3C7;
+$concrete:      #95A5A6;
+$asbestos:      #7F8C8D;
 $black: $midnight-blue;
 $white: $clouds;
+
+.background-pure-white {
+  background-color: white;
+}
+.background-turquoise {
+  background-color: $turquoise;
+}
+.background-green-sea {
+  background-color: $green-sea;
+}
+.background-emerland {
+  background-color: $emerland;
+}
+.background-nephritis {
+  background-color: $nephritis;
+}
+.background-peter-river {
+  background-color: $peter-river;
+}
+.background-belize-hole {
+  background-color: $belize-hole;
+}
+.background-amethyst {
+  background-color: $amethyst;
+}
+.background-wisteria {
+  background-color: $wisteria;
+}
+.background-wet-asphalt {
+  background-color: $wet-asphalt;
+}
+.background-midnight-blue {
+  background-color: $midnight-blue;
+}
+.background-sun-flower {
+  background-color: $sun-flower;
+}
+.background-orange {
+  background-color: $orange;
+}
+.background-carrot {
+  background-color: $carrot;
+}
+.background-pumpkin {
+  background-color: $pumpkin;
+}
+.background-alizarin {
+  background-color: $alizarin;
+}
+.background-pomegranate {
+  background-color: $pomegranate;
+}
+.background-clouds {
+  background-color: $clouds;
+}
+.background-silver {
+  background-color: $silver;
+}
+.background-concrete {
+  background-color: $concrete;
+}
+.background-asbestos {
+  background-color: $asbestos;
+}
