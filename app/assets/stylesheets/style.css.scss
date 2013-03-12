@@ -1,5 +1,103 @@
+$midnight-blue: #2C3E50;
 $turquoise: #1ABC9C;
-$white: #FCFCFC;
+$nephritis: #27AE60;
+$pomegranate: #C0392B;
+$clouds: #ECF0F1;
+$black: $midnight-blue;
+$white: $clouds;
+
 body {
+  font-family: 'Lato', sans-serif;
   background-color: $white;
+  color: $black;
+}
+
+section {
+  .wrapper {
+    padding: 10em 0;
+    margin: 0 auto;
+  }
+}
+
+.big-number {
+  font-family: 'Impact', sans-serif;
+  font-size: 4em;
+  color: $turquoise;
+}
+
+.matrix {
+  width: 100%;
+  td {
+    text-align: center;
+    padding: 10px;
+  }
+  .point {
+    display: inline-block;
+    border-radius: 50%;
+  }
+  .semi-circles {
+    position: relative;
+    span {
+      position: absolute;
+      display: block;
+      text-align: center;
+      width: 50px;
+      height: 50px;
+      top: 50%;
+      margin-top: -25px;
+      line-height: 50px;
+    }
+    .yes,
+    .no {
+      overflow: hidden;
+      width: 50%;
+      height: 50px;
+      vertical-align: middle;
+      float: left;
+      position: relative;
+    }
+    .yes {
+      color: $nephritis;
+      span {
+        right: -25px;
+      }
+    }
+    .no {
+      color: $pomegranate;
+      span {
+        left: -25px;
+      }
+    }
+  }
+}
+
+// RESPONSIVE STUFF
+@media all and (min-width:1280px){
+  .wrapper {
+    width: 1200px;
+  }
+}
+@media all and (max-width: 1280px) {
+  .wrapper {
+    width: 1200px;
+  }
+}
+@media all and (max-width: 1024px) {
+  .wrapper {
+    width: 960px;
+  }
+}
+@media all and (max-width: 800px) {
+  .wrapper {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+@media all and (max-width: 400px) {
+  .wrapper {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 }

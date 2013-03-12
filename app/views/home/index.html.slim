@@ -1,2 +1,101 @@
-h1
-  | #{"Olá Mundo."}
+section
+  .wrapper
+    h1
+      | Nome da empresa
+    h2
+      | Ranking global
+    p
+      strong.big-number.global[data-counter='230'] 0
+    h2
+      | Ranking por setor
+    p
+      strong.big-number.setor[data-counter='100'] 100
+    h2
+      | Ranking por estado
+    p
+      strong.big-number.estado[data-counter='1'] 1
+
+-content_for :moar_scripts do
+  javascript:
+    // #REFACTOR
+    function incrementCounter(element) {
+      $self = element;
+      var counter_till = $self.data('counter');
+      var text = parseFloat($self.text());
+      $self.text(parseFloat(text)+1);
+      if ($self.text() < counter_till) {
+        setTimeout("incrementCounter($self), 400");
+      }
+    }
+    incrementCounter($('.global'));
+section
+  .wrapper
+    h2
+      | Ocorrências <span class="versus">×</span> Tempo
+    table.matrix
+      tr
+        td
+          | Ano
+        - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        - months.each do |month|
+          td = month
+      - [2009, 2010, 2011].each do |year|
+        tr
+          td.year
+            = year
+          - 12.times do
+            - x = (rand*100).to_i
+            td[title=x]
+              span.point[style="box-shadow: #34495E 0 0 0 #{(x/10).to_i}px;"]
+    h2
+      | Proporção de atendimentos e não atendimentos <span class="versus">×</span> tempo
+    // #REFACTOR
+    table.matrix
+      tr
+        td
+          | Ano
+        - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        - months.each do |month|
+          td = month
+      - [2009, 2010, 2011].each do |year|
+        tr
+          td.year
+            = year
+          - 12.times do
+            ruby:
+              yes = 100 - (rand * 100).to_i
+              no  = 100 - yes
+            td[title="Sim: #{yes} × Não: #{no}"]
+              .semi-circles
+                .yes
+                  span[style="font-size: #{(yes*0.5).to_i}px;"] •
+                .no
+                  span[style="font-size: #{(no*0.5).to_i}px;"] •
+
+section
+  .wrapper
+    h2
+      | Tipos de reclamações mais comuns para a empresa - Lista com grafico em barra
+
+section
+  .wrapper
+    h2
+      | Reclamações por estado: choropleth map [pra usar o statelybrazil]
+
+section
+  .wrapper
+    h2
+      | Média de tempo para atendimento das ocorrências - geral [sem ideia de como exibir]
+    h2
+      | Média de tempo para atendimento das ocorrências - por estado [sem ideia de como exibir]
+    h2
+      | Média de tempo para atendimento das ocorrências - por região [sem ideia de como exibir]
+    h2
+      | Média de reclamações por sexo e idade - Paired Bar chart
+section
+  .wrapper
+    h2
+      | O que as pessoas falam da empresa no Twitter [não a empresa, o que as pessoas falam da empresa].
+    h2
+      | Comentários anônimos nessa página [ver se o disqus oferece isso].
+

@@ -23,6 +23,7 @@ body
     window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
   = javascript_include_tag 'plugins'
   = javascript_include_tag 'application'
+  = yield :moar_scripts
   - if Rails.env === 'production'
     javascript:
       var _gaq=[['_setAccount','UA-39203867-1'],['_trackPageview']];
