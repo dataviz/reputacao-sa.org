@@ -1,19 +1,45 @@
-section
+section.ranking-plus-info
   .wrapper
     h1
-      | Nome da empresa
-    h2
-      | Ranking global
-    p
-      strong.big-number.global[data-counter='230'] 0
-    h2
-      | Ranking por setor
-    p
-      strong.big-number.setor[data-counter='100'] 100
-    h2
-      | Ranking por estado
-    p
-      strong.big-number.estado[data-counter='1'] 1
+      | Empresa: LG
+    // incluir informações da empresa pela wikipedia?
+    h5
+      | Atuação
+    p.description
+      | FABRICAÇÃO DE PERIFÉRICOS PARA EQUIPAMENTOS DE INFORMÁTICA
+      | , 
+      | FABRICAÇÃO DE APARELHOS DE RECEPÇÃO, REPRODUÇÃO, GRAVAÇÃO E AMPLIFICAÇÃO DE ÁUDIO E VÍDEO
+      | , 
+      | COMÉRCIO ATACADISTA DE APARELHOS ELETRÔNICOS DE USO PESSOAL E DOMÉSTICO
+      | , 
+      | COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS E SUPRIMENTOS DE INFORMÁTICA
+      | , 
+      | COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS DE TELEFONIA E COMUNICAÇÃO
+    .ranking
+      p
+        strong.big-number.global[data-counter='230'] 0
+      h3
+        | Ranking global
+    .ranking
+      p
+        strong.big-number.setor[data-counter='100'] 100
+      h3
+        | Ranking por setor
+    .ranking
+      p
+        strong.big-number.estado[data-counter='1'] 1
+      h3
+        | Ranking por estado
+    .ranking
+      p
+        strong.big-number.reclamacoes-total[data-counter='6530'] 6530
+      h3
+        | Total de reclamações
+    .ranking
+      p
+        strong.big-number.reclamacoes-total[data-counter='6530'] 6530
+      h3
+        | Total de reclamações
 
 -content_for :moar_scripts do
   javascript:
@@ -28,40 +54,48 @@ section
       }
     }
     incrementCounter($('.global'));
-section
+section.time-matrices
   .wrapper
     h2
       | Ocorrências <span class="versus">×</span> Tempo
     table.matrix
       tr
-        td
-          | Ano
-        - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-        - months.each do |month|
-          td = month
-      - [2009, 2010, 2011].each do |year|
+        th
+          | Mês\Ano
+        th
+          | 2009
+        th
+          | 2010
+        th
+          | 2011
+      - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+      - months.each do |month|
         tr
-          td.year
-            = year
-          - 12.times do
+          td
+            = month
+          - 3.times do
             - x = (rand*100).to_i
             td[title=x]
-              span.point[style="box-shadow: #34495E 0 0 0 #{(x/10).to_i}px;"]
+              span.point[style="font-size:#{(x*0.5).to_i}px;"] •
     h2
       | Proporção de atendimentos e não atendimentos <span class="versus">×</span> tempo
     // #REFACTOR
     table.matrix
       tr
-        td
-          | Ano
-        - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-        - months.each do |month|
-          td = month
-      - [2009, 2010, 2011].each do |year|
+        th
+          | Mês\Ano
+        th
+          | 2009
+        th
+          | 2010
+        th
+          | 2011
+      - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+      - months.each do |month|
         tr
-          td.year
-            = year
-          - 12.times do
+          td
+            = month
+          - 3.times do
             ruby:
               yes = 100 - (rand * 100).to_i
               no  = 100 - yes
@@ -133,10 +167,87 @@ section.most-frequent-complaint-types.top-types
             strong
               = complaint[:name]
 
-section
+section.background-alizarin
   .wrapper
     h2
-      | Reclamações por estado: choropleth map [pra usar o statelybrazil]
+      | Tipos mais frequentes de problemas não-atendidas
+    ul
+      li
+        | Garantia (Abrangência, cobertura, etc.)
+        strong.big-number 928
+      li
+        | Produto entregue com danos/defeitos
+        strong.big-number 480
+      li
+        | Falta de peca de reposição
+        strong.big-number 177
+      li
+        | Garantia - Descumprimento, prazo
+        strong.big-number 62
+      li
+        | Não entrega/demora na entrega do produto
+        strong.big-number 48
+      li
+        | Produto causou danos materiais
+        strong.big-number 39
+      li
+        | Cobrança indevida/abusiva
+        strong.big-number 30
+      li
+        | Vicio de qualidade (mal executado, inadequado, impróprio)
+        strong.big-number 30
+      li
+        | Demora na montagem/montagem incompleta/incorreta
+        strong.big-number 15
+      li
+        | Desistência de compra (cancelamento de compra)
+        strong.big-number 7
+      li
+        | Dano material/pessoal decorrente do serviço
+        strong.big-number 6
+      li
+        | Produto entregue diferente do pedido
+        strong.big-number 5
+section.background-emerland
+  .wrapper
+    h2
+      | Tipos mais frequentes de problemas atendidos
+    ul
+      li
+        | Garantia (Abrangência, cobertura, etc.)
+        strong.big-number 3746
+      li
+        | Produto entregue com danos/defeitos
+        strong.big-number 1899
+      li
+        | Falta de peca de reposição
+        strong.big-number 732
+      li
+        | Garantia - Descumprimento, prazo
+        strong.big-number 428
+      li
+        | Não entrega/demora na entrega do produto
+        strong.big-number 326
+      li
+        | Vicio de qualidade (mal executado, inadequado, impróprio)
+        strong.big-number 151
+      li
+        | Produto causou danos materiais
+        strong.big-number 118
+      li
+        | Demora na montagem/montagem incompleta/incorreta
+        strong.big-number 84
+      li
+        | Cobrança indevida/abusiva
+        strong.big-number 62
+      li
+        | Desistência de compra (cancelamento de compra)
+        strong.big-number 26
+
+section.choropleth-map
+  .wrapper
+    h2
+      | Reclamações por estado
 
 section
   .wrapper

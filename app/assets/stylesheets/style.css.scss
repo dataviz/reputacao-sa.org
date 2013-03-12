@@ -6,15 +6,102 @@ body {
   background-color: $white;
   color: $black;
 }
-
+.big-number {
+  font-family: 'Impact', sans-serif;
+  font-size: 4em;
+  color: $turquoise;
+}
 section {
   .wrapper {
     padding: 10em 0;
     margin: 0 auto;
+    overflow: hidden;
   }
   &.most-frequent-complaint-types {
     background-color: $midnight-blue;
     color: $white;
+  }
+  &.time-matrices {
+    background-color: $silver;
+  }
+  &.choropleth-map {
+    @extend .background-sun-flower;
+  }
+  .half {
+    width: 50%;
+    float: left;
+  }
+}
+.ranking-plus-info {
+  .description {
+    text-transform: lowercase;
+  }
+}
+.ranking {
+  @include box-sizing;
+  width: 20%;
+  display: inline-block;
+  padding: 30px 0;
+  text-align: center;
+}
+.time-matrices {
+  table,
+  th,
+  td {
+    border: 1px solid $concrete;
+    border-left: 0 none;
+    border-right: 0 none;
+  }
+  th {
+    background-color: $concrete;
+    padding: 15px;
+  }
+}
+.matrix {
+  width: 100%;
+  td {
+    text-align: center;
+    padding: 10px;
+  }
+  .point {
+    display: inline-block;
+    border-radius: 50%;
+    color: $wet-asphalt;
+    line-height: 16px;
+  }
+  .semi-circles {
+    position: relative;
+    span {
+      position: absolute;
+      display: block;
+      text-align: center;
+      width: 50px;
+      height: 50px;
+      top: 50%;
+      margin-top: -25px;
+      line-height: 50px;
+    }
+    .yes,
+    .no {
+      overflow: hidden;
+      width: 50%;
+      height: 50px;
+      vertical-align: middle;
+      float: left;
+      position: relative;
+    }
+    .yes {
+      color: $nephritis;
+      span {
+        right: -25px;
+      }
+    }
+    .no {
+      color: $pomegranate;
+      span {
+        left: -25px;
+      }
+    }
   }
 }
 .top-types {
@@ -63,58 +150,6 @@ section {
     background: $belize-hole;
     height: 50px;
     border-right: 2px solid $sun-flower;//peter-river;
-  }
-}
-
-.big-number {
-  font-family: 'Impact', sans-serif;
-  font-size: 4em;
-  color: $turquoise;
-}
-
-.matrix {
-  width: 100%;
-  td {
-    text-align: center;
-    padding: 10px;
-  }
-  .point {
-    display: inline-block;
-    border-radius: 50%;
-  }
-  .semi-circles {
-    position: relative;
-    span {
-      position: absolute;
-      display: block;
-      text-align: center;
-      width: 50px;
-      height: 50px;
-      top: 50%;
-      margin-top: -25px;
-      line-height: 50px;
-    }
-    .yes,
-    .no {
-      overflow: hidden;
-      width: 50%;
-      height: 50px;
-      vertical-align: middle;
-      float: left;
-      position: relative;
-    }
-    .yes {
-      color: $nephritis;
-      span {
-        right: -25px;
-      }
-    }
-    .no {
-      color: $pomegranate;
-      span {
-        left: -25px;
-      }
-    }
   }
 }
 
