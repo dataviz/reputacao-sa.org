@@ -2,7 +2,10 @@ $midnight-blue: #2C3E50;
 $turquoise: #1ABC9C;
 $nephritis: #27AE60;
 $pomegranate: #C0392B;
+$peter-river: #3498DB;
+$belize-hole: #2980B9;
 $clouds: #ECF0F1;
+$sun-flower: #F1C40F;
 $black: $midnight-blue;
 $white: $clouds;
 
@@ -16,6 +19,42 @@ section {
   .wrapper {
     padding: 10em 0;
     margin: 0 auto;
+  }
+  &.most-frequent-complaint-types {
+    background-color: $midnight-blue;
+    color: $white;
+  }
+}
+
+.top-types {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: block;
+    margin: 0 0 1px 0;
+    padding: 0;
+    position: relative;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+  .big-number.count {
+    color: $white;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 2em;
+    margin: 0 .75em;
+  }
+  .meter {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 50%;
+    background: $belize-hole;
+    height: 50px;
+    border-right: 2px solid $sun-flower;//peter-river;
   }
 }
 

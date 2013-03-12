@@ -72,10 +72,57 @@ section
                 .no
                   span[style="font-size: #{(no*0.5).to_i}px;"] •
 
-section
+section.most-frequent-complaint-types
   .wrapper
     h2
-      | Tipos de reclamações mais comuns para a empresa - Lista com grafico em barra
+      | Top 10: Tipos de reclamação mais frequentes
+    ul.top-types
+      // #REFACTOR LOG?
+      ruby:
+        @complaints = [
+          {
+            name: "Telefone (Convencional, Celular, Interfone, Etc.)",
+            count: '6404'
+          },{
+            name: "Televisão / Vídeo Cassete / Filmadora / Video-Laser",
+            count: '1243'
+          },{
+            name: "Telefonia Celular",
+            count: '709'
+          },{
+            name: "Microcomputador / Produtos de Informática",
+            count: '329'
+          },{
+            name: "Aparelho de Som ( Gravador, 3x1, CD )",
+            count: '200'
+          },{
+            name: "Aparelho DVD",
+            count: '126'
+          },{
+            name: "Energia Elétrica",
+            count: '113'
+          },{
+            name: "Eletroeletrônico Importado",
+            count: '91'
+          },{
+            name: "Aquecedor / Ventilador / Ar Condicionado / Circulador de Ar",
+            count: '76'
+          },{
+            name: "Máquina de Lavar Roupa / Louça e Secadora",
+            count: '64'
+          }
+        ]
+      - @max = @complaints.first[:count]
+      // animate bar to 50% from left to right
+      // fade number
+      // when scrolling reaches the UL element
+      - @complaints.each do |complaint|
+        li
+          .meter[style="width: #{ (complaint[:count]).to_i * 100 / (@max).to_i }%;"]
+          p
+            span.big-number.count= complaint[:count]
+            strong
+              = complaint[:name]
 
 section
   .wrapper
