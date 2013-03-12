@@ -1,0 +1,25 @@
+@mixin transition($params: all .25s ease-in) {
+  -webkit-transition: $params;
+  -moz-transition: $params;
+  -ms-transition: $params;
+  transition: $params;
+}
+@mixin box-sizing($params: border-box) {
+  -webkit-box-sizing: $params;
+  -mox-box-sizing: $params;
+  -ms-box-sizing: $params;
+  box-sizing: $params;
+}
+@mixin animation($params) {
+  -webkit-animation: $params;
+  -moz-animation: $params;
+  -ms-animation: $params;
+  -o-animation: $params;
+  animation: $params;
+}
+@mixin transform($params) {
+  -webkit-transform: $params;
+  -moz-transform: $params;
+  -ms-transform: $params;
+  transform: $params;
+}
