@@ -6,7 +6,8 @@
        url("/assets/statelybrazil.ttf") format("truetype"),
        url("/assets/statelybrazil.svg#testfontRegular") format("svg");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+}
 .statelybrazil {
   font: normal normal 800px/1100px "statelybrazil";
   font-size-adjust: none;
@@ -24,7 +25,8 @@
   display: inline-block;
   margin: 0;
   padding: 0;
-  list-style-type: none; }
+  list-style-type: none;
+}
 .statelybrazil .statelybrazil-state {
   float: left;
   margin: -20% 0 0 -100%;
@@ -38,4 +40,5 @@
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+}
