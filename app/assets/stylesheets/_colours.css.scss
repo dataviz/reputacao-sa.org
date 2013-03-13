@@ -84,3 +84,27 @@ $white: $clouds;
 .background-asbestos {
   background-color: $asbestos;
 }
+::-webkit-input-placeholder {
+   color: $silver;
+}
+:focus::-webkit-input-placeholder {
+  color: $asbestos;
+}
+:-moz-placeholder {
+   color: $silver;
+}
+:focus:-moz-placeholder {
+  color: $asbestos;
+}
+::-moz-placeholder {
+   color: $silver;
+}
+::-moz-placeholder {
+  color: $asbestos;
+}
+:-ms-input-placeholder {
+   color: $silver;
+}
+:-ms-input-placeholder {
+  color: $asbestos;
+}

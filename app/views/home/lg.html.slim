@@ -1,0 +1,331 @@
+// MONITOR CARDIACO DAS EMPRESAS
+//
+section.ranking-plus-info
+  .wrapper
+    h1
+      | Empresa: LG
+    // incluir informações da empresa pela wikipedia?
+    h5
+      | Atuação
+    p.description
+      | FABRICAÇÃO DE PERIFÉRICOS PARA EQUIPAMENTOS DE INFORMÁTICA
+      | , 
+      | FABRICAÇÃO DE APARELHOS DE RECEPÇÃO, REPRODUÇÃO, GRAVAÇÃO E AMPLIFICAÇÃO DE ÁUDIO E VÍDEO
+      | , 
+      | COMÉRCIO ATACADISTA DE APARELHOS ELETRÔNICOS DE USO PESSOAL E DOMÉSTICO
+      | , 
+      | COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS E SUPRIMENTOS DE INFORMÁTICA
+      | , 
+      | COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS DE TELEFONIA E COMUNICAÇÃO
+    // ❤ Média de reclamações mensais
+    // Atendimentos / Não atendimentos
+    //
+    .ranking
+      p
+        strong.big-number.global[data-counter='230'] 0
+      h3
+        | Ranking global
+    .ranking
+      p
+        strong.big-number.setor[data-counter='100'] 100
+      h3
+        | Ranking por setor
+    .ranking
+      p
+        strong.big-number.estado[data-counter='1'] 1
+      h3
+        | Ranking por estado
+    .ranking
+      p
+        strong.big-number.reclamacoes-total[data-counter='6530'] 6530
+      h3
+        | Total de reclamações
+    .ranking
+      p
+        strong.big-number.reclamacoes-total[data-counter='6530'] 6530
+      h3
+        | Total de reclamações
+
+-content_for :moar_scripts do
+  javascript:
+    // #REFACTOR
+    function incrementCounter(element) {
+      $self = element;
+      var counter_till = $self.data('counter');
+      var text = parseFloat($self.text());
+      $self.text(parseFloat(text)+1);
+      if ($self.text() < counter_till) {
+        setTimeout("incrementCounter($self), 400");
+      }
+    }
+    incrementCounter($('.global'));
+section.time-matrices
+  .wrapper
+    h2
+      | Ocorrências <span class="versus">×</span> Tempo
+    table.matrix
+      tr
+        th
+          | Mês\Ano
+        th
+          | 2009
+        th
+          | 2010
+        th
+          | 2011
+      - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+      - months.each do |month|
+        tr
+          td
+            = month
+          - 3.times do
+            - x = (rand*100).to_i
+            td[title=x]
+              span.point[style="font-size:#{(x*0.5).to_i}px;"] •
+    h2
+      | Proporção de atendimentos e não atendimentos <span class="versus">×</span> tempo
+    // #REFACTOR
+    table.matrix
+      tr
+        th
+          | Mês\Ano
+        th
+          | 2009
+        th
+          | 2010
+        th
+          | 2011
+      - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+      - months.each do |month|
+        tr
+          td
+            = month
+          - 3.times do
+            ruby:
+              yes = 100 - (rand * 100).to_i
+              no  = 100 - yes
+            td[title="Sim: #{yes} × Não: #{no}"]
+              .semi-circles
+                .yes
+                  span[style="font-size: #{(yes*0.5).to_i}px;"] •
+                .no
+                  span[style="font-size: #{(no*0.5).to_i}px;"] •
+
+section.most-frequent-complaint-types.top-types
+  .wrapper
+    h2
+      | Top 10: Tipos de reclamação mais frequentes
+    .context
+      a[href='#']
+        | Todos os anos
+      a[href='#']
+        | 2009
+      a[href='#']
+        | 2010
+      a[href='#']
+        | 2011
+    ul
+      // #REFACTOR LOG?
+      ruby:
+        @complaints = [
+          {
+            name: "Telefone (Convencional, Celular, Interfone, Etc.)",
+            count: '6404'
+          },{
+            name: "Televisão / Vídeo Cassete / Filmadora / Video-Laser",
+            count: '1243'
+          },{
+            name: "Telefonia Celular",
+            count: '709'
+          },{
+            name: "Microcomputador / Produtos de Informática",
+            count: '329'
+          },{
+            name: "Aparelho de Som ( Gravador, 3x1, CD )",
+            count: '200'
+          },{
+            name: "Aparelho DVD",
+            count: '126'
+          },{
+            name: "Energia Elétrica",
+            count: '113'
+          },{
+            name: "Eletroeletrônico Importado",
+            count: '91'
+          },{
+            name: "Aquecedor / Ventilador / Ar Condicionado / Circulador de Ar",
+            count: '76'
+          },{
+            name: "Máquina de Lavar Roupa / Louça e Secadora",
+            count: '64'
+          }
+        ]
+      - @max = @complaints.first[:count]
+      // animate bar to 50% from left to right
+      // fade number
+      // when scrolling reaches the UL element
+      - @complaints.each do |complaint|
+        li
+          .meter[style="width: #{ (complaint[:count]).to_i * 100 / (@max).to_i }%;"]
+          p
+            span.big-number.count= complaint[:count]
+            strong
+              = complaint[:name]
+
+section.background-alizarin
+  .wrapper
+    h2
+      | Tipos mais frequentes de problemas não-atendidas
+    ul
+      li
+        | Garantia (Abrangência, cobertura, etc.)
+        strong.big-number 928
+      li
+        | Produto entregue com danos/defeitos
+        strong.big-number 480
+      li
+        | Falta de peca de reposição
+        strong.big-number 177
+      li
+        | Garantia - Descumprimento, prazo
+        strong.big-number 62
+      li
+        | Não entrega/demora na entrega do produto
+        strong.big-number 48
+      li
+        | Produto causou danos materiais
+        strong.big-number 39
+      li
+        | Cobrança indevida/abusiva
+        strong.big-number 30
+      li
+        | Vicio de qualidade (mal executado, inadequado, impróprio)
+        strong.big-number 30
+      li
+        | Demora na montagem/montagem incompleta/incorreta
+        strong.big-number 15
+      li
+        | Desistência de compra (cancelamento de compra)
+        strong.big-number 7
+      li
+        | Dano material/pessoal decorrente do serviço
+        strong.big-number 6
+      li
+        | Produto entregue diferente do pedido
+        strong.big-number 5
+section.background-emerland
+  .wrapper
+    h2
+      | Tipos mais frequentes de problemas atendidos
+    ul
+      li
+        | Garantia (Abrangência, cobertura, etc.)
+        strong.big-number 3746
+      li
+        | Produto entregue com danos/defeitos
+        strong.big-number 1899
+      li
+        | Falta de peca de reposição
+        strong.big-number 732
+      li
+        | Garantia - Descumprimento, prazo
+        strong.big-number 428
+      li
+        | Não entrega/demora na entrega do produto
+        strong.big-number 326
+      li
+        | Vicio de qualidade (mal executado, inadequado, impróprio)
+        strong.big-number 151
+      li
+        | Produto causou danos materiais
+        strong.big-number 118
+      li
+        | Demora na montagem/montagem incompleta/incorreta
+        strong.big-number 84
+      li
+        | Cobrança indevida/abusiva
+        strong.big-number 62
+      li
+        | Desistência de compra (cancelamento de compra)
+        strong.big-number 26
+
+section.choropleth-map
+  .wrapper
+    h2
+      | Reclamações por estado
+    ul.statelybrazil
+      ruby:
+        @states = [
+          { acronym:"AC", name: "Acre"                 , letter: "A" },
+          { acronym:"AL", name: "Alagoas"              , letter: "B" },
+          { acronym:"AP", name: "Amapá"                , letter: "C" },
+          { acronym:"AM", name: "Amazonas"             , letter: "D" },
+          { acronym:"BA", name: "Bahia"                , letter: "E" },
+          { acronym:"CE", name: "Ceará"                , letter: "F" },
+          { acronym:"DF", name: "Distrito Federal"     , letter: "G" },
+          { acronym:"ES", name: "Espírito Santo"       , letter: "H" },
+          { acronym:"GO", name: "Goiás"                , letter: "I" },
+          { acronym:"MA", name: "Maranhão"             , letter: "J" },
+          { acronym:"MT", name: "Mato Grosso"          , letter: "K" },
+          { acronym:"MS", name: "Mato Grosso do Sul"   , letter: "L" },
+          { acronym:"MG", name: "Minas Gerais"         , letter: "M" },
+          { acronym:"PA", name: "Pará"                 , letter: "N" },
+          { acronym:"PB", name: "Paraíba"              , letter: "O" },
+          { acronym:"PR", name: "Paraná"               , letter: "P" },
+          { acronym:"PE", name: "Pernambuco"           , letter: "Q" },
+          { acronym:"PI", name: "Piauí"                , letter: "R" },
+          { acronym:"RJ", name: "Rio de Janeiro"       , letter: "S" },
+          { acronym:"RN", name: "Rio Grande do Norte"  , letter: "T" },
+          { acronym:"RS", name: "Rio Grande do Sul"    , letter: "U" },
+          { acronym:"RO", name: "Rondônia"             , letter: "V" },
+          { acronym:"RR", name: "Roraima"              , letter: "W" },
+          { acronym:"SC", name: "Santa Catarina"       , letter: "X" },
+          { acronym:"SP", name: "São Paulo"            , letter: "Y" },
+          { acronym:"SE", name: "Sergipe"              , letter: "Z" },
+          { acronym:"TO", name: "Tocantins"            , letter: "a" }
+        ]
+      - @states.each do |state|
+        - data = (rand*9).to_i + 1
+        li[data-state-acronym=state[:acronym]
+          class="statelybrazil-state-#{state[:acronym]} statelybrazil-state"
+          data-state-name=state[:name]
+          data-state-complaints=data
+          style="opacity:0.#{data}"]
+          | #{state[:letter]}
+    ul.state-list
+      - @states.each do |state|
+        li
+          h3
+            span.big-number = (rand*6000).to_i
+            | #{state[:name]}
+
+
+section
+  .wrapper
+    h2
+      | Média de tempo para atendimento das ocorrências - geral [sem ideia de como exibir]
+    h2
+      | Média de tempo para atendimento das ocorrências - por estado [sem ideia de como exibir]
+    h2
+      | Média de tempo para atendimento das ocorrências - por região [sem ideia de como exibir]
+    h2
+      | Média de reclamações por sexo e idade - Paired Bar chart
+section
+  .wrapper
+    h2
+      | O que as pessoas falam da empresa no Twitter [não a empresa, o que as pessoas falam da empresa].
+    h2
+      | Comentários anônimos nessa página [ver se o disqus oferece isso].
+    <div id="disqus_thread"></div>
+erb:
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'sindecprocon'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>É necessário habilitar o JavaScript para visualizar os <a href="http://disqus.com/?ref_noscript">comentários do Disqus.</a></noscript>
