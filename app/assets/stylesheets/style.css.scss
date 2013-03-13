@@ -2,21 +2,73 @@
 @import 'colours';
 @import 'statelybrazil.css';
 
-body {
+body,
+input,
+select,
+textarea {
   font-family: 'Lato', sans-serif;
+}
+pre,
+code,
+samp {
+  font-family: 'Menlo', 'Monaco', 'Andale Mono', monospace;
+}
+body {
   background-color: $white;
   color: $black;
 }
+
+a {
+  color: $turquoise;
+  text-decoration: none;
+  &:hover {
+    color: lighten($turquoise, 10%);
+  }
+}
+
+
 .big-number {
   font-family: 'Impact', sans-serif;
   font-size: 4em;
   color: $turquoise;
 }
+
+
+footer {
+  .wrapper {
+    margin: 0 auto;
+  }
+  img {
+    width: 70px;
+    opacity: .5;
+    -webkit-filter: grayscale(1);
+  }
+}
+
+header {
+  @include box-sizing;
+  position: fixed;
+  background-color: $black;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  width: 100%;
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25em;
+    a {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}
+
 section {
+  overflow: hidden;
   .wrapper {
     padding: 10em 0;
     margin: 0 auto;
-    overflow: hidden;
   }
   &.most-frequent-complaint-types {
     background-color: $midnight-blue;
@@ -33,11 +85,57 @@ section {
     float: left;
   }
 }
+
 .ranking-plus-info {
   .description {
     text-transform: lowercase;
   }
 }
+
+.search {
+  @include box-sizing;
+  @include animation(pump_up_the_jam 1s 1 ease-in-out);
+  background-color: $turquoise;
+  padding: .25em;
+  border-radius: 5px;
+  .search-field {
+    @include box-sizing;
+    width: 100%;
+    background-color: white;
+    padding: .25em;
+    border-radius: 4px;
+  }
+  input[type='text'],
+  .search-button {
+    @include box-sizing;
+    display: inline-block;
+    vertical-align: top;
+    padding: .25em .5em;
+    font-size: 1.5em;
+    line-height: 1.5em;
+  }
+  input[type='text'] {
+    border: 0 none;
+    width: 70%;
+    &:focus {
+      outline: none;
+      color: $black;
+    }
+  }
+  .search-button {
+    border-radius: 3px;
+    background: $turquoise;
+    width: 30%;
+    text-align: center;
+    text-decoration: none;
+    color: $white;
+    &:hover {
+      background-color: lighten($turquoise,10%);
+      color: white;
+    }
+  }
+}
+
 .ranking {
   @include box-sizing;
   width: 20%;
@@ -45,19 +143,21 @@ section {
   padding: 30px 0;
   text-align: center;
 }
+
 .time-matrices {
   table,
   th,
   td {
-    border: 1px solid $concrete;
+    border: 1px solid lighten($silver, 10%);
     border-left: 0 none;
     border-right: 0 none;
   }
   th {
-    background-color: $concrete;
+    background-color: lighten($silver, 10%);
     padding: 15px;
   }
 }
+
 .matrix {
   width: 100%;
   td {
@@ -105,6 +205,7 @@ section {
     }
   }
 }
+
 .top-types {
   .context {
     margin: 1em 0;
@@ -177,33 +278,6 @@ section {
     }
   }
 }
-// RESPONSIVE STUFF
-@media all and (min-width:1280px){
-  .wrapper {
-    width: 1200px;
-  }
-}
-@media all and (max-width: 1280px) {
-  .wrapper {
-    width: 1200px;
-  }
-}
-@media all and (max-width: 1024px) {
-  .wrapper {
-    width: 960px;
-  }
-}
-@media all and (max-width: 800px) {
-  .wrapper {
-    width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-}
-@media all and (max-width: 400px) {
-  .wrapper {
-    width: 80%;
-    padding-left: 10%;
-    padding-right: 10%;
-  }
-}
+
+@import 'responsive';
+@import 'keyframes';

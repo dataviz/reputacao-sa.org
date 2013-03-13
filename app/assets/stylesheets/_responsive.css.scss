@@ -1,0 +1,30 @@
+// RESPONSIVE STUFF
+@media all and (min-width:1280px){
+  .wrapper {
+    width: 1200px;
+  }
+}
+@media all and (max-width: 1280px) {
+  .wrapper {
+    width: 1200px;
+  }
+}
+@media all and (max-width: 1024px) {
+  .wrapper {
+    width: 960px;
+  }
+}
+@media all and (max-width: 800px) {
+  .wrapper {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+@media all and (max-width: 400px) {
+  .wrapper {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}

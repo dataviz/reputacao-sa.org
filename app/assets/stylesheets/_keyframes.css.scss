@@ -1,0 +1,51 @@
+// ANIMATIONS
+@-webkit-keyframes pump_up_the_jam {
+  0% {
+    -webkit-transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
+@-moz-keyframes pump_up_the_jam {
+  0% {
+    -moz-transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    -moz-transform: scale(1);
+    opacity: 1;
+  }
+}
+@-ms-keyframes pump_up_the_jam {
+  0% {
+    -ms-transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    -ms-transform: scale(1);
+    opacity: 1;
+  }
+}
+@-o-keyframes pump_up_the_jam {
+  0% {
+    -o-transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    -o-transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes pump_up_the_jam {
+  0% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
