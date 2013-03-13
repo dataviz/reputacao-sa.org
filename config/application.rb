@@ -4,6 +4,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "rails/test_unit/railtie"
+require "sprockets/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -62,9 +63,5 @@ module SindecProcon
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    # http://guides.rubyonrails.org/asset_pipeline.html#precompiling-assets
-    # Heroku requires this to be false
-    config.assets.initialize_on_precompile = false
   end
 end
