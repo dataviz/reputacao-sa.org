@@ -1,10 +1,10 @@
-// MONITOR CARDIACO DAS EMPRESAS
-//
+= render 'shared/header'
+/! MONITOR CARDIACO DAS EMPRESAS
 section.ranking-plus-info
   .wrapper
     h1
       | Empresa: LG
-    // incluir informações da empresa pela wikipedia?
+    /! incluir informações da empresa pela wikipedia?
     h5
       | Atuação
     p.description
@@ -17,10 +17,10 @@ section.ranking-plus-info
       | COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS E SUPRIMENTOS DE INFORMÁTICA
       | , 
       | COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS DE TELEFONIA E COMUNICAÇÃO
-    // ❤ Média de reclamações mensais
-    // Atendimentos / Não atendimentos
-    //
+    /! ❤ Média de reclamações mensais
+    /! Atendimentos / Não atendimentos
     .ranking
+      /! Repetir esse efeito nos outros
       p
         strong.big-number.global[data-counter='230'] 0
       h3
@@ -37,14 +37,14 @@ section.ranking-plus-info
         | Ranking por estado
     .ranking
       p
-        strong.big-number.reclamacoes-total[data-counter='6530'] 6530
+        strong.big-number.reclamacoes-total-e[data-counter='6530'] 6530
       h3
         | Total de reclamações
     .ranking
       p
-        strong.big-number.reclamacoes-total[data-counter='6530'] 6530
+        strong.big-number.reclamacoes-total[data-counter='60'] 60
       h3
-        | Total de reclamações
+        | Reclamações por mês
 
 -content_for :moar_scripts do
   javascript:
@@ -55,14 +55,18 @@ section.ranking-plus-info
       var text = parseFloat($self.text());
       $self.text(parseFloat(text)+1);
       if ($self.text() < counter_till) {
-        setTimeout("incrementCounter($self), 400");
+        setTimeout("incrementCounter($self), 40");
       }
     }
     incrementCounter($('.global'));
 section.time-matrices
   .wrapper
-    h2
+    h1
       | Ocorrências <span class="versus">×</span> Tempo
+    p
+      | Matrizes para exibição de ocorrências por tempo e relação atendidas e não-atendidas.
+    h2
+      | Número de reclamações por mês
     table.matrix
       tr
         th
@@ -175,7 +179,7 @@ section.most-frequent-complaint-types.top-types
 section.background-alizarin
   .wrapper
     h2
-      | Tipos mais frequentes de problemas não-atendidas
+      | Tipos mais frequentes de problemas não-atendidos
     ul
       li
         | Garantia (Abrangência, cobertura, etc.)
@@ -298,27 +302,36 @@ section.choropleth-map
           h3
             span.big-number = (rand*6000).to_i
             | #{state[:name]}
-
-
-section
+section.statistics
   .wrapper
+    h1
+      | Estatísticas gerais
+    p
+      | Tempo de resolução de atendimentos [abertura ao fechamento] // Sem ideia do que exibir
     h2
-      | Média de tempo para atendimento das ocorrências - geral [sem ideia de como exibir]
+      | Média de tempo para atendimento geral
     h2
-      | Média de tempo para atendimento das ocorrências - por estado [sem ideia de como exibir]
+      | Média de tempo para atendimento por estado
     h2
-      | Média de tempo para atendimento das ocorrências - por região [sem ideia de como exibir]
+      | Média de tempo para atendimento por região
     h2
-      | Média de reclamações por sexo e idade - Paired Bar chart
-section
+      | Média de reclamações por sexo e idade
+    pre
+      | Paired Bar chart
+section.social-trends
   .wrapper
+    h1
+      | Tendências na rede
+    p
+      | Exibir o que as pessoas falam da empresa nas redes sociais.
     h2
       | O que as pessoas falam da empresa no Twitter [não a empresa, o que as pessoas falam da empresa].
     h2
       | Comentários anônimos nessa página [ver se o disqus oferece isso].
-    <div id="disqus_thread"></div>
-erb:
-  <script type="text/javascript">
+section.comments
+  .wrapper
+    #disqus_thread
+  javascript:
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'sindecprocon'; // required: replace example with your forum shortname
     /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -327,5 +340,6 @@ erb:
       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-  </script>
-  <noscript>É necessário habilitar o JavaScript para visualizar os <a href="http://disqus.com/?ref_noscript">comentários do Disqus.</a></noscript>
+  noscript
+    | É necessário habilitar o JavaScript para visualizar os <a href="http://disqus.com/?ref_noscript">comentários do Disqus.</a></noscript>
+= render 'shared/footer'

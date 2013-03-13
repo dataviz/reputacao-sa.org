@@ -1,10 +1,10 @@
 footer.colophon
   .wrapper
     p
-      | #{@project_name_here} · <a href="#">Código no GitHub</a>
+      | #{@project_name_here} · #{Time.new.year} · <a href="#">Código no GitHub</a>
     p
-      | #{Time.new.year} · 
-      a[href='http://dataviz.com.br' target='_blank'] DataViz
+      = link_to 'http://dataviz.com.br', target: '_blank' do
+        = image_tag 'dataviz.png', class: 'dataviz'
     p
       | Projeto de Vitor Baptista, Thiago Bueno <span class="ampersand">&</span> Leo Tartari.
     p
@@ -14,4 +14,4 @@ footer.colophon
         | Justiça (MJ) e o escritório da W3C no Brasil (NIC.br).
         br
         a[href="http://www.gnu.org/licenses/agpl-3.0.html" target="_blank"] 
-          = image_tag 'agplv3-155x51.png'
+          = image_tag 'agplv3-155x51.png', class: 'license'
