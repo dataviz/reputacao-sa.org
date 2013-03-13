@@ -1,0 +1,50 @@
+.search {
+  @include box-sizing;
+  @include animation(pump_up_the_jam 1s 1 ease-in-out);
+  background-color: $turquoise;
+  padding: .25em;
+  border-radius: 5px;
+  .search-field {
+    @include box-sizing;
+    width: 100%;
+    background-color: white;
+    padding: .25em;
+    border-radius: 4px;
+  }
+  input[type='text'],
+  .search-button,
+  select {
+    @include box-sizing;
+    display: inline-block;
+    vertical-align: top;
+    padding: .25em .5em;
+    font-size: 1.5em;
+    line-height: 1.5em;
+  }
+  input[type='text'] {
+    border: 0 none;
+    width: 50%;
+    &:focus {
+      outline: none;
+      color: $black;
+    }
+  }
+  select {
+    margin-top: 12px;
+    width: 18%;
+    margin-right: 2%;
+    vertical-align: middle;
+  }
+  .search-button {
+    border-radius: 3px;
+    background: $turquoise;
+    width: 30%;
+    text-align: center;
+    text-decoration: none;
+    color: $white;
+    &:hover {
+      background-color: lighten($turquoise,10%);
+      color: white;
+    }
+  }
+}

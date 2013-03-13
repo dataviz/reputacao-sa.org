@@ -3,11 +3,32 @@
 @import 'typography';
 @import 'colours';
 @import 'statelybrazil';
+@import 'home';
 
 
 body {
-  background-color: $white;
   color: $black;
+  background-color: $white;
+  @include transition(all .5s ease-in-out);
+  &.time-matrices {
+    @extend .background-silver;
+  }
+  &.top-types {
+    @extend .background-midnight-blue;
+    color: $white;
+  }
+  &.choropleth-map {
+    @extend .background-sun-flower;
+  }
+  &.nao-atendidos {
+    @extend .background-pomegranate;
+  }
+  &.atendidos {
+    @extend .background-emerland;
+  }
+  &.comments {
+    @extend .background-silver;
+  }
 }
 
 a {
@@ -26,12 +47,14 @@ header {
   left: 0;
   padding: 10px;
   width: 100%;
-  z-index: 1;
+  z-index: 11;
+  overflow: hidden;
   .wrapper {
     margin: 0 auto;
   }
   h1 {
-    display: inline-block;
+    float: left;
+    width: 50%;
     margin: 0;
     padding: 0;
     font-size: 1.25em;
@@ -41,8 +64,9 @@ header {
     }
   }
   .social {
-    display: inline-block;
-    float: right;
+    float: left;
+    text-align: right;
+    width: 50%;
     font-size: 4em;
     line-height: 1.75rem;
     a {
@@ -52,28 +76,37 @@ header {
 }
 
 section {
+  padding-left: 220px;
+  padding-right: 10%;
+  position: relative;
   overflow: hidden;
   .wrapper {
     padding: 20em 0;
-    margin: 0 auto;
   }
-  &.ranking-plus-info {
-    .big-number {
-      color: $turquoise;
+  .section-info-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    left: 20px;
+    z-index: 10;
+    display: none;
+    &.show {
+      display: block;
     }
   }
-  &.most-frequent-complaint-types {
-    @extend .background-midnight-blue;
-    color: $white;
+  .section-info {
+    padding: 15% 10% 0 0;
+    width: 50%;
+    float: left;
   }
-  &.time-matrices {
-    @extend .background-silver;
-  }
-  &.choropleth-map {
-    @extend .background-sun-flower;
-  }
-  &.comments {
-    @extend .background-silver;
+  .content {
+    float: right;
+    width: 50%;
+    min-width: 500px;
+    position: relative;
+    z-index: 2;
+    padding: 10% 15px 30% 15px;
   }
   .big-number {
     font-size: 4em;
@@ -99,65 +132,25 @@ footer {
     margin: 0 auto 1em;
   }
 }
-.ranking-plus-info {
+.ranking-plus-info-content {
+  text-align: center;
   .description {
     text-transform: lowercase;
   }
-}
-
-.search {
-  @include box-sizing;
-  @include animation(pump_up_the_jam 1s 1 ease-in-out);
-  background-color: $turquoise;
-  padding: .25em;
-  border-radius: 5px;
-  .search-field {
-    @include box-sizing;
-    width: 100%;
-    background-color: white;
-    padding: .25em;
-    border-radius: 4px;
+  .big-number {
+    color: $turquoise;
   }
-  input[type='text'],
-  .search-button {
+  .ranking {
     @include box-sizing;
-    display: inline-block;
+    width: 50%;
     vertical-align: top;
-    padding: .25em .5em;
-    font-size: 1.5em;
-    line-height: 1.5em;
-  }
-  input[type='text'] {
-    border: 0 none;
-    width: 70%;
-    &:focus {
-      outline: none;
-      color: $black;
-    }
-  }
-  .search-button {
-    border-radius: 3px;
-    background: $turquoise;
-    width: 30%;
+    display: inline-block;
+    padding: 30px 10px;
     text-align: center;
-    text-decoration: none;
-    color: $white;
-    &:hover {
-      background-color: lighten($turquoise,10%);
-      color: white;
-    }
   }
 }
 
-.ranking {
-  @include box-sizing;
-  width: 20%;
-  display: inline-block;
-  padding: 30px 0;
-  text-align: center;
-}
-
-.time-matrices {
+.time-matrices-content {
   table,
   th,
   td {
@@ -219,7 +212,7 @@ footer {
   }
 }
 
-.top-types {
+.top-types-content {
   .context {
     margin: 1em 0;
     a {
@@ -261,10 +254,25 @@ footer {
   .meter {
     display: inline-block;
     vertical-align: middle;
-    max-width: 50%;
+    max-width: 20%;
     background: $belize-hole;
     height: 50px;
     border-right: 2px solid $sun-flower;
+  }
+}
+
+.atendidos-content,
+.nao-atendidos-content {
+  ul {
+    list-style-type: none;
+  }
+  .big-number {
+    vertical-align: middle;
+    display: inline-block;
+    color: $white;
+    width: 2.5em;
+    text-align: right;
+    margin-right: .25em;
   }
 }
 
