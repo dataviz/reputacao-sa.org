@@ -32,17 +32,17 @@ body {
 }
 
 a {
-  color: $turquoise;
+  color: $peter-river;
   text-decoration: none;
   &:hover {
-    color: lighten($turquoise, 10%);
+    color: lighten($peter-river, 10%);
   }
 }
 
 header {
   @include box-sizing;
   position: fixed;
-  background-color: $black;
+  background-color: $wet-asphalt;
   top: 0;
   left: 0;
   padding: 10px;
@@ -114,22 +114,34 @@ section {
 }
 
 footer {
-  text-align: center;
   padding: 3em 0;
   .wrapper {
     margin: 0 auto;
+    max-width: 70%;
+  }
+  .box {
+    @include box-sizing;
+    vertical-align: top;
+    display: inline-block;
+    width: 33.333333333%;
+    padding-right: 20px;
   }
   .dataviz {
     width: 100px;
+    margin: .5em 0;
+    display: block;
   }
   .license {
     width: 70px;
-    opacity: .5;
-    -webkit-filter: grayscale(1);
   }
-  p {
-    max-width: 50%;
-    margin: 0 auto 1em;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin: 0;
+      display: block;
+    }
   }
 }
 .ranking-plus-info-content {
