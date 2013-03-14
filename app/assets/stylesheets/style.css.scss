@@ -32,10 +32,10 @@ body {
 }
 
 a {
-  color: $peter-river;
+  color: $belize-hole;
   text-decoration: none;
   &:hover {
-    color: lighten($peter-river, 10%);
+    color: lighten($belize-hole, 10%);
   }
 }
 
@@ -80,9 +80,6 @@ section {
   padding-right: 10%;
   position: relative;
   overflow: hidden;
-  .wrapper {
-    padding: 20em 0;
-  }
   .section-info-wrapper {
     position: fixed;
     top: 0;

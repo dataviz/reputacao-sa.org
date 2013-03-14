@@ -11,6 +11,16 @@ $(function () {
   });
   newClassName();
   incrementCounter($('.global'));
+
+  // HIGHLIGHT SEARCH ON FOCUS
+  if ($('.search').length > 0) {
+    $('.search input, .search .search-button').focus(function(){
+      $('.search').addClass('focused');
+    }).blur(function(){
+      $('.search').removeClass('focused');
+    });
+  }
+
 });
 
 function newClassName() {
