@@ -1,18 +1,16 @@
-$(document).ready(function() {
-  var controller = $.superscrollorama();
-  controller.addTween('.ranking-plus-info-content', TweenMax.from( $('#fade-it'), .5, {css:{opacity: 0}}));
-
-
-  controller.pin($('.time-matrices'), 1000, {
-      anim: new TimelineLite(),
-      onPin: function () { alert('pinned'); },
-      onUnpin: function () { alert('unpinnd'); }
-  })
-
-});
 $(function () {
+  $(window).scroll(function () {
+    var body = $('body');
+    var currentClass = body.attr('class');
+    var newClass = newClassName();
+    if (newClass && currentClass !== newClass) {
+      body.toggleClass(currentClass + ' ' + newClass);
+    }
+    $('section').find('.section-info-wrapper').hide();
+    $('section[data-section-name=' + newClass + ']').find('.section-info-wrapper').show();
+  });
+  newClassName();
   incrementCounter($('.global'));
-
 });
 
 function newClassName() {
