@@ -7,9 +7,9 @@
 section.home-search
   .wrapper
     h2
-      | Busque e visualize dados para auxiliar nas suas decisões. 
+      | Busque e visualize dados para auxiliar nas suas decisões.
     p.main-description
-      | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+      | Consumidores brasileiros agora tem acesso à uma ferramenta que
       | descomplica a visualizaçõa de reclamações contra fornecedores.
     form
       /! Protótipo. Busca não funciona. Ao clicar em buscar exibe página "hard-coded".
@@ -27,6 +27,6 @@ section.home-search
         - companies = %w(Oi Claro LG Brastemp Samsung Tim Ponto Frio Vivo GVT)
         - companies.each do |company|
           li
-            = link_to lg_path do
-              = company 
+            = link_to "empresa/#{company}" do
+              = company
 = render 'shared/footer'
