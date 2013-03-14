@@ -1,16 +1,32 @@
+/! IDEA DUMP
+// http://exame.abril.com.br/negocios/empresas/melhores-e-maiores/ranking/2012/
+// FAZER UM COMPARATIVO ENTRE EMPRESAS NA LISTA DAS MAIORES E MELHORES
+//
+//
 = render 'shared/header'
 section.home-search
   .wrapper
-    /! Protótipo. Busca não funciona. Ao clicar em buscar exibe página "hard-coded".
+    h2
+      | Busque e visualize dados para auxiliar nas suas decisões. 
+    p.main-description
+      | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+      | descomplica a visualizaçõa de reclamações contra fornecedores.
     form
+      /! Protótipo. Busca não funciona. Ao clicar em buscar exibe página "hard-coded".
       .search
         .search-field
           /! colocar typeahead aqui
           input[type='text' placeholder='Buscar empresa']
-          select
-            - states = ["AC" ,"AL" ,"AP" ,"AM" ,"BA" ,"CE" ,"DF" ,"ES" ,"GO" ,"MA" ,"MT" ,"MS" ,"MG" ,"PA" ,"PB" ,"PR" ,"PE" ,"PI" ,"RJ" ,"RN" ,"RS" ,"RO" ,"RR" ,"SC" ,"SP" ,"SE" ,"TO"]
-            - states.each do |state|
-              option
-                = state
+          /! Exibir botão como aleatório, se estiver vazia a busca
+          /! I'm FEELING LUCKY
           = link_to 'buscar', lg_path, class: 'search-button'
+    .top-ten-home
+      p
+        | Top ten:
+      ul.home-list
+        - companies = %w(Oi Claro LG Brastemp Samsung Tim Ponto Frio Vivo GVT)
+        - companies.each do |company|
+          li
+            = link_to lg_path do
+              = company 
 = render 'shared/footer'
