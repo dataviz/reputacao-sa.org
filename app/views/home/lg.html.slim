@@ -1,5 +1,4 @@
 = render 'shared/header'
-/! MONITOR CARDIACO DAS EMPRESAS
 section[data-section-name='ranking-plus-info']
   .wrapper
     .section-info-wrapper.show
@@ -12,14 +11,6 @@ section[data-section-name='ranking-plus-info']
             | Descrição
           br
           | FABRICAÇÃO DE PERIFÉRICOS PARA EQUIPAMENTOS DE INFORMÁTICA
-          | , 
-          | FABRICAÇÃO DE APARELHOS DE RECEPÇÃO, REPRODUÇÃO, GRAVAÇÃO E AMPLIFICAÇÃO DE ÁUDIO E VÍDEO
-          | , 
-          | COMÉRCIO ATACADISTA DE APARELHOS ELETRÔNICOS DE USO PESSOAL E DOMÉSTICO
-          | , 
-          | COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS E SUPRIMENTOS DE INFORMÁTICA
-          | , 
-          | COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS DE TELEFONIA E COMUNICAÇÃO
     .content.ranking-plus-info-content
       .ranking
         p
@@ -65,6 +56,8 @@ section[data-section-name='time-matrices']
         p
           | Matrizes para exibição de ocorrências por tempo e relação atendidas e não-atendidas.
     .content.time-matrices
+      /! Can also be http://bl.ocks.org/mbostock/4063318
+      /! OU ESSE » http://mbostock.github.com/d3/talk/20111116/iris-splom.html
       h2
         | Número de reclamações por mês
       table.matrix
@@ -186,6 +179,9 @@ section[data-section-name='nao-atendidos']
         h2
           | Tipos mais frequentes de problemas não-atendidos
     .content.nao-atendidos-content
+      /! bubble chart » http://en.wikipedia.org/wiki/Bubble_chart
+      /! http://bl.ocks.org/mbostock/4063269
+      /! AWESOME: http://bost.ocks.org/mike/miserables/
       ul
         li
           strong.big-number 928
@@ -230,6 +226,8 @@ section[data-section-name='atendidos']
         h2
           | Tipos mais frequentes de problemas atendidos
     .content.atendidos-content
+      /! bubble chart » http://en.wikipedia.org/wiki/Bubble_chart
+      /! http://bl.ocks.org/mbostock/4063269
       ul
         li
           strong.big-number 3746
@@ -344,15 +342,15 @@ section[data-section-name='social-trends']
           | Exibir o que as pessoas falam da empresa nas redes sociais.
     .content.social-trends
       h2
-        | O que as pessoas falam da empresa no Twitter [não a empresa, o que as pessoas falam da empresa].
+        | O que estão falando da #empresa no Twitter
       h2
-        | Comentários anônimos nessa página [ver se o disqus oferece isso].
+        | O que estão falando da #empresa no GooglePlus
 section[data-section-name='comments']
   .wrapper
     .section-info-wrapper
       .section-info
         h1
-          | Comentários
+          | Comentários anônimos nessa página [ver se o disqus oferece isso].
     .content.comments
       #disqus_thread
   javascript:
