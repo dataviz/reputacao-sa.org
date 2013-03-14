@@ -4,13 +4,13 @@ section[data-section-name='ranking-plus-info']
     .section-info-wrapper.show
       .section-info
         h1
-          | Empresa: LG
+          = "Empresa: #{@company.strNomeFantasia}"
         /! incluir informações da empresa pela wikipedia?
         p.description
           strong
             | Descrição
           br
-          | FABRICAÇÃO DE PERIFÉRICOS PARA EQUIPAMENTOS DE INFORMÁTICA
+          = "#{@company.DescCNAEPrincipal}"
     .content.ranking-plus-info-content
       .ranking
         p
@@ -44,7 +44,7 @@ section[data-section-name='ranking-plus-info']
       .ranking
         /! ❤ Média de reclamações mensais
         p
-          strong.big-number.reclamacoes-por-mes[data-counter='60'] 60
+          strong.big-number.reclamacoes-por-mes[data-counter="#{@company.complaints.count}"] = @company.complaints.count
         h3
           | Reclamações por mês
 section[data-section-name='time-matrices']
@@ -128,7 +128,7 @@ section[data-section-name='top-types']
         // #REFACTOR LOG?
         ruby:
 
-        - @max = @complaints_by_type.first.key.to_i
+        - @max = @complaints_by_type.keys.first.to_i
         /! animate bar to 50% from left to right
         /! fade number
         /! when scrolling reaches the UL element
