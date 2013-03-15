@@ -1,19 +1,21 @@
 $(function () {
-  $(window).scroll(function () {
-    var body = $('body');
-    var currentClass = body.attr('class');
-    var newClass = newClassName();
-    if (newClass && currentClass !== newClass) {
-      body.toggleClass(currentClass + ' ' + newClass);
-    }
-    $('section').find('.section-info-wrapper').hide();
-    $('section[data-section-name=' + newClass + ']').find('.section-info-wrapper').show();
-  });
-  newClassName();
-  incrementCounter($('.global'));
+  if ($('#root').hasClass('companies-page')) {
+    $(window).scroll(function () {
+      var body = $('body');
+      var currentClass = body.attr('class');
+      var newClass = newClassName();
+      if (newClass && currentClass !== newClass) {
+        body.toggleClass(currentClass + ' ' + newClass);
+      }
+      $('section').find('.section-info-wrapper').hide();
+      $('section[data-section-name=' + newClass + ']').find('.section-info-wrapper').show();
+    });
+    newClassName();
+    incrementCounter($('.global'));
+  }
 
   // HIGHLIGHT SEARCH ON FOCUS
-  if ($('.search').length > 0) {
+  if ($('#root').hasClass('home-page')) {
     $('.search input, .search .search-button').focus(function(){
       $('.search').addClass('focused');
     }).blur(function(){
