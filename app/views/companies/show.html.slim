@@ -11,7 +11,6 @@ section[data-section-name='ranking-plus-info']
             | Descrição
           br
           = "#{@company.DescCNAEPrincipal}"
-          = @company.complaints_by_region.count
     .content.ranking-plus-info-content
       .ranking
         p
@@ -228,8 +227,6 @@ section[data-section-name='atendidos']
         li
           strong.big-number 26
           | Desistência de compra (cancelamento de compra)
-          = @company.complaints_by_region.class
-
 section[data-section-name='choropleth-map']
   .wrapper
     .section-info-wrapper
