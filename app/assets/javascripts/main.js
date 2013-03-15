@@ -10,6 +10,16 @@ $(function () {
     });
     newClassName();
     incrementCounter($('.global'));
+    // TOGGLE MENU
+    $('.toggle-menu').on('click', function (e) {
+      e.preventDefault();
+      $('nav.nav').toggleClass('open-nav');
+    });
+    // TOGGLE SEARCH
+    $('.open-search').on('click', function (e) {
+      e.preventDefault();
+      $('.panel.search-panel').toggleClass('open');
+    });
   }
 
   // HIGHLIGHT SEARCH ON FOCUS
@@ -20,6 +30,9 @@ $(function () {
       $('.search').removeClass('focused');
     });
   }
+
+
+
 
 });
 

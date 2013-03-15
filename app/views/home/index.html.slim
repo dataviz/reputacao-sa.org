@@ -1,6 +1,16 @@
 /! IDEA DUMP
 // http://exame.abril.com.br/negocios/empresas/melhores-e-maiores/ranking/2012/
 // FAZER UM COMPARATIVO ENTRE EMPRESAS NA LISTA DAS MAIORES E MELHORES
+- content_for :header do
+  .social
+    = link_to '#', class: 'button code-on-github' do
+      | &#62208;
+    = link_to '#', class: 'button share-on-twitter' do
+      | &#62217;
+    = link_to '#', class: 'button share-on-facebook' do
+      | &#62220;
+    = link_to '#', class: 'button share-on-google-plus' do
+      | &#62223;
 = render 'shared/header'
 section.home-search
   .wrapper

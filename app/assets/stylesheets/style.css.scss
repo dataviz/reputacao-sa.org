@@ -5,7 +5,6 @@
 @import 'statelybrazil';
 @import 'home';
 
-
 body {
   color: $black;
   background-color: $white;
@@ -40,6 +39,20 @@ a {
   }
 }
 
+.panel {
+  @include transition(all .25s ease-in-out);
+  @include transform(translateY(-600px));
+  opacity: 0;
+  position: fixed;
+  padding: 26px 10px 10px 10px;
+  background-color: $white;
+  border-bottom: 2px solid $black;
+  &.open {
+    @include transform(translateY(0px));
+    opacity: 1;
+  }
+}
+
 .big-number {
   font-size: 2em;
 }
@@ -52,12 +65,12 @@ header {
   left: 0;
   width: 100%;
   z-index: 11;
-  overflow: hidden;
   box-shadow: darken($black, 5%) 0 0 2px;
   .wrapper {
     margin: 0 auto;
   }
   h1 {
+    @include box-sizing;
     float: left;
     width: 50%;
     margin: .5em 0;
@@ -71,15 +84,66 @@ header {
       background-size: 100%;
     }
   }
-  .social {
+  .social,
+  nav.nav {
+    @include box-sizing;
     float: left;
     text-align: right;
     width: 50%;
+  }
+  .social {
     font-size: 4em;
     line-height: 2.75rem;
     a {
       margin-left: .15em;
     }
+  }
+  nav.nav {
+    position: relative;
+    a {
+      color: $white;
+    }
+    &.open-nav {
+      ul {
+        @include transform(translateY(0px));
+        opacity: 1;
+      }
+    }
+    ul {
+      @include transition(all .25s ease-in-out);
+      @include transform(translateY(-600px));
+      position: absolute;
+      opacity: 0;
+      background-color: $wet-asphalt;
+      right: -.5em;
+      top: 3em;
+      z-index: 2;
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      li {
+        font-size: 1.25em;
+        font-weight: 300;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      a {
+        padding: .5em .75em;
+        display: block;
+      }
+    }
+  }
+  .open-search,
+  .toggle-menu {
+    font-size: 3em;
+    color: $white;
+    font-weight: 900;
+    line-height: 2rem;
+  }
+  .open-search {
+    font-size: 2em;
+    margin-right: .25em;
   }
 }
 
@@ -88,11 +152,18 @@ section {
     margin: 4em 0 0 0;
   }
   .section-info {
+    padding-top: 2vh;
+    &.first {
+      padding-top: 1vh;
+    }
   }
   .content {
+    padding-bottom: 2vh;
+    &.last {
+      padding-bottom: 1vh;
+    }
   }
 }
-
 
 footer {
   text-align: center;
@@ -221,12 +292,11 @@ footer {
     padding: 0;
     display: inline-block;
   }
-  .big-number.count {
+  .big-number {
     color: $white;
     vertical-align: middle;
     display: inline-block;
     font-size: 2em;
-    margin: 0 .75em;
   }
   .meter {
     display: inline-block;
@@ -242,12 +312,16 @@ footer {
 .nao-atendidos-content {
   ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0;
+    }
   }
   .big-number {
     vertical-align: middle;
     display: inline-block;
     color: $white;
-    margin-right: .5em;
   }
 }
 

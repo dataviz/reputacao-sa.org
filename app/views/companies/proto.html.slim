@@ -1,16 +1,61 @@
+.panel.search-panel
+  .search
+    .search-field
+      input[type='text' placeholder='Empresa ou CNPJ']
+  p.hint
+    | Digite sua busca e pressione em "retorno"
+- content_for :header do
+  nav.nav
+    a.open-search[href='#']
+      | Q
+    a.toggle-menu[href='#']
+      | ≡
+    ul
+      ruby:
+        @links = [
+          {
+            name: 'Ranking',
+            url: '#ranking'
+          },{
+            name: 'Por Tempo',
+            url: '#tempo'
+          },{
+            name: 'Top 10',
+            url: '#top-ten'
+          },{
+            name: 'Atendimentos',
+            url: '#atendimentos'
+          },{
+            name: 'Por Estado',
+            url: '#por-estado'
+          },{
+            name: 'Estatísticas',
+            url: '#estatisticas'
+          },{
+            name: 'Social',
+            url: '#social'
+          },{
+            name: 'Comentários',
+            url: '#comentarios'
+          }
+        ]
+      - @links.each do |link|
+        li
+          a[href="#{link[:url]}"]
+            = link[:name]
+
 = render 'shared/header'
-section[data-section-name='ranking-plus-info']
+section[data-section-name='ranking']
   .wrapper
-    .section-info-wrapper.show
-      .section-info
-        h1
-          | Empresa: LG
+    .section-info.first
+      h1#ranking
+        | Empresa: LG
+      p.description
         /! incluir informações da empresa pela wikipedia?
-        p.description
-          strong
-            | Descrição
-          br
-          | FABRICAÇÃO DE PERIFÉRICOS PARA EQUIPAMENTOS DE INFORMÁTICA
+        strong
+          | Descrição
+        br
+        | FABRICAÇÃO DE PERIFÉRICOS PARA EQUIPAMENTOS DE INFORMÁTICA
     .content.ranking-content
       .ranking
         p
@@ -53,11 +98,12 @@ section[data-section-name='ranking-plus-info']
             | 1
             small
               | /333
+
 section[data-section-name='time-matrices']
   .wrapper
     .section-info-wrapper
       .section-info
-        h1
+        h1#tempo
           | Ocorrências <span class="versus">×</span> Tempo
         p
           | Matrizes para exibição de ocorrências por tempo e relação atendidas e não-atendidas.
@@ -119,7 +165,7 @@ section[data-section-name='top-types']
   .wrapper
     .section-info-wrapper
       .section-info
-        h2
+        h2#top-ten
           | Top 10:
           br
           | Tipos de reclamação mais frequentes
@@ -133,53 +179,19 @@ section[data-section-name='top-types']
           a[href='#']
             | 2011
     .content.top-types-content
-      ruby:
-        @complaints = [
-          {
-            name: "Telefone (Convencional, Celular, Interfone, Etc.)",
-            count: '6404'
-          },{
-            name: "Televisão / Vídeo Cassete / Filmadora / Video-Laser",
-            count: '1243'
-          },{
-            name: "Telefonia Celular",
-            count: '709'
-          },{
-            name: "Microcomputador / Produtos de Informática",
-            count: '329'
-          },{
-            name: "Aparelho de Som ( Gravador, 3x1, CD )",
-            count: '200'
-          },{
-            name: "Aparelho DVD",
-            count: '126'
-          },{
-            name: "Energia Elétrica",
-            count: '113'
-          },{
-            name: "Eletroeletrônico Importado",
-            count: '91'
-          },{
-            name: "Aquecedor / Ventilador / Ar Condicionado / Circulador de Ar",
-            count: '76'
-          },{
-            name: "Máquina de Lavar Roupa / Louça e Secadora",
-            count: '64'
-          }
-        ]
       /! animate bar to 50% from left to right
       /! fade number
       /! when scrolling reaches the UL element
       table
-        - @max = @complaints.first[:count]
+        - max = @complaints.first[:count]
         - @complaints.each do |complaint|
           tr
-            td[width='75%']
-              .meter[style="width: #{ (complaint[:count]).to_i * 100 / (@max).to_i }%;"]
             td
               p
-                span.big-number.count
+                span.big-number
                   = complaint[:count]
+            td[width='75%']
+              .meter[style="width: #{ (complaint[:count]).to_i * 100 / (max).to_i }%;"]
           tr
             td[colspan=2]
               p
@@ -190,7 +202,7 @@ section[data-section-name='nao-atendidos']
   .wrapper
     .section-info-wrapper
       .section-info
-        h2
+        h2#atendimentos
           | Tipos mais frequentes de problemas não-atendidos
     .content.nao-atendidos-content
       /! bubble chart » http://en.wikipedia.org/wiki/Bubble_chart
@@ -233,6 +245,7 @@ section[data-section-name='nao-atendidos']
         li
           strong.big-number 5
           | Produto entregue diferente do pedido
+
 section[data-section-name='atendidos']
   .wrapper
     .section-info-wrapper
@@ -275,51 +288,21 @@ section[data-section-name='atendidos']
           | Desistência de compra (cancelamento de compra)
 
 section[data-section-name='choropleth-map']
-  ruby:
-    @states = [
-      { count: (rand*666).to_i, acronym:"AC", name: "Acre"                 , letter: "A" },
-      { count: (rand*666).to_i, acronym:"AL", name: "Alagoas"              , letter: "B" },
-      { count: (rand*666).to_i, acronym:"AP", name: "Amapá"                , letter: "C" },
-      { count: (rand*666).to_i, acronym:"AM", name: "Amazonas"             , letter: "D" },
-      { count: (rand*666).to_i, acronym:"BA", name: "Bahia"                , letter: "E" },
-      { count: (rand*666).to_i, acronym:"CE", name: "Ceará"                , letter: "F" },
-      { count: (rand*666).to_i, acronym:"DF", name: "Distrito Federal"     , letter: "G" },
-      { count: (rand*666).to_i, acronym:"ES", name: "Espírito Santo"       , letter: "H" },
-      { count: (rand*666).to_i, acronym:"GO", name: "Goiás"                , letter: "I" },
-      { count: (rand*666).to_i, acronym:"MA", name: "Maranhão"             , letter: "J" },
-      { count: (rand*666).to_i, acronym:"MT", name: "Mato Grosso"          , letter: "K" },
-      { count: (rand*666).to_i, acronym:"MS", name: "Mato Grosso do Sul"   , letter: "L" },
-      { count: (rand*666).to_i, acronym:"MG", name: "Minas Gerais"         , letter: "M" },
-      { count: (rand*666).to_i, acronym:"PA", name: "Pará"                 , letter: "N" },
-      { count: (rand*666).to_i, acronym:"PB", name: "Paraíba"              , letter: "O" },
-      { count: (rand*666).to_i, acronym:"PR", name: "Paraná"               , letter: "P" },
-      { count: (rand*666).to_i, acronym:"PE", name: "Pernambuco"           , letter: "Q" },
-      { count: (rand*666).to_i, acronym:"PI", name: "Piauí"                , letter: "R" },
-      { count: (rand*666).to_i, acronym:"RJ", name: "Rio de Janeiro"       , letter: "S" },
-      { count: (rand*666).to_i, acronym:"RN", name: "Rio Grande do Norte"  , letter: "T" },
-      { count: (rand*666).to_i, acronym:"RS", name: "Rio Grande do Sul"    , letter: "U" },
-      { count: (rand*666).to_i, acronym:"RO", name: "Rondônia"             , letter: "V" },
-      { count: (rand*666).to_i, acronym:"RR", name: "Roraima"              , letter: "W" },
-      { count: (rand*666).to_i, acronym:"SC", name: "Santa Catarina"       , letter: "X" },
-      { count: (rand*666).to_i, acronym:"SP", name: "São Paulo"            , letter: "Y" },
-      { count: (rand*666).to_i, acronym:"SE", name: "Sergipe"              , letter: "Z" },
-      { count: (rand*666).to_i, acronym:"TO", name: "Tocantins"            , letter: "a" }
-    ].sort_by { |state| state[:count] }
   .wrapper
     .section-info-wrapper
       .section-info
-        h2
+        h2#por-estado
           | Reclamações por estado
-        ul.statelybrazil
-          - @states.each do |state|
-            - data = (rand*9).to_i + 1
-            li[data-state-acronym=state[:acronym]
-              class="statelybrazil-state-#{state[:acronym]} statelybrazil-state"
-              data-state-name=state[:name]
-              data-state-complaints=data
-              style="opacity:0.#{"%03d" % state[:count]}"]
-              | #{state[:letter]}
     .content.choropleth-map-content
+      ul.statelybrazil
+        - @states.each do |state|
+          - data = (rand*9).to_i + 1
+          li[data-state-acronym=state[:acronym]
+            class="statelybrazil-state-#{state[:acronym]} statelybrazil-state"
+            data-state-name=state[:name]
+            data-state-complaints=data
+            style="opacity:0.#{"%03d" % state[:count]}"]
+            | #{state[:letter]}
       ul.state-list
         - @states.each do |state|
           li
@@ -327,11 +310,12 @@ section[data-section-name='choropleth-map']
               span.big-number
                 | #{state[:count]}
               | #{state[:name]}
+
 section[data-section-name='statistics']
   .wrapper
     .section-info-wrapper
       .section-info
-        h1
+        h1#estatisticas
           | Estatísticas gerais
         p
           | Tempo de resolução de atendimentos [abertura ao fechamento]
@@ -347,11 +331,12 @@ section[data-section-name='statistics']
         | Média de reclamações por sexo e idade
       pre
         | Paired Bar chart
+
 section[data-section-name='social-trends']
   .wrapper
     .section-info-wrapper
       .section-info
-        h1
+        h1#social
           | Tendências na rede
         p
           | Exibir o que as pessoas falam da empresa nas redes sociais.
@@ -360,13 +345,14 @@ section[data-section-name='social-trends']
         | O que estão falando da #empresa no Twitter
       h2
         | O que estão falando da #empresa no GooglePlus
+
 section[data-section-name='comments']
   .wrapper
     .section-info-wrapper
       .section-info
-        h1
+        h1#comentarios
           | Comentários
-    .content.comments
+    .content.last.comments
       /
         #disqus_thread
         javascript:
