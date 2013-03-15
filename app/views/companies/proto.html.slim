@@ -11,42 +11,48 @@ section[data-section-name='ranking-plus-info']
             | Descrição
           br
           | FABRICAÇÃO DE PERIFÉRICOS PARA EQUIPAMENTOS DE INFORMÁTICA
-    .content.ranking-plus-info-content
+    .content.ranking-content
       .ranking
         p
-          strong.big-number.estado[data-counter='1'] 1
-        h3
-          | Ranking por estado
-      .ranking
-        /! Atendimentos / Não atendimentos
-        p
-          strong.big-number.atendimentos-vs-nao-atendimentos[data-counter=''] 21:7
-        h3
-          | Proporção Atendimentos/Não-atendimentos
-      br
-      .ranking
-        /! Repetir esse efeito nos outros
-        p
-          strong.big-number.global[data-counter='230'] 0
-        h3
-          | Ranking global
-      .ranking
-        p
-          strong.big-number.setor[data-counter='100'] 100
-        h3
-          | Ranking por setor
-      br
-      .ranking
-        p
-          strong.big-number.reclamacoes-total-e[data-counter='6530'] 6530
-        h3
-          | Total de reclamações
+          | Total de reclamações 
+          strong.big-number
+            | 6350
       .ranking
         /! ❤ Média de reclamações mensais
         p
-          strong.big-number.reclamacoes-por-mes[data-counter='60'] 60
-        h3
-          | Reclamações por mês
+          | Reclamações por mês 
+          strong.big-number
+            | 60
+      .ranking
+        /! Atendimentos / Não atendimentos
+        p
+          | Proporção Atendimentos/Não-atendimentos 
+          strong.big-number
+            | 3:1 
+            small
+              | (1037:357)
+      .ranking
+        /! Repetir esse efeito nos outros
+        p
+          | Ranking global 
+          strong.big-number
+            | 230
+            small
+              | /3400
+      .ranking
+        p
+          | Ranking por setor 
+          strong.big-number
+            | 100
+            small
+              | /340
+      .ranking
+        p
+          | Ranking por estado 
+          strong.big-number
+            | 1
+            small
+              | /333
 section[data-section-name='time-matrices']
   .wrapper
     .section-info-wrapper
@@ -58,6 +64,7 @@ section[data-section-name='time-matrices']
     .content.time-matrices-content
       /! Can also be http://bl.ocks.org/mbostock/4063318
       /! OU ESSE » http://mbostock.github.com/d3/talk/20111116/iris-splom.html
+      /! TOUCH TEM QUE LEVATAR O TITLE NUM TOOLTIP = MOBILE
       h2
         | Número de reclamações por mês
       table.matrix
@@ -86,11 +93,11 @@ section[data-section-name='time-matrices']
         tr
           th
             | Mês\Ano
-          th
+          th[colspan=2]
             | 2009
-          th
+          th[colspan=2]
             | 2010
-          th
+          th[colspan=2]
             | 2011
         - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
         - months.each do |month|
@@ -101,20 +108,22 @@ section[data-section-name='time-matrices']
               ruby:
                 yes = 100 - (rand * 100).to_i
                 no  = 100 - yes
-              td[title="Sim: #{yes} × Não: #{no}"]
-                .semi-circles
-                  .yes
-                    span[style="font-size: #{(yes*0.5).to_i}px;"] ●
-                  .no
-                    span[style="font-size: #{(no*0.5).to_i}px;"] ●
+              td.nopad[title="Sim: #{yes}"]
+                p.yes
+                  span[style="font-size: #{(yes*0.5).to_i}px;"] ●
+              td.nopad[title="Não: #{no}"]
+                p.no
+                  span[style="font-size: #{(no*0.5).to_i}px;"] ●
 
 section[data-section-name='top-types']
   .wrapper
     .section-info-wrapper
       .section-info
         h2
-          | Top 10: Tipos de reclamação mais frequentes
-        .context
+          | Top 10:
+          br
+          | Tipos de reclamação mais frequentes
+        .top-types-context
           a[href='#']
             | Todos os anos
           a[href='#']
@@ -124,53 +133,58 @@ section[data-section-name='top-types']
           a[href='#']
             | 2011
     .content.top-types-content
-      ul
-        // #REFACTOR LOG?
-        ruby:
-          @complaints = [
-            {
-              name: "Telefone (Convencional, Celular, Interfone, Etc.)",
-              count: '6404'
-            },{
-              name: "Televisão / Vídeo Cassete / Filmadora / Video-Laser",
-              count: '1243'
-            },{
-              name: "Telefonia Celular",
-              count: '709'
-            },{
-              name: "Microcomputador / Produtos de Informática",
-              count: '329'
-            },{
-              name: "Aparelho de Som ( Gravador, 3x1, CD )",
-              count: '200'
-            },{
-              name: "Aparelho DVD",
-              count: '126'
-            },{
-              name: "Energia Elétrica",
-              count: '113'
-            },{
-              name: "Eletroeletrônico Importado",
-              count: '91'
-            },{
-              name: "Aquecedor / Ventilador / Ar Condicionado / Circulador de Ar",
-              count: '76'
-            },{
-              name: "Máquina de Lavar Roupa / Louça e Secadora",
-              count: '64'
-            }
-          ]
+      ruby:
+        @complaints = [
+          {
+            name: "Telefone (Convencional, Celular, Interfone, Etc.)",
+            count: '6404'
+          },{
+            name: "Televisão / Vídeo Cassete / Filmadora / Video-Laser",
+            count: '1243'
+          },{
+            name: "Telefonia Celular",
+            count: '709'
+          },{
+            name: "Microcomputador / Produtos de Informática",
+            count: '329'
+          },{
+            name: "Aparelho de Som ( Gravador, 3x1, CD )",
+            count: '200'
+          },{
+            name: "Aparelho DVD",
+            count: '126'
+          },{
+            name: "Energia Elétrica",
+            count: '113'
+          },{
+            name: "Eletroeletrônico Importado",
+            count: '91'
+          },{
+            name: "Aquecedor / Ventilador / Ar Condicionado / Circulador de Ar",
+            count: '76'
+          },{
+            name: "Máquina de Lavar Roupa / Louça e Secadora",
+            count: '64'
+          }
+        ]
+      /! animate bar to 50% from left to right
+      /! fade number
+      /! when scrolling reaches the UL element
+      table
         - @max = @complaints.first[:count]
-        /! animate bar to 50% from left to right
-        /! fade number
-        /! when scrolling reaches the UL element
         - @complaints.each do |complaint|
-          li
-            .meter[style="width: #{ (complaint[:count]).to_i * 100 / (@max).to_i }%;"]
-            p
-              span.big-number.count= complaint[:count]
-              strong
-                = complaint[:name]
+          tr
+            td[width='75%']
+              .meter[style="width: #{ (complaint[:count]).to_i * 100 / (@max).to_i }%;"]
+            td
+              p
+                span.big-number.count
+                  = complaint[:count]
+          tr
+            td[colspan=2]
+              p
+                small
+                  = complaint[:name]
 
 section[data-section-name='nao-atendidos']
   .wrapper
@@ -305,7 +319,7 @@ section[data-section-name='choropleth-map']
               data-state-complaints=data
               style="opacity:0.#{"%03d" % state[:count]}"]
               | #{state[:letter]}
-    .content.choropleth-map
+    .content.choropleth-map-content
       ul.state-list
         - @states.each do |state|
           li
@@ -351,18 +365,19 @@ section[data-section-name='comments']
     .section-info-wrapper
       .section-info
         h1
-          | Comentários anônimos nessa página [ver se o disqus oferece isso].
+          | Comentários
     .content.comments
-      #disqus_thread
-  javascript:
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'sindecprocon'; // required: replace example with your forum shortname
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  noscript
-    | É necessário habilitar o JavaScript para visualizar os <a href="http://disqus.com/?ref_noscript">comentários do Disqus.</a></noscript>
+      /
+        #disqus_thread
+        javascript:
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'sindecprocon'; // required: replace example with your forum shortname
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        noscript
+          | É necessário habilitar o JavaScript para visualizar os <a href="http://disqus.com/?ref_noscript">comentários do Disqus.</a></noscript>
 = render 'shared/footer'

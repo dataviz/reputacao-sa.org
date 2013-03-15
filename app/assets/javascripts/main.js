@@ -7,8 +7,6 @@ $(function () {
       if (newClass && currentClass !== newClass) {
         body.toggleClass(currentClass + ' ' + newClass);
       }
-      $('section').find('.section-info-wrapper').hide();
-      $('section[data-section-name=' + newClass + ']').find('.section-info-wrapper').show();
     });
     newClassName();
     incrementCounter($('.global'));
