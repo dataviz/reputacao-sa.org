@@ -3,9 +3,6 @@ section.home-search {
   p.main-description {
     text-align: center;
   }
-  .wrapper {
-    padding: 10em 0;
-  }
   .top-ten-home {
     text-align: center;
   }
@@ -29,18 +26,19 @@ section.home-search {
 }
 .search {
   @include box-sizing;
-  @include animation(pump_up_the_jam 1.5s 1 ease-in-out);
   @include transition(all .25s ease-in-out);
   background-color: $green-sea;
   padding: .25em;
-  margin: 4em 0;
   border-radius: 5px;
+  position: relative;
+  overflow: hidden;
   &.focused {
     background-color: $turquoise;
     .search-field {
       background-color: white;
     }
     .search-button {
+      @include transform(translateX(0));
       background-color: $turquoise;
     }
   }
@@ -65,7 +63,7 @@ section.home-search {
   input[type='text'] {
     background: none;
     border: 0 none;
-    width: 70%;
+    width: 100%;
     &:focus {
       outline: none;
       color: $black;
@@ -79,9 +77,12 @@ section.home-search {
   }
   .search-button {
     @include transition(all .25s ease-in-out);
+    @include transform(translateX(300px));
+    position: absolute;
+    top: .35em;
+    right: .35em;
     border-radius: 3px;
     background-color: $green-sea;
-    width: 30%;
     text-align: center;
     text-decoration: none;
     color: $white;

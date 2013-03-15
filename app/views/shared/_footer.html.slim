@@ -3,16 +3,19 @@ footer.colophon
     .box
       p
         strong
-          | Créditos:
+          | Créditos
         br
         = link_to 'http://dataviz.com.br', target: '_blank' do
           = image_tag 'dataviz.png', class: 'dataviz'
+        | Vitor Baptista
         br
-        | Projeto de Vitor Baptista, Thiago Bueno & Leo Tartari.
+        | Thiago Bueno
+        br
+        | Leo Tartari
     .box
       p
         strong
-          | Descrição do projeto:
+          | Descrição do projeto
         br
         | Realizado para o 
         | 1º Concurso de Aplicativos para Dados Abertos realizado por 
@@ -23,7 +26,7 @@ footer.colophon
     .box
       p
         strong
-          | Links úteis:
+          | Links úteis
         ruby:
           @links_uteis = [
             {
@@ -43,7 +46,7 @@ footer.colophon
             = link[:name]
       p
         strong
-          | Licensa:
+          | Licensa
         br
         a[href='http://www.gnu.org/licenses/agpl-3.0.html' target='_blank' title='AGPLv3']
           = image_tag 'agplv3-155x51.png', class: 'license', alt: 'AGPLv3 license'

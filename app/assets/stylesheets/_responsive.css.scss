@@ -1,23 +1,34 @@
 // RESPONSIVE STUFF
-@media all and (min-width:1280px){
+@media all and (min-width: 1280px){
 }
 @media all and (max-width: 1280px) {
 }
 @media all and (max-width: 1024px) {
-  .wrapper {
-  }
 }
 @media all and (max-width: 800px) {
-  .wrapper {
-    width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
-  }
 }
 @media all and (max-width: 400px) {
-  .wrapper {
-    width: 80%;
-    padding-left: 10%;
-    padding-right: 10%;
+  body {
+    width: 100%;
+  }
+  header {
+    .social {
+      font-size: 2.5em;
+      a {
+      }
+    }
+  }
+  header,
+  footer {
+    .wrapper {
+      padding: 0 1em;
+    }
+  }
+  section {
+    .wrapper {
+      @include box-sizing;
+      padding: 0 1em;
+      width: 100%;
+    }
   }
 }

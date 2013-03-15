@@ -9,6 +9,7 @@
 body {
   color: $black;
   background-color: $white;
+  padding-top: 3em;
   @include transition(all .5s ease-in-out);
   &.time-matrices {
     @extend .background-silver;
@@ -45,7 +46,6 @@ header {
   background-color: $wet-asphalt;
   top: 0;
   left: 0;
-  padding: 10px;
   width: 100%;
   z-index: 11;
   overflow: hidden;
@@ -55,7 +55,7 @@ header {
   h1 {
     float: left;
     width: 50%;
-    margin: 0;
+    margin: .5em 0;
     padding: 0;
     font-size: 1.25em;
     a {
@@ -71,7 +71,7 @@ header {
     text-align: right;
     width: 50%;
     font-size: 4em;
-    line-height: 1.75rem;
+    line-height: 2.75rem;
     a {
       margin-left: .15em;
     }
@@ -79,10 +79,6 @@ header {
 }
 
 section {
-  padding-left: 220px;
-  padding-right: 10%;
-  position: relative;
-  overflow: hidden;
   .section-info-wrapper {
     position: fixed;
     top: 0;
@@ -113,26 +109,20 @@ section {
   }
 }
 
+
 footer {
-  padding: 3em 0;
-  .wrapper {
-    margin: 0 auto;
-    padding: 0 10%;
-  }
-  .box {
-    @include box-sizing;
-    vertical-align: top;
-    display: inline-block;
-    width: 33.333333333%;
-    padding-right: 40px;
-  }
-  .dataviz {
-    width: 100px;
-    margin: 1em 0 0 0;
+  text-align: center;
+  font-size: .875em;
+  .dataviz,
+  .license {
+    margin: 1em auto;
     display: block;
   }
+  .dataviz {
+    max-width: 50%;
+  }
   .license {
-    width: 70px;
+    width: 75px; // @2x
   }
   ul {
     list-style-type: none;
@@ -142,6 +132,10 @@ footer {
       margin: 0;
       display: block;
     }
+  }
+  strong {
+    color: $concrete;
+    text-transform: uppercase;
   }
 }
 .ranking-plus-info-content {
