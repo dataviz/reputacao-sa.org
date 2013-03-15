@@ -7,4 +7,8 @@ class Company
   validates_presence_of :strNomeFantasia
   has_many :complaints
 
+  def complaints_by_region
+    self.complaints.group_by {|comp| comp.UF}
+  end
+
 end
