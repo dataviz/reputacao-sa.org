@@ -1,14 +1,5 @@
 $(function () {
   if ($('#root').hasClass('companies-page')) {
-    $(window).scroll(function () {
-      var body = $('body');
-      var currentClass = body.attr('class');
-      var newClass = newClassName();
-      if (newClass && currentClass !== newClass) {
-        body.toggleClass(currentClass + ' ' + newClass);
-      }
-    });
-    newClassName();
     incrementCounter($('.global'));
     // TOGGLE MENU
     $('.toggle-menu').on('click', function (e) {
@@ -30,22 +21,7 @@ $(function () {
       $('.search').removeClass('focused');
     });
   }
-
-
-
-
 });
-
-function newClassName() {
-  var sections = $('section');
-  var windowTop = $(window).scrollTop();
-  for (var i = sections.length - 1; i >= 0; i--) {
-    var section = $(sections[i]);
-    if (windowTop >= section.offset().top) {
-      return section.data('section-name');
-    }
-  }
-}
 
 function incrementCounter(element) {
   $self = element;
