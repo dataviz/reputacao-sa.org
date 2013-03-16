@@ -18,43 +18,6 @@ class CompaniesController < ApplicationController
     complaints.group_by {|compl| compl.CodigoProblema }
   end
 
-  def proto
-    @complaints = [
-      {
-        count: '6404',
-        name: "Telefone (Convencional, Celular, Interfone, Etc.)"
-      },{
-        count: '1243',
-        name: "Televisão / Vídeo Cassete / Filmadora / Video-Laser"
-      },{
-        count: '709',
-        name: "Telefonia Celular"
-      },{
-        count: '329',
-        name: "Microcomputador / Produtos de Informática"
-      },{
-        count: '200',
-        name: "Aparelho de Som ( Gravador, 3x1, CD )"
-      },{
-        count: '126',
-        name: "Aparelho DVD"
-      },{
-        count: '113',
-        name: "Energia Elétrica"
-      },{
-        count: '91',
-        name: "Eletroeletrônico Importado"
-      },{
-        count: '76',
-        name: "Aquecedor / Ventilador / Ar Condicionado / Circulador de Ar"
-      },{
-        count: '64',
-        name: "Máquina de Lavar Roupa / Louça e Secadora"
-      }
-    ]
-    @states = regions
-  end
-
   def regions
     { "AC" => ["Acre"                , "A"],
       "AL" => ["Alagoas"             , "B"],
