@@ -11,7 +11,35 @@ head
     title
       | Reputação S/A
     meta name='description' content=''
-    meta name='viewport' content='width=device-width, user-scalable=no'
+    meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1'
+    /! iPhone
+    link[href="/splash-iphone.png"
+      media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)"
+      rel="apple-touch-startup-image"]
+    /! iPhone (Retina)
+    link[href="/splash-iphone@2x.png"
+      media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"]
+    /! iPhone 5
+    link[href="/splash-iphone5@2x.png"
+      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"]
+    /! iPad Portrait
+    link[href="/splash-ipad-portrait.png"
+      media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)"
+      rel="apple-touch-startup-image"]
+    /! iPad Landscape
+    link[href="/splash-ipad-landscape.png"
+      media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)"
+      rel="apple-touch-startup-image"]
+    /! iPad Portrait (Retina)
+    link[href="/splash-ipad-portrait@2x.png"
+      media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"]
+    /! iPad Landscape (Retina)
+    link[href="/splash-ipad-landscape@2x.png"
+      media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"]
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
     link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'
