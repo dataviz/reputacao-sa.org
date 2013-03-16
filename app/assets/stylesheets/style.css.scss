@@ -9,26 +9,6 @@ body {
   color: $black;
   background-color: $white;
   padding-top: 3em;
-  @include transition(all .5s ease-in-out);
-  &.time-matrices {
-    @extend .background-silver;
-  }
-  &.top-types {
-    @extend .background-midnight-blue;
-    color: $white;
-  }
-  &.choropleth-map {
-    @extend .background-sun-flower;
-  }
-  &.nao-atendidos {
-    @extend .background-pomegranate;
-  }
-  &.atendidos {
-    @extend .background-emerland;
-  }
-  &.comments {
-    @extend .background-silver;
-  }
 }
 
 a {
@@ -151,6 +131,35 @@ section {
   h2 {
     margin: 4em 0 0 0;
   }
+  &.ranking {
+    @extend .background-turquoise;
+    color: $white;
+  }
+  &.time-matrices {
+    @extend .background-concrete;
+  }
+  &.top-types {
+    @extend .background-midnight-blue;
+    color: $white;
+  }
+  &.choropleth-map {
+    @extend .background-orange;
+  }
+  &.nao-atendidos {
+    @extend .background-pomegranate;
+  }
+  &.atendidos {
+    @extend .background-emerland;
+  }
+  &.statistics {
+    @extend .background-peter-river;
+  }
+  &.social-trends {
+    @extend .background-carrot;
+  }
+  &.comments {
+    @extend .background-silver;
+  }
   .section-info {
     padding-top: 2vh;
     &.first {
@@ -201,10 +210,10 @@ footer {
   .big-number {
     display: block;
     font-size: 2em;
-    color: $turquoise;
+    color: $white;
     small {
       font-size: .5em;
-      color: $asbestos;
+      color: $wet-asphalt;
     }
   }
   .ranking {
@@ -225,37 +234,40 @@ footer {
   table,
   th,
   td {
-    border: 1px solid lighten($silver, 10%);
+    border: 1px solid lighten($concrete, 10%);
     border-left: 0 none;
     border-right: 0 none;
   }
   th {
-    background-color: lighten($silver, 10%);
+    background-color: lighten($concrete, 2%);
   }
   th,
   td {
     padding: 5px;
     text-align: center;
   }
-}
-
-.matrix {
-  width: 100%;
-  .yes,
-  .no {
-    margin: 0;
-    padding: 0;
-    text-align: center;
+  span.point {
+    line-height: 24px;
+    text-shadow: lighten($concrete, 10%) 0 1px 0;
   }
-  .yes {
-    color: $nephritis;
-  }
-  .no {
-    color: $pomegranate;
-  }
-  tr {
-    td.nopad {
+  .matrix {
+    width: 100%;
+    .yes,
+    .no {
+      margin: 0;
       padding: 0;
+      text-align: center;
+    }
+    .yes {
+      color: $nephritis;
+    }
+    .no {
+      color: $pomegranate;
+    }
+    tr {
+      td.nopad {
+        padding: 0;
+      }
     }
   }
 }
@@ -331,7 +343,7 @@ footer {
     display: inline-block;
   }
   .statelybrazil {
-    color: $pumpkin;
+    color: darken($orange, 30%);
   }
   h3 {
     margin: 0;

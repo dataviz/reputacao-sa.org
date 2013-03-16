@@ -1,10 +1,13 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
+
   def show
-    @company = Company.where(strNomeFantasia: params[:nome].upcase).first
+    @company  = Company.where(strNomeFantasia: params[:nome].upcase).first
     @complaints_by_type = Hash[group(@company.complaints).sort.reverse]
-    @regions = regions
-    @states = @company.complaints_by_region
+    @regions  = regions
+    @states   = @company.complaints_by_region
+
+    @nav_links = nav_links
   end
 
   def group(complaints)
@@ -49,35 +52,7 @@ class CompaniesController < ApplicationController
         name: "Máquina de Lavar Roupa / Louça e Secadora"
       }
     ]
-    @states = [
-      { count: (rand*666).to_i, acronym:"AC", name: "Acre"                 , letter: "A" },
-      { count: (rand*666).to_i, acronym:"AL", name: "Alagoas"              , letter: "B" },
-      { count: (rand*666).to_i, acronym:"AP", name: "Amapá"                , letter: "C" },
-      { count: (rand*666).to_i, acronym:"AM", name: "Amazonas"             , letter: "D" },
-      { count: (rand*666).to_i, acronym:"BA", name: "Bahia"                , letter: "E" },
-      { count: (rand*666).to_i, acronym:"CE", name: "Ceará"                , letter: "F" },
-      { count: (rand*666).to_i, acronym:"DF", name: "Distrito Federal"     , letter: "G" },
-      { count: (rand*666).to_i, acronym:"ES", name: "Espírito Santo"       , letter: "H" },
-      { count: (rand*666).to_i, acronym:"GO", name: "Goiás"                , letter: "I" },
-      { count: (rand*666).to_i, acronym:"MA", name: "Maranhão"             , letter: "J" },
-      { count: (rand*666).to_i, acronym:"MT", name: "Mato Grosso"          , letter: "K" },
-      { count: (rand*666).to_i, acronym:"MS", name: "Mato Grosso do Sul"   , letter: "L" },
-      { count: (rand*666).to_i, acronym:"MG", name: "Minas Gerais"         , letter: "M" },
-      { count: (rand*666).to_i, acronym:"PA", name: "Pará"                 , letter: "N" },
-      { count: (rand*666).to_i, acronym:"PB", name: "Paraíba"              , letter: "O" },
-      { count: (rand*666).to_i, acronym:"PR", name: "Paraná"               , letter: "P" },
-      { count: (rand*666).to_i, acronym:"PE", name: "Pernambuco"           , letter: "Q" },
-      { count: (rand*666).to_i, acronym:"PI", name: "Piauí"                , letter: "R" },
-      { count: (rand*666).to_i, acronym:"RJ", name: "Rio de Janeiro"       , letter: "S" },
-      { count: (rand*666).to_i, acronym:"RN", name: "Rio Grande do Norte"  , letter: "T" },
-      { count: (rand*666).to_i, acronym:"RS", name: "Rio Grande do Sul"    , letter: "U" },
-      { count: (rand*666).to_i, acronym:"RO", name: "Rondônia"             , letter: "V" },
-      { count: (rand*666).to_i, acronym:"RR", name: "Roraima"              , letter: "W" },
-      { count: (rand*666).to_i, acronym:"SC", name: "Santa Catarina"       , letter: "X" },
-      { count: (rand*666).to_i, acronym:"SP", name: "São Paulo"            , letter: "Y" },
-      { count: (rand*666).to_i, acronym:"SE", name: "Sergipe"              , letter: "Z" },
-      { count: (rand*666).to_i, acronym:"TO", name: "Tocantins"            , letter: "a" }
-    ].sort_by { |state| state[:count] }
+    @states = regions
   end
 
   def regions
@@ -108,6 +83,18 @@ class CompaniesController < ApplicationController
       "SP" => ["São Paulo"           , "Y"],
       "SE" => ["Sergipe"             , "Z"],
       "TO" => ["Tocantins"           , "a"]}
+  end
+  def nav_links
+    [
+      { name: 'Ranking',       url: '#ranking' },
+      { name: 'Por Tempo',     url: '#por-tempo' },
+      { name: 'Top 10',        url: '#top-10' },
+      { name: 'Atendimentos',  url: '#atendimentos' },
+      { name: 'Por Estado',    url: '#por-estado' },
+      { name: 'Estatísticas',  url: '#estatisticas' },
+      { name: 'Redes Sociais', url: '#redes-sociais' },
+      { name: 'Comentários',   url: '#comentarios' }
+    ]
   end
 
 end
