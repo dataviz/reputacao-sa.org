@@ -1,0 +1,159 @@
+@import 'fontface';
+@import 'colours';
+@import 'helpers';
+@import 'typography';
+body {
+  color: $black;
+  background-color: $white;
+}
+a {
+  color: $belize-hole;
+  text-decoration: none;
+  &:hover {
+    color: lighten($belize-hole, 10%);
+  }
+}
+.wrapper {
+  margin: 0 auto;
+}
+header {
+  background-color: $midnight-blue;
+  overflow: hidden;
+  padding: 4em 0 0 0;
+  border-bottom: 5px solid $sun-flower;
+  .wrapper {
+    position: relative;
+  }
+  .social {
+    position: absolute;
+    top: -4.5em;
+    right: 0;
+    a {
+      color: $white;
+      font-size: 4em;
+      text-decoration: none;
+      margin-left: .25em;
+    }
+  }
+}
+.social {
+  a {
+    font-size: 4em;
+    text-decoration: none;
+    margin-left: .25em;
+  }
+}
+h1 {
+  margin: 0;
+  padding: 4em 0 0 0;
+  a {
+    background-image: url(reputacao-sa.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: left top;
+    background-size: 100%;
+    width: 460px;
+    height: 76px;
+    text-indent: -9999em;
+    display: block;
+  }
+}
+.main-copy {
+  width: 460px;
+  float: left;
+  .main-description {
+    color: $white;
+    font-size: 1.5em;
+  }
+}
+.showcase-image {
+  background-image: url(showcase.png);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-attachment: scroll;
+  background-size: 100%;
+  width: 500px;
+  float: right;
+  height: 500px;
+}
+.info-box {
+  @include box-sizing;
+  border-radius: 4px;
+  display: inline-block;
+  width: 25%;
+  color: $white;
+  padding: 20px;
+  h2 {
+    margin: 0;
+    line-height: 1em;
+  }
+  .content {
+    padding: 20px;
+  }
+  .good {
+    background-color: $turquoise;
+  }
+  .bad {
+    background-color: $pomegranate;
+  }
+  .info {
+    background-color: $peter-river;
+  }
+  .now {
+    background-color: $amethyst;
+  }
+}
+.main {
+  padding: 4em 0;
+}
+footer {
+  font-size: .875em;
+  p {
+    strong {
+      display: block;
+    }
+    &.last {
+      text-align: center;
+    }
+    &.useful-links {
+      a {
+        display: block;
+      }
+    }
+  }
+  .box {
+    @include box-sizing;
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    padding-right: 20px;
+  }
+  .dataviz,
+  .license {
+    margin: 1em 0;
+    display: block;
+  }
+  .dataviz {
+    max-width: 100px;
+  }
+  .license {
+    width: 75px; // @2x
+  }
+  .social {
+    text-align: center;
+  }
+}
+// RESPONSIVE STUFF
+@media all and (min-width: 1280px){
+  .wrapper {
+    width: 1200px;
+  }
+}
+@media all and (max-width: 1280px) {
+}
+@media all and (max-width: 1024px) {
+}
+@media all and (max-width: 800px) {
+}
+@media all and (max-width: 400px) {
+}

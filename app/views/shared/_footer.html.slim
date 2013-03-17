@@ -1,7 +1,7 @@
 footer.colophon
   .wrapper
     .box
-      p
+      p.useful-links
         strong
           | Links úteis
         ruby:
@@ -50,5 +50,6 @@ footer.colophon
         br
         a[href='http://www.gnu.org/licenses/agpl-3.0.html' target='_blank' title='AGPLv3']
           = image_tag 'agplv3-155x51.png', class: 'license', alt: 'AGPLv3 license'
-    p
+    = render 'shared/social'
+    p.last
       | Reputação S/A · #{Time.new.year} · <a href="#">Código no GitHub</a>

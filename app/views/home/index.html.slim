@@ -1,32 +1,44 @@
-section
+header
   .wrapper
-    header
+    .main-copy
       h1
-        | Reputação S/A
-      .social
-        = link_to '#', class: 'button code-on-github' do
-          | &#62208;
-        = link_to '#', class: 'button share-on-twitter' do
-          | &#62217;
-        = link_to '#', class: 'button share-on-facebook' do
-          | &#62220;
-        = link_to '#', class: 'button share-on-google-plus' do
-          | &#62223;
-    .project-info
-      h2
-        | Busque e visualize dados para auxiliar nas suas decisões.
+        = link_to root_path do
+          | Reputação S/A
       p.main-description
         | Consumidores brasileiros agora tem acesso à uma ferramenta que 
         | descomplica a visualização de reclamações contra fornecedores.
-    .top-ten-home
-      h6
-        | AS DEZ MAIS RECLAMADAS
-      ul.home-list
-        - companies = %w(Oi Claro LG Brastemp Samsung Tim Ponto Frio Vivo GVT)
-        - companies.each do |company|
-          li
-            = link_to "empresa/#{company}" do
-              = company
+    .showcase-image
+    = render 'shared/social'
+section.main
+  .wrapper
+    .info-box
+      .content.good
+        h2
+          | Busque e visualize dados para auxiliar nas suas decisões.
+        p
+          | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+          | descomplica a visualização de reclamações contra fornecedores.
+    .info-box
+      .content.bad
+        h2
+          | Busque e visualize dados para auxiliar nas suas decisões.
+        p
+          | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+          | descomplica a visualização de reclamações contra fornecedores.
+    .info-box
+      .content.info
+        h2
+          | Busque e visualize dados para auxiliar nas suas decisões.
+        p
+          | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+          | descomplica a visualização de reclamações contra fornecedores.
+    .info-box
+      .content.now
+        h2
+          | Busque e visualize dados para auxiliar nas suas decisões.
+        p
+          | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+          | descomplica a visualização de reclamações contra fornecedores.
 = render 'shared/footer'
 // IDEA DUMP
 // http://exame.abril.com.br/negocios/empresas/melhores-e-maiores/ranking/2012/

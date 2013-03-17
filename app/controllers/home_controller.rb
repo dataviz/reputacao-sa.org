@@ -1,10 +1,9 @@
 # encoding: utf-8
 class HomeController < ApplicationController
 
-  def index
-  end
+  layout 'home'
 
-  def lg
+  def index
   end
 
 end
