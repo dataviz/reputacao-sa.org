@@ -56,7 +56,7 @@ section.main
         h3
           | iPhone/iPad
         ol
-          li
+          li.no-border
             p
               | Pressione o o botão #{image_tag 'install/ios-safari-share-button.png', width: 42, alt: 'Compartilhar', title: 'Compartilhar'} para acessar as opções de página …
             = image_tag 'install/install-ios-step-one.png'
@@ -68,17 +68,28 @@ section.main
             p
               | … e por fim pressione <samp>Adicionar</samp> no topo da tela.
             = image_tag 'install/install-ios-step-three.png'
-          li
+          li.no-border
             p
               | Pronto! =)
       .android
         h3
           | Android
         ol
+          li.no-border
+            p
+              | Pressione o botão #{image_tag 'install/android-button.png', width: 42} para acessar as opções de página …
+            = image_tag 'install/install-android-step-one.png'
           li
             p
-              | Pressione o botão <samp>Adicionar à Tela de Início</samp>
-              / #TODO Vitor
+              | … selecione a opção <samp>Salvar nos favoritos</samp> …
+            = image_tag 'install/install-android-step-two.png'
+          li
+            p
+              | … e por fim pressione <samp>OK</samp> no rodapé da página.
+            = image_tag 'install/install-android-step-three.png'
+          li.no-border
+            p
+              | Pronto! =)
 
 
 = render 'shared/footer'
