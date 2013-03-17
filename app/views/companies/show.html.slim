@@ -39,15 +39,15 @@ section.ranking
         p
           | Proporção Atendimentos/Não-atendimentos
           strong.big-number
-            | 3:1
+            = ( @solved.to_f/ (@solved.to_f + @unsolved.to_f)).round(2)
             small
-              | (1037:357)
+              =  "(#{@solved}:#{@unsolved})"
       .ranking
         /! Repetir esse efeito nos outros
         p
           | Ranking global
           strong.big-number
-            | 230
+            =  top_companies.select{|tc| tc[:name] == @company[:name] }.first
             small
               | /3400
       .ranking
