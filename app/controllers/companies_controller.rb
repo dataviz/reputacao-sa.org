@@ -2,7 +2,6 @@
 class CompaniesController < ApplicationController
 
   def index
-    @companies = top_companies
     @nav_links = nav_links
   end
 

@@ -7,4 +7,5 @@ class ApplicationController < ActionController::Base
     end
     name.downcase.strip.gsub('_', ' ').gsub('-', '')
   end
+
 end
