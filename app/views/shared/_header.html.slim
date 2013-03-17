@@ -1,6 +1,15 @@
+.panel.search-panel
+  .search
+    .search-field
+      input[type='text' placeholder='Empresa ou CNPJ']
+  p.hint
+    | Digite sua busca e pressione em "retorno"
 header
   .wrapper
     h1
       = link_to root_path, class: 'reputacao-sa' do
         | Reputação S/A
-    = yield :header
+    nav.nav
+      a.open-search[href='#']
+        | Q
+      = yield :navigation

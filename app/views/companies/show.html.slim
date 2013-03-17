@@ -1,28 +1,21 @@
-.panel.search-panel
-  .search
-    .search-field
-      input[type='text' placeholder='Empresa ou CNPJ']
-  p.hint
-    | Digite sua busca e pressione em "retorno"
-
-- content_for :header do
-  nav.nav
-    a.open-search[href='#']
-      | Q
-    a.toggle-menu[href='#']
-      | ≡
-    ul
-      - @nav_links.each do |link|
-        li
-          a[href="#{link[:url]}"]
-            = link[:name]
+- content_for :navigation do
+  a.toggle-menu[href='#']
+    | ≡
+  ul
+    - @nav_links.each do |link|
+      li
+        a[href="#{link[:url]}"]
+          = link[:name]
 
 = render 'shared/header'
 section.ranking
   .wrapper
     .section-info.first
+      strong
+        | Empresa:
+      br
       h1#ranking
-        = "Empresa: #{@company.strNomeFantasia}"
+        = @company.strNomeFantasia
       /! incluir informações da empresa pela wikipedia?
       p.description
         strong
@@ -303,9 +296,14 @@ section.social-trends
         | Tendências na rede
       p
         | Exibir o que as pessoas falam da empresa nas redes sociais.
-    .content.social-trends-wrapper
+section.twitter-trends
+  .wrapper
+    .section-info
       h2
         | O que estão falando da #empresa no Twitter
+section.google-plus-trends
+  .wrapper
+    .section-info
       h2
         | O que estão falando da #empresa no GooglePlus
 

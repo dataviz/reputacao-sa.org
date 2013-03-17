@@ -1,6 +1,34 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
 
+  def index
+    @top_companies = [
+      # É CHUMBO GROSSO!
+      { name: 'LG',         count: 4705  },
+      { name: 'Oi',         count: 5757  },
+      { name: 'Claro',      count: 18614 },
+      { name: 'Brastemp',   count: 15347 },
+      { name: 'Samsung',    count: 1488  },
+      { name: 'Tim',        count: 18415 },
+      { name: 'Ponto Frio', count: 13022 },
+      { name: 'Vivo',       count: 9240  },
+      { name: 'GVT',        count: 17868 },
+      { name: 'Americanas', count: 15695 },
+      { name: 'Submarino',  count: 18988 },
+      { name: 'Volkswagen', count: 18558 },
+      { name: 'Ford',       count: 1057  },
+      { name: 'Peugeot',    count: 17555 },
+      { name: 'Rossi',      count: 20726 },
+      { name: 'Sony',       count: 15905 },
+      { name: 'Gradiente',  count: 584   },
+      { name: 'Apple',      count: 8077  },
+      { name: 'HP',         count: 18101 },
+      { name: 'Philips',    count: 11587 },
+      { name: 'Epson',      count: 3342  }
+    ].sort_by {|company| company[:count] * -1 }
+    @nav_links = nav_links
+  end
+
   def show
     @company  = Company.where(strNomeFantasia: params[:nome].upcase).first
     @complaints_by_type = Hash[group(@company.complaints).sort.reverse]

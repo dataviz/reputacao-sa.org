@@ -3,7 +3,6 @@
 @import 'typography';
 @import 'colours';
 @import 'statelybrazil';
-@import 'home';
 
 body {
   color: $black;
@@ -32,6 +31,17 @@ a {
   &.open {
     @include transform(translateY(0px));
     opacity: 1;
+  }
+  input {
+    @include box-sizing;
+    font-size: 1.5em;
+    width: 100%;
+    border: 3px solid darken($turquoise, 10%);
+    background: $clouds;
+    &:focus {
+      color: $turquoise;
+      background-color: white;
+    }
   }
 }
 
@@ -125,11 +135,71 @@ header {
   }
   .open-search {
     font-size: 2em;
-    margin-right: .25em;
+    line-height: 1.25em;
+  }
+  .toggle-menu {
+    margin-left: .5em;
+  }
+}
+
+.companies {
+  .more-companies {
+    @include box-sizing;
+    display: block;
+    clear: both;
+    padding: 5px;
+    background-color: $belize-hole;
+    color: $clouds;
+    padding: .5em;
+    text-align: center;
+    font-weight: 900;
+    border-radius: 6px;
+    margin: .5em 5px;
+  }
+}
+.company {
+    @include box-sizing;
+    display: block;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid darken($clouds, 8%);
+    clear: both;
+    padding: 5px;
+  .company-name,
+  .complaint-count,
+  .arrow {
+    @include box-sizing;
+    display: inline-block;
+  }
+  .company-name {
+    font-size: 1.25em;
+    line-height: 2rem;
+    color: $midnight-blue;
+  }
+  .arrow {
+    float: right;
+    font-size: 2.5em;
+    line-height: 0;
+    color: darken($clouds, 15%);
+    line-height: 1.75rem;
+  }
+  .complaint-count {
+    float: right;
+    font-size: .875em;
+    color: $asbestos;
+    line-height: 1rem;
+    background-color: $midnight-blue;
+    color: $clouds;
+    padding: .25em .5em;
+    margin: .45em .5em 0 0;
+    border-radius: 4px;
   }
 }
 
 section {
+  h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+  }
   &.ranking {
     @extend .background-turquoise;
     color: $white;
@@ -156,26 +226,33 @@ section {
   &.social-trends {
     @extend .background-carrot;
   }
+  &.twitter-trends {
+    @extend .background-peter-river;
+    color: $white;
+  }
+  &.google-plus-trends {
+    @extend .background-pomegranate;
+    color: $white;
+  }
   &.comments {
     @extend .background-silver;
-  }
-  .section-info {
-    padding-top: 2vh;
-    &.first {
-      padding-top: 1vh;
-    }
-  }
-  .content {
-    padding-bottom: 2vh;
-    &.last {
-      padding-bottom: 1vh;
-    }
   }
 }
 
 footer {
   text-align: center;
   font-size: .875em;
+  margin-top: 3em;
+  .button {
+    @include box-sizing;
+    width: 100%;
+    display: block;
+    color: $clouds;
+    background-color: $belize-hole;
+    border-radius: 6px;
+    padding: .5em;
+    margin-bottom: .5em;
+  }
   .dataviz,
   .license {
     margin: 1em auto;

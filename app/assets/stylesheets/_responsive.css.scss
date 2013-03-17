@@ -39,13 +39,13 @@
   header,
   footer {
     .wrapper {
-      padding: 0 1em;
+      padding: 0 5px;
     }
   }
   section {
     .wrapper {
       @include box-sizing;
-      padding: 0 10px;
+      padding: 0 5px;
       width: 100%;
     }
   }

@@ -1,0 +1,18 @@
+= render 'shared/header'
+section.companies
+  .company
+    strong.company-name
+      | Empresa
+    .complaint-count
+      | Reclamações
+  - @top_companies.each do |company|
+    a.company[href="/empresa/#{company[:name]}"]
+      strong.company-name
+        = company[:name]
+      span.arrow
+        | ›
+      span.complaint-count
+        = company[:count]
+  a.more-companies
+    | Carregar mais 20 empresas
+= render 'shared/footer'
