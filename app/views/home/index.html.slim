@@ -11,34 +11,72 @@ header
     = render 'shared/social'
 section.main
   .wrapper
-    .info-box
-      .content.good
-        h2
-          | Busque e visualize dados para auxiliar nas suas decisões.
-        p
-          | Consumidores brasileiros agora tem acesso à uma ferramenta que 
-          | descomplica a visualização de reclamações contra fornecedores.
-    .info-box
-      .content.bad
-        h2
-          | Busque e visualize dados para auxiliar nas suas decisões.
-        p
-          | Consumidores brasileiros agora tem acesso à uma ferramenta que 
-          | descomplica a visualização de reclamações contra fornecedores.
-    .info-box
-      .content.info
-        h2
-          | Busque e visualize dados para auxiliar nas suas decisões.
-        p
-          | Consumidores brasileiros agora tem acesso à uma ferramenta que 
-          | descomplica a visualização de reclamações contra fornecedores.
-    .info-box
-      .content.now
-        h2
-          | Busque e visualize dados para auxiliar nas suas decisões.
-        p
-          | Consumidores brasileiros agora tem acesso à uma ferramenta que 
-          | descomplica a visualização de reclamações contra fornecedores.
+    .boxes
+      .info-box
+        .content.good
+          h2
+            | Busque e visualize dados para auxiliar nas suas decisões.
+          p
+            | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+            | descomplica a visualização de reclamações contra fornecedores.
+      .info-box
+        .content.bad
+          h2
+            | Busque e visualize dados para auxiliar nas suas decisões.
+          p
+            | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+            | descomplica a visualização de reclamações contra fornecedores.
+      .info-box
+        .content.info
+          h2
+            | Busque e visualize dados para auxiliar nas suas decisões.
+          p
+            | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+            | descomplica a visualização de reclamações contra fornecedores.
+      .info-box
+        .content.now
+          h2
+            | Busque e visualize dados para auxiliar nas suas decisões.
+          p
+            | Consumidores brasileiros agora tem acesso à uma ferramenta que 
+            | descomplica a visualização de reclamações contra fornecedores.
+    .install
+      h2
+        | Como instalar?
+      p.main-instruction
+        | Acesse o link
+        br
+        = link_to 'http://reputacao-sa.org/empresas', 'http://reputacao-sa.org/empresas'
+        = image_tag 'install/qrcode-link.png'
+      .ios
+        h3
+          | iPhone/iPad
+        ol
+          li
+            p
+              | Pressione o o botão #{image_tag 'install/ios-safari-share-button.png', width: 42, alt: 'Compartilhar', title: 'Compartilhar'} para acessar as opções de página …
+            = image_tag 'install/install-ios-step-one.png'
+          li
+            p
+              | … selecione a opção <samp>Adicionar à Tela de Início</samp> …
+            = image_tag 'install/install-ios-step-two.png'
+          li
+            p
+              | … e por fim pressione <samp>Adicionar</samp> no topo da tela.
+            = image_tag 'install/install-ios-step-three.png'
+          li
+            p
+              | Pronto! =)
+      .android
+        h3
+          | Android
+        ol
+          li
+            p
+              | Pressione o botão <samp>Adicionar à Tela de Início</samp>
+              / #TODO Vitor
+
+
 = render 'shared/footer'
 // IDEA DUMP
 // http://exame.abril.com.br/negocios/empresas/melhores-e-maiores/ranking/2012/
