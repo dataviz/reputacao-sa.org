@@ -15,7 +15,7 @@ section.ranking
         | Empresa:
       br
       h1#ranking
-        = @company[:nome]
+        = @company[:name]
       /! incluir informações da empresa pela wikipedia?
       p.description
         strong
@@ -31,39 +31,25 @@ section.ranking
       .ranking
         /! ❤ Média de reclamações mensais
         p
-          | Reclamações por mês
+          | Reclamações por mês (média)
           strong.big-number
-            | 60
+            = @complaints.count / 36
       .ranking
         /! Atendimentos / Não atendimentos
         p
           | Proporção Atendimentos/Não-atendimentos
           strong.big-number
-            = ( @solved.to_f/ (@solved.to_f + @unsolved.to_f)).round(2)
+            = ( @solved.count.to_f/ (@solved.count.to_f + @unsolved.count.to_f)).round(2)
             small
-              =  "(#{@solved}:#{@unsolved})"
+              =  "(#{@solved.count}:#{@unsolved.count})"
       .ranking
         /! Repetir esse efeito nos outros
         p
           | Ranking global
           strong.big-number
-            =  top_companies.select{|tc| tc[:name] == @company[:name] }.first
+            =  (top_companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
             small
               | /3400
-      .ranking
-        p
-          | Ranking por setor
-          strong.big-number
-            | 100
-            small
-              | /340
-      .ranking
-        p
-          | Ranking por estado
-          strong.big-number
-            | 1
-            small
-              | /333
 
 section.time-matrices
   .wrapper
@@ -170,42 +156,10 @@ section.nao-atendidos
       /! http://bl.ocks.org/mbostock/4063269
       /! AWESOME: http://bost.ocks.org/mike/miserables/
       ul
-        li
-          strong.big-number 928
-          | Garantia (Abrangência, cobertura, etc.)
-        li
-          strong.big-number 480
-          | Produto entregue com danos/defeitos
-        li
-          strong.big-number 177
-          | Falta de peca de reposição
-        li
-          strong.big-number 62
-          | Garantia - Descumprimento, prazo
-        li
-          strong.big-number 48
-          | Não entrega/demora na entrega do produto
-        li
-          strong.big-number 39
-          | Produto causou danos materiais
-        li
-          strong.big-number 30
-          | Cobrança indevida/abusiva
-        li
-          strong.big-number 30
-          | Vicio de qualidade (mal executado, inadequado, impróprio)
-        li
-          strong.big-number 15
-          | Demora na montagem/montagem incompleta/incorreta
-        li
-          strong.big-number 7
-          | Desistência de compra (cancelamento de compra)
-        li
-          strong.big-number 6
-          | Dano material/pessoal decorrente do serviço
-        li
-          strong.big-number 5
-          | Produto entregue diferente do pedido
+        - @unsolved_by_type.keys[0..9].each do |count|
+          li
+            strong.big-number = count
+            = @unsolved_by_type[count].first.DescricaoProblema
 
 section.atendidos
   .wrapper
@@ -216,36 +170,11 @@ section.atendidos
       /! bubble chart » http://en.wikipedia.org/wiki/Bubble_chart
       /! http://bl.ocks.org/mbostock/4063269
       ul
-        li
-          strong.big-number 3746
-          | Garantia (Abrangência, cobertura, etc.)
-        li
-          strong.big-number 1899
-          | Produto entregue com danos/defeitos
-        li
-          strong.big-number 732
-          | Falta de peca de reposição
-        li
-          strong.big-number 428
-          | Garantia - Descumprimento, prazo
-        li
-          strong.big-number 326
-          | Não entrega/demora na entrega do produto
-        li
-          strong.big-number 151
-          | Vicio de qualidade (mal executado, inadequado, impróprio)
-        li
-          strong.big-number 118
-          | Produto causou danos materiais
-        li
-          strong.big-number 84
-          | Demora na montagem/montagem incompleta/incorreta
-        li
-          strong.big-number 62
-          | Cobrança indevida/abusiva
-        li
-          strong.big-number 26
-          | Desistência de compra (cancelamento de compra)
+        - @solved_by_type.keys[0..9].each do |count|
+          li
+            strong.big-number = count
+            = @solved_by_type[count].first.DescricaoProblema
+
 
 section.choropleth-map
   .wrapper

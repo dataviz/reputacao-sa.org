@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
+
     @name = params[:name]
     @complaints = Complaint.where(strNomeFantasia: params[:name].upcase)
     @complaints_by_type = Hash[group(@complaints).sort.reverse]
@@ -13,9 +14,10 @@ class CompaniesController < ApplicationController
     @company = {name: c.strNomeFantasia, descricao: c.DescCNAEPrincipal}
     @regions  = regions
     @states   = @complaints.group_by {|comp| comp.UF}
-    @solved = @complaints.select{|c| c.atendida? }.count
-    @unsolved = @complaints.reject{|c| c.atendida? }.count
-
+    @solved = @complaints.select{|c| c.atendida? }
+    @unsolved = @complaints.reject{|c| c.atendida? }
+    @unsolved_by_type = Hash[group(@unsolved).sort.reverse]
+    @solved_by_type = Hash[group(@solved).sort.reverse]
     @nav_links = nav_links
   end
 
