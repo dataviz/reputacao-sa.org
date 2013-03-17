@@ -5,7 +5,7 @@ module ApplicationHelper
     name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
   end
 
-    def top_companies
+  def top_companies
     [
       { position: 1, name: 'OI / Brasil Telecom',         count: 15780  },
       { position: 2, name: 'Ponto Frio / Casas Bahia',         count: 15557  },
