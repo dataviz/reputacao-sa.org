@@ -29,10 +29,15 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company  = Company.where(strNomeFantasia: params[:nome].upcase).first
-    @complaints_by_type = Hash[group(@company.complaints).sort.reverse]
+    #@company  = Company.where(strNomeFantasia: params[:nome].upcase).first
+
+    @name = params[:nome]
+    @complaints = Complaint.where(strNomeFantasia: params[:nome].upcase)
+    @complaints_by_type = Hash[group(@complaints).sort.reverse]
+    c = @complaints.first
+    @company = {nome: c.strNomeFantasia, descricao: c.DescCNAEPrincipal}
     @regions  = regions
-    @states   = @company.complaints_by_region
+    @states   = @complaints.group_by {|comp| comp.UF}
 
     @nav_links = nav_links
   end

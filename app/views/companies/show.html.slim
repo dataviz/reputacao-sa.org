@@ -15,19 +15,19 @@ section.ranking
         | Empresa:
       br
       h1#ranking
-        = @company.strNomeFantasia
+        = @company[:nome]
       /! incluir informações da empresa pela wikipedia?
       p.description
         strong
           | Descrição
         br
-        = "#{@company.DescCNAEPrincipal}"
+        = @company[:descricao]
     .content.ranking-content
       .ranking
         p
           | Total de reclamações
           strong.big-number
-            = @company.complaints.count
+            = @complaints.count
       .ranking
         /! ❤ Média de reclamações mensais
         p
