@@ -1,7 +1,8 @@
 SindecProcon::Application.routes.draw do
 
-  match "/empresa/:nome" => "companies#show"
   match "/empresas" => "companies#index"
+  match "/:nome" => "companies#show"
+
 
   root :to => 'home#index'
 
