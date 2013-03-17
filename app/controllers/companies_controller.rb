@@ -3,37 +3,41 @@ class CompaniesController < ApplicationController
 
   def index
     @top_companies = [
-      # É CHUMBO GROSSO!
-      { name: 'LG',         count: 4705  },
-      { name: 'Oi',         count: 5757  },
-      { name: 'Claro',      count: 18614 },
-      { name: 'Brastemp',   count: 15347 },
-      { name: 'Samsung',    count: 1488  },
-      { name: 'Tim',        count: 18415 },
-      { name: 'Ponto Frio', count: 13022 },
-      { name: 'Vivo',       count: 9240  },
-      { name: 'GVT',        count: 17868 },
-      { name: 'Americanas', count: 15695 },
-      { name: 'Submarino',  count: 18988 },
-      { name: 'Volkswagen', count: 18558 },
-      { name: 'Ford',       count: 1057  },
-      { name: 'Peugeot',    count: 17555 },
-      { name: 'Rossi',      count: 20726 },
-      { name: 'Sony',       count: 15905 },
-      { name: 'Gradiente',  count: 584   },
-      { name: 'Apple',      count: 8077  },
-      { name: 'HP',         count: 18101 },
-      { name: 'Philips',    count: 11587 },
-      { name: 'Epson',      count: 3342  }
+      { name: 'OI / Brasil Telecom',         count: 15780  },
+      { name: 'Ponto Frio / Casas Bahia',         count: 15557  },
+      { name: 'Itaú / Unibanco',      count: 11079 },
+      { name: 'LG',   count: 9336 },
+      { name: 'Claro',    count: 9276  },
+      { name: 'Ricardo Eletro',        count: 7975 },
+      { name: 'Samsung', count: 7571 },
+      { name: 'Sony Ericsson',       count: 6082  },
+      { name: 'Bradesco',        count: 6758 },
+      { name: 'Nokia', count: 6074 },
+      { name: 'Tim',       count: 5959  },
+      { name: 'Vivo',  count: 5761 },
+      { name: 'Americanas.com / Submarino / Shoptime', count: 5655 },
+      { name: 'Banco do Brail',    count: 3701 },
+      { name: 'Consul / Brastemp',      count: 2874 },
+      { name: 'Citibank',       count: 2735 },
+      { name: 'Wallmart',  count: 2640   },
+      { name: 'Banco BMG',      count: 2637  },
+      { name: 'Banco Santander / Real',         count: 2606 },
+      { name: 'Mabe / GE / Dako',    count: 2544 },
+      { name: 'Carrefour',      count: 2530  }
     ].sort_by {|company| company[:count] * -1 }
     @nav_links = nav_links
   end
 
   def show
-    @company  = Company.where(strNomeFantasia: params[:nome].upcase).first
-    @complaints_by_type = Hash[group(@company.complaints).sort.reverse]
+    #@company  = Company.where(strNomeFantasia: params[:nome].upcase).first
+
+    @name = params[:nome]
+    @complaints = Complaint.where(strNomeFantasia: params[:nome].upcase)
+    @complaints_by_type = Hash[group(@complaints).sort.reverse]
+    c = @complaints.first
+    @company = {nome: c.strNomeFantasia, descricao: c.DescCNAEPrincipal}
     @regions  = regions
-    @states   = @company.complaints_by_region
+    @states   = @complaints.group_by {|comp| comp.UF}
 
     @nav_links = nav_links
   end
