@@ -22,7 +22,7 @@ section.main
             | ReputaçãoS/A é um aplicativo para a visualização de dados de empresas 
             | reclamadas no PROCON.
           - empresas = ['LG','Claro','Oi','Vivo','Brastemp','Ford','Volkswagen','GVT','Net']
-          = link_to 'Veja um exemplo aleatório', "/empresas/#{empresas.shuffle.first}"
+          = link_to 'Veja um exemplo aleatório', "/#{empresas.shuffle.first}"
       .info-box
         .content.bad
           h2

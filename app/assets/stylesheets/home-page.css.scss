@@ -246,8 +246,75 @@ footer {
 @media all and (max-width: 1280px) {
 }
 @media all and (max-width: 1024px) {
+  h1 a {
+    width: 100%;
+  }
+  .wrapper {
+    width: 960px;
+  }
+  header {
+    .main-copy,
+    .showcase-image {
+      width: 38%;
+    }
+  }
 }
-@media all and (max-width: 800px) {
-}
-@media all and (max-width: 400px) {
+@media
+  all and (max-width: 800px),
+  all and (max-width: 400px) {
+  html,
+  body,
+  .wrapper,
+  h1 a,
+  .main-copy,
+  .showcase-image {
+    width: 100%;
+  }
+  header {
+    padding-top: 0;
+    h1 {
+      padding-top: 1em;
+    }
+    .social {
+      display: block;
+      position: static;
+      text-align: center;
+    }
+  }
+  .info-box {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .install {
+    .ios,
+    .android {
+      display: block;
+      float: none;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .showcase-image {
+    margin-right: 0;
+  }
+  .main-copy {
+    text-align: center;
+  }
+  .wrapper {
+    @include box-sizing;
+    padding: 0 5px;
+  }
+  footer {
+    .box {
+      width: 100%;
+      display: block;
+      text-align: center;
+    }
+    .dataviz,
+    .license {
+      margin: 0 auto;
+      display: block;
+    }
+  }
 }
