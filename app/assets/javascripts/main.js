@@ -1,6 +1,5 @@
 $(function () {
   if ($('#root').hasClass('companies-page')) {
-    incrementCounter($('.global'));
     // TOGGLE MENU
     $('.toggle-menu').on('click', function (e) {
       e.preventDefault();
@@ -23,12 +22,16 @@ $(function () {
   }
 });
 
-function incrementCounter(element) {
-  $self = element;
-  var counter_till = $self.data('counter');
-  var text = parseFloat($self.text());
-  $self.text(parseFloat(text)+1);
-  if ($self.text() < counter_till) {
-    setTimeout("incrementCounter($self), 40");
+function updateCounter(finalValue) {
+  var initialValue = element.text();
+
+  function update() {
+    element.text(Math.ceil(this.value));
   }
+
+  $({value: initialValue}).animate({value: finalValue}, {
+    duration: 1000,
+    step: update,
+    complete: update
+  });
 }
