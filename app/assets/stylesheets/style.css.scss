@@ -221,7 +221,7 @@ section {
     color: $white;
   }
   &.choropleth-map {
-    @extend .background-orange;
+    @extend .background-white;
   }
   &.nao-atendidos {
     @extend .background-pomegranate;
@@ -427,14 +427,18 @@ footer {
     display: inline-block;
   }
   .statelybrazil {
-    color: darken($orange, 30%);
+    color: $alizarin;
+  }
+  .zero-results {
+    color: $midnight-blue;
+    opacity: 0.5;
   }
   h3 {
     margin: 0;
     padding: 0;
     font-size: 1em;
     .big-number {
-      color: $pumpkin;
+      color: $alizarin;
       font-size: 1.25em;
       vertical-align: middle;
       width: 4em;
