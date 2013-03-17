@@ -31,8 +31,8 @@ class CompaniesController < ApplicationController
   def show
     #@company  = Company.where(strNomeFantasia: params[:nome].upcase).first
 
-    @name = params[:nome]
-    @complaints = Complaint.where(strNomeFantasia: params[:nome].upcase)
+    @name = params[:name]
+    @complaints = Complaint.where(strNomeFantasia: params[:name].upcase)
     @complaints_by_type = Hash[group(@complaints).sort.reverse]
     c = @complaints.first
     @company = {nome: c.strNomeFantasia, descricao: c.DescCNAEPrincipal}
@@ -43,7 +43,7 @@ class CompaniesController < ApplicationController
   end
 
   def search
-    companies = Complaint.group_by_company(params[:nome])
+    companies = Complaint.group_by_company(params[:name])
                          .sort { |a, b| b["value"]["count"] <=> a["value"]["count"] }
     @companies = companies[0, 20].map do |company|
       { name: company["_id"], count: company["value"]["count"].to_i }
