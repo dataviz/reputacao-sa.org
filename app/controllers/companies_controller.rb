@@ -7,9 +7,8 @@ class CompaniesController < ApplicationController
   end
 
   def show
-
-    @name = params[:name]
-    @complaints = Complaint.where(strNomeFantasia: params[:name].upcase)
+    @name = unslugfy(params[:name]).upcase
+    @complaints = Complaint.where(strNomeFantasia: @name)
     @complaints_by_type = Hash[group(@complaints).sort.reverse]
     c = @complaints.first
     @company = {name: c.strNomeFantasia, descricao: c.DescCNAEPrincipal}

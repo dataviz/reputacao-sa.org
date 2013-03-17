@@ -2,10 +2,14 @@
 module ApplicationHelper
 
   def slugfy(name)
-    name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+    if name.include?('/')
+      name = name.split('/') * '_'
+    end
+    name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]éíáúó/, '')#.gsub('ú', 'u')
   end
 
-  def top_companies
+
+    def top_companies
     [
       { position: 1, name: 'OI / Brasil Telecom',         count: 15780  },
       { position: 2, name: 'Ponto Frio / Casas Bahia',         count: 15557  },
