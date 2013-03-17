@@ -130,9 +130,6 @@ header {
 }
 
 section {
-  h2 {
-    margin: 4em 0 0 0;
-  }
   &.ranking {
     @extend .background-turquoise;
     color: $white;

@@ -9,37 +9,22 @@ head
     meta charset='utf-8'
     meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'
     title
-      | Reputação S/A
+      | ReputaçãoS/A
     meta name='description' content=''
     meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1'
-    /! iPhone
-    link[href="/splash-iphone.png"
-      media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)"
-      rel="apple-touch-startup-image"]
-    /! iPhone (Retina)
-    link[href="/splash-iphone@2x.png"
-      media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"
-      rel="apple-touch-startup-image"]
-    /! iPhone 5
-    link[href="/splash-iphone5@2x.png"
-      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
-      rel="apple-touch-startup-image"]
-    /! iPad Portrait
-    link[href="/splash-ipad-portrait.png"
-      media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)"
-      rel="apple-touch-startup-image"]
-    /! iPad Landscape
-    link[href="/splash-ipad-landscape.png"
-      media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)"
-      rel="apple-touch-startup-image"]
-    /! iPad Portrait (Retina)
-    link[href="/splash-ipad-portrait@2x.png"
-      media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
-      rel="apple-touch-startup-image"]
-    /! iPad Landscape (Retina)
-    link[href="/splash-ipad-landscape@2x.png"
-      media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
-      rel="apple-touch-startup-image"]
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"
+    link[href="/touch-icon-iphone.png" sizes="57x57" rel="apple-touch-icon"]
+    link[href="/touch-icon-iphone@2x.png" sizes="114x114" rel="apple-touch-icon"]
+    link[href="/touch-icon-ipad.png" sizes="72x72" rel="apple-touch-icon"]
+    link[href="/touch-icon-ipad@2x.png" sizes="144x144" rel="apple-touch-icon"]
+    link[href="/splash-iphone.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"]
+    link[href="/splash-iphone@2x.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"]
+    link[href="/splash-iphone5@2x.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"]
+    link[href="/splash-ipad-portrait.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"]
+    link[href="/splash-ipad-landscape.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"]
+    link[href="/splash-ipad-portrait@2x.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"]
+    link[href="/splash-ipad-landscape@2x.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"]
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
     link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'
