@@ -52,55 +52,105 @@ h1 {
     background-attachment: scroll;
     background-position: left top;
     background-size: 100%;
-    width: 460px;
+    width: 500px;
     height: 76px;
     text-indent: -9999em;
     display: block;
   }
 }
+
 .main-copy {
-  width: 460px;
+  width: 500px;
   float: left;
   .main-description {
     color: $white;
     font-size: 1.5em;
   }
 }
+
+.button.main-cta {
+  display: inline-block;
+  background: $peter-river;
+  color: white;
+  font-weight: 900;
+  text-align: center;
+  padding: .5em 1em;
+  border-radius: 6px;
+  margin: .5em 0;
+}
+
 .showcase-image {
   background-image: url(showcase.png);
   background-repeat: no-repeat;
   background-position: left top;
   background-attachment: scroll;
   background-size: 100%;
-  width: 500px;
+  width: 490px;
   float: right;
   height: 500px;
+  margin-right: 100px;
 }
+
 .info-box {
   @include box-sizing;
   border-radius: 4px;
   display: inline-block;
+  vertical-align: top;
   width: 25%;
   color: $white;
   padding: 20px;
   h2 {
     margin: 0;
     line-height: 1em;
+    min-height: 3em;
+  }
+  p {
+    margin: 1em 0 0;
+    min-height: 7em;
   }
   .content {
+    border-radius: 4px;
     padding: 20px;
+    a {
+      @include box-sizing;
+      display: inline-block;
+      width: 100%;
+      padding: .5em;
+      margin-top: .5em;
+      text-align: center;
+      border-radius: 3px;
+      &:hover {
+        opacity: .75;
+      }
+    }
   }
   .good {
-    background-color: $turquoise;
+    background-color: $nephritis;
+    a {
+      background-color: $white;
+      color: $nephritis;
+    }
   }
   .bad {
-    background-color: $pomegranate;
+    background-color: $alizarin;
+    a {
+      background-color: $white;
+      color: $alizarin;
+    }
   }
   .info {
     background-color: $peter-river;
+    a {
+      background-color: $white;
+      color: $peter-river;
+    }
   }
   .now {
     background-color: $amethyst;
+    a {
+      background-color: $white;
+      color: $amethyst;
+    }
   }
 }
 .main {
