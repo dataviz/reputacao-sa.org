@@ -5,7 +5,7 @@ section.companies
       | Empresa
     .complaint-count
       | Reclamações
-  - top_companies.each do |company|
+  - @companies.each do |company|
     a.company[href="/#{slugfy(company[:name])}"]
       strong.company-name
         = company[:name]
