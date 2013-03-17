@@ -1,5 +1,9 @@
 // RESPONSIVE STUFF
 @media all and (min-width: 1280px){
+  .wrapper {
+    width: 960px;
+    margin: 0 auto;
+  }
   .statelybrazil {
     /*background: red; //debug*/
     font: normal normal 800px/940px "statelybrazil";
@@ -8,6 +12,10 @@
   }
 }
 @media all and (max-width: 1280px) {
+  .wrapper {
+    width: 960px;
+    margin: 0 auto;
+  }
   .statelybrazil {
     /*background: red; //debug*/
     font: normal normal 800px/940px "statelybrazil";
@@ -23,11 +31,15 @@
     height: 820px;
   }
 }
-@media all and (max-width: 800px) {
-}
-@media all and (max-width: 400px) {
+@media
+  all and (max-width: 800px),
+  all and (max-width: 400px) {
   body {
     width: 100%;
+  }
+  .wrapper {
+    width: auto;
+    margin: 0;
   }
   header {
     .social {

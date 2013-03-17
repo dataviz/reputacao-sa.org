@@ -35,10 +35,15 @@ a {
   input {
     @include box-sizing;
     font-size: 1.5em;
+    line-height: 1.5em;
+    padding: .25em .5em;
     width: 100%;
     border: 3px solid darken($turquoise, 10%);
+    border-radius: 6px;
     background: $clouds;
     &:focus {
+      box-shadow: none;
+      outline: none;
       color: $turquoise;
       background-color: white;
     }
@@ -144,7 +149,7 @@ header {
 
 .companies {
   .more-companies {
-    @include box-sizing;
+    /*@include box-sizing;
     display: block;
     clear: both;
     padding: 5px;
@@ -154,7 +159,8 @@ header {
     text-align: center;
     font-weight: 900;
     border-radius: 6px;
-    margin: .5em 5px;
+    margin: .5em 5px;*/
+    display: none;
   }
 }
 .company {
@@ -164,6 +170,9 @@ header {
     border-bottom: 1px solid darken($clouds, 8%);
     clear: both;
     padding: 5px;
+  .company-name {
+    max-width: 80%;
+  }
   .company-name,
   .complaint-count,
   .arrow {
@@ -285,11 +294,11 @@ footer {
   }
   .big-number {
     display: block;
-    font-size: 2em;
+    font-size: 3.5em;
     color: $white;
     small {
       font-size: .5em;
-      color: $wet-asphalt;
+      color: darken($white,10%);
     }
   }
   .ranking {
