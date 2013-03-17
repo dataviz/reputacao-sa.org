@@ -1,7 +1,8 @@
 .panel.search-panel
   .search
     .search-field
-      input[type='text' placeholder='Empresa ou CNPJ']
+      form[action=companies_search_path]
+        input[type='text' name='nome' placeholder='Empresa ou CNPJ']
   p.hint
     | Digite sua busca e pressione em "retorno"
 header

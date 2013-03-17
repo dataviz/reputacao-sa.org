@@ -2,7 +2,7 @@
 class CompaniesController < ApplicationController
 
   def index
-    @top_companies = [
+    @companies = [
       { name: 'OI / Brasil Telecom',         count: 15780  },
       { name: 'Ponto Frio / Casas Bahia',         count: 15557  },
       { name: 'Itaú / Unibanco',      count: 11079 },
@@ -40,6 +40,15 @@ class CompaniesController < ApplicationController
     @states   = @complaints.group_by {|comp| comp.UF}
 
     @nav_links = nav_links
+  end
+
+  def search
+    companies = Complaint.group_by_company(params[:nome])
+                         .sort { |a, b| b["value"]["count"] <=> a["value"]["count"] }
+    @companies = companies[0, 20].map do |company|
+      { name: company["_id"], count: company["value"]["count"].to_i }
+    end
+    render :index
   end
 
   def group(complaints)
