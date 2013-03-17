@@ -183,21 +183,22 @@ section.choropleth-map
         | Reclamações por estado
     .content.choropleth-map-content
       ul.statelybrazil
-        - @states.each_pair do |state, occ|
-          - data = (rand*9).to_i + 1
-          li[data-state-acronym=state
-            class="statelybrazil-state-#{state} statelybrazil-state"
-            data-state-name=@regions[state].first
-            data-state-complaints=occ.count
-            style="opacity:0.#{"%03d" % occ.count}"]
-            | #{@regions[state].last}
+        - @regions.each_pair do |uf, region|
+          - complaints_count = @states.fetch(uf, []).length
+          li[data-state-acronym=uf
+            class="statelybrazil-state-#{uf} statelybrazil-state #{'zero-complaints' if complaints_count.zero?}"
+            data-state-name=region.first
+            data-state-complaints=complaints_count
+            style="opacity:0.#{"%03d" % complaints_count}"]
+            | #{region.last}
       ul.state-list
-        - @states.each_pair do |state, occ|
+        - @regions.each_pair do |uf, region|
+          - complaints_count = @states.fetch(uf, []).length
           li
             h3
               span.big-number
-                = occ.count
-              = @regions[state].first
+                = complaints_count
+              = region.first
 
 section.statistics
   .wrapper
