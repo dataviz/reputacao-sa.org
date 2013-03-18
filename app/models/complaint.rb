@@ -53,7 +53,9 @@ class Complaint
         var fulfilled = 0;
 
         for (var i in values) {
-          fulfilled += values[i].fulfilled;
+          if (values[i].fulfilled == 1) {
+            fulfilled += 1;
+          }
         }
 
         return {fulfilled: fulfilled, count: values.length};
