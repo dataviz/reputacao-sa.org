@@ -185,11 +185,13 @@ section.choropleth-map
       ul.statelybrazil
         - @regions.each_pair do |uf, region|
           - complaints_count = @states.fetch(uf, []).length
+          - css_category = if complaints_count.zero? then 0 else 1 + complaints_count/@slice end
+          - css_category = complaints_count/@slice if complaints_count == @max_complaints_count
+          - css_class = "color-#{css_category}"
           li[data-state-acronym=uf
-            class="statelybrazil-state-#{uf} statelybrazil-state #{'zero-complaints' if complaints_count.zero?}"
+            class="statelybrazil-state-#{uf} statelybrazil-state #{css_class}"
             data-state-name=region.first
-            data-state-complaints=complaints_count
-            style="opacity:0.#{"%03d" % complaints_count}"]
+            data-state-complaints=complaints_count]
             | #{region.last}
       ul.state-list
         - @regions.each_pair do |uf, region|
