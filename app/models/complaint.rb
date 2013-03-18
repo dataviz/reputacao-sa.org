@@ -22,59 +22,63 @@ class Complaint
   end
 
   def self.group_by_company(search_params)
-    map = %Q{
-      function() {
-        emit(this.slug, {name: this.strNomeFantasia, slug: this.slug, count: 1})
+    Rails.cache.fetch("group_by_company/#{search_params}", :expires_in => 12.hours) do
+      map = %Q{
+        function() {
+          emit(this.slug, {name: this.strNomeFantasia, slug: this.slug, count: 1})
+        }
       }
-    }
 
-    reduce = %Q{
-      function(key, values) {
-        var count = 0;
-        values.forEach(function (v) {
-          count += v.count;
-        });
-        return {name: values[0].name, slug: values[0].slug, count: count};
+      reduce = %Q{
+        function(key, values) {
+          var count = 0;
+          values.forEach(function (v) {
+            count += v.count;
+          });
+          return {name: values[0].name, slug: values[0].slug, count: count};
+        }
       }
-    }
 
-    query = if search_params
-              self.any_of(search_params)
-            else
-              self
-            end
-    query.map_reduce(map, reduce).out(inline: true)
+      query = if search_params
+                self.any_of(search_params)
+              else
+                self
+              end
+      query.map_reduce(map, reduce).out(inline: true)
+    end
   end
 
   def self.group_by_fulfillment_month_year(search_params)
-    map = %Q{
-      function() {
-        var month_year = this.DataArquivamento.slice(0, 7);
-        var fulfilled = 0;
+    Rails.cache.fetch("group_by_fulfillment_month_year/#{search_params}", :expires_in => 12.hours) do
+      map = %Q{
+        function() {
+          var month_year = this.DataArquivamento.slice(0, 7);
+          var fulfilled = 0;
 
-        if (this.Atendida === "true") {
-          fulfilled = 1;
+          if (this.Atendida === "true") {
+            fulfilled = 1;
+          }
+
+          emit(month_year, {fulfilled: fulfilled, count: 1})
         }
-
-        emit(month_year, {fulfilled: fulfilled, count: 1})
       }
-    }
 
-    reduce = %Q{
-      function(key, values) {
-        var count = 0;
-        var fulfilled = 0;
+      reduce = %Q{
+        function(key, values) {
+          var count = 0;
+          var fulfilled = 0;
 
-        values.forEach(function (v) {
-          count += v.count;
-          fulfilled += v.fulfilled;
-        });
+          values.forEach(function (v) {
+            count += v.count;
+            fulfilled += v.fulfilled;
+          });
 
-        return {fulfilled: fulfilled, count: count};
+          return {fulfilled: fulfilled, count: count};
+        }
       }
-    }
 
-    self.any_of(search_params).map_reduce(map, reduce).out(inline: true)
+      self.any_of(search_params).map_reduce(map, reduce).out(inline: true)
+    end
   end
 
   def self.generate_slugs!
