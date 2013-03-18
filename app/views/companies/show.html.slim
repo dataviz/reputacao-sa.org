@@ -62,16 +62,17 @@ section.statistics
     .section-info
       h1#estatisticas-gerais
         | Estatísticas gerais
-      p
-        | Tempo de resolução de atendimentos [abertura ao fechamento] // Sem ideia do que exibir
     .content.statistics-wrapper
-      h2
+      p
+        | Tempo de resolução de atendimentos [abertura ao fechamento]
+        // Sem ideia de como exibir
+      p
         | Média de tempo para atendimento geral
-      h2
+      p
         | Média de tempo para atendimento por estado
-      h2
+      p
         | Média de tempo para atendimento por região
-      h2
+      p
         | Média de reclamações por sexo e idade
         // Paired Bar chart
 
@@ -114,7 +115,11 @@ section.solved-unsolved
             - unsolved = 100 - solved
             td[title="#{solved}% solucionados"]
               .solved-complaints.complaints[style="width:#{solved}%"]
+                span.percentage
+                  | #{solved}%
               .unsolved-complaints.complaints[style="width:#{unsolved}%"]
+                span.percentage
+                  | #{unsolved}%
 
 section.top-types
   .wrapper
@@ -125,21 +130,16 @@ section.top-types
         br
         | Reclamações mais frequentes
     .content.top-types-content
-      table
+      ul
         - @max = @complaints_by_type.keys.first.to_i
         - @complaints_by_type.keys[0..9].each do |count|
-          tr
-            td
-              p
-                span.big-number
-                  = count
-            td[width='90%']
-              .meter[style="width: #{ (count).to_i * 100 / (@max).to_i }%;"]
-          tr
-            td[colspan=2]
-              p
-                small
-                  = @complaints_by_type[count].first.DescricaoProblema
+          li
+            .meter[style="width: #{ (count).to_i * 100 / (@max).to_i }%;"]
+              span.big-number
+                = count
+            p
+              small
+                = @complaints_by_type[count].first.DescricaoProblema
 
 section.nao-solucionados
   .wrapper
@@ -149,12 +149,17 @@ section.nao-solucionados
           | Tipo de reclamação:
         br
         | Não solucionados mais frequentes
-    .content.nao-atendidos-content
+    .content.unsolved-content
       ul
+        - @max_unsolved = @unsolved_by_type.keys.first.to_i
         - @unsolved_by_type.keys[0..9].each do |count|
           li
-            strong.big-number = count
-            = @unsolved_by_type[count].first.DescricaoProblema
+            .meter[style="width: #{ (count).to_i * 100 / (@max_unsolved).to_i}%"]
+              span.big-number
+                = count
+            p
+              small
+                = @unsolved_by_type[count].first.DescricaoProblema
 
 section.solucionados
   .wrapper
@@ -164,12 +169,17 @@ section.solucionados
           | Tipo de reclamação:
         br
         | Solucionados mais frequentes
-    .content.atendidos-content
+    .content.solved-content
       ul
+        - @max_solved = @solved_by_type.keys.first.to_i
         - @solved_by_type.keys[0..9].each do |count|
           li
-            strong.big-number = count
-            = @solved_by_type[count].first.DescricaoProblema
+            .meter[style="width: #{ (count).to_i * 100 / (@max_solved).to_i}%"]
+              span.big-number
+                = count
+            p
+              small
+                = @solved_by_type[count].first.DescricaoProblema
 
 section.choropleth-map
   .wrapper
@@ -191,11 +201,12 @@ section.choropleth-map
       ul.state-list
         - @regions.each_pair do |uf, region|
           - complaints_count = @states.fetch(uf, []).length
-          li
-            h3
-              span.big-number
-                = complaints_count
-              = region.first
+          - unless complaints_count == 0
+            li
+              h3
+                span.big-number
+                  = complaints_count
+                = region.first
 
 section.share-social.last
   .wrapper

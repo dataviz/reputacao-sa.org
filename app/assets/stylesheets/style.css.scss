@@ -212,36 +212,49 @@ section {
   }
   h1 {
     padding-top: 1.8em;
+    text-align: center;
+    margin-bottom: 1.5em;
   }
   &.ranking {
     @extend .background-turquoise;
     color: $white;
   }
+  &.statistics {
+    @extend .background-belize-hole;
+    color: $white;
+  }
   &.time-matrices {
     @extend .background-concrete;
   }
-  &.top-types {
+  &.solved-unsolved {
     @extend .background-midnight-blue;
+    color: $white;
+  }
+  &.top-types {
+    @extend .background-wisteria;
     color: $white;
   }
   &.choropleth-map {
     @extend .background-white;
   }
-  &.nao-atendidos {
+  &.nao-solucionados {
     @extend .background-pomegranate;
-  }
-  &.atendidos {
-    @extend .background-emerland;
-  }
-  &.statistics {
-    @extend .background-belize-hole;
     color: $white;
   }
-  &.social-share {
-    @extend .background-peter-river;
+  &.solucionados {
+    @extend .background-nephritis;
+    color: $white;
   }
   &.share-social {
-    @extend .background-silver;
+    @extend .background-peter-river;
+    color: $white;
+    .social {
+      text-align: center;
+      a {
+        font-size: 4em;
+        color: $white;
+      }
+    }
   }
 }
 
@@ -289,6 +302,9 @@ footer {
   .description {
     text-transform: lowercase;
   }
+  p {
+    color: $white;
+  }
   .big-number {
     display: block;
     font-size: 3.5em;
@@ -326,6 +342,12 @@ footer {
   }
   .unsolved-complaints {
     background-color: $alizarin;
+  }
+  .percentage {
+    display: block;
+    font-weight: 900;
+    text-align: center;
+    font-size: 1.25em;
   }
 }
 
@@ -387,7 +409,9 @@ footer {
     }
   }
 }
-.top-types-content {
+.top-types-content,
+.solved-content,
+.unsolved-content {
   ul {
     list-style-type: none;
     padding: 0;
@@ -399,40 +423,52 @@ footer {
     padding: 0;
   }
   p {
-    margin: 0;
+    margin: 0 0 1.25em 0;
     padding: 0;
-    display: inline-block;
   }
   .big-number {
     color: $white;
     vertical-align: middle;
     display: inline-block;
     font-size: 2em;
+    padding: .15em .25em;
   }
   .meter {
     display: inline-block;
     vertical-align: middle;
     width: 100%;
-    background: $belize-hole;
     height: 50px;
-    border-right: 2px solid $sun-flower;
   }
 }
 
-.atendidos-content,
-.nao-atendidos-content {
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    li {
-      margin: 0;
-    }
+.top-types-content {
+  p {
+    color: darken($wisteria, 20%)
   }
-  .big-number {
-    vertical-align: middle;
-    display: inline-block;
-    color: $white;
+  .meter {
+    background: $amethyst;
+    border-right: 2px solid darken($amethyst, 10%);
+  }
+}
+
+
+.unsolved-content {
+  p {
+    color: darken($pomegranate, 20%)
+  }
+  .meter {
+    background: $alizarin;
+    border-right: 2px solid darken($alizarin, 10%);
+  }
+}
+
+.solved-content {
+  p {
+    color: darken($nephritis, 20%)
+  }
+  .meter {
+    background: $emerland;
+    border-right: 2px solid darken($emerland, 10%);
   }
 }
 
