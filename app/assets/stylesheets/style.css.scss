@@ -328,6 +328,15 @@ footer {
       padding: 0 0 0 5px;
     }
   }
+  .solved-unsolved-ratio {
+    border-radius: 6px;
+    &.good {
+      background-color: $green-sea;
+    }
+    &.bad {
+      background-color: $pomegranate;
+    }
+  }
 }
 
 .solved-unsolved-matrix {
@@ -337,11 +346,19 @@ footer {
     display: inline-block;
     height: 2em;
   }
+  .solved-complaints,
+  .unsolved-complaints {
+    overflow: hidden;
+  }
   .solved-complaints {
     background-color: $emerland;
+    .percentage {
+      color: darken($emerland, 20%);
+    }
   }
   .unsolved-complaints {
     background-color: $alizarin;
+    color: darken($alizarin, 20%);
   }
   .percentage {
     display: block;
@@ -447,28 +464,28 @@ footer {
   }
   .meter {
     background: $amethyst;
-    border-right: 2px solid darken($amethyst, 10%);
+    border-right: 2px solid lighten($amethyst, 10%);
   }
 }
 
 
 .unsolved-content {
   p {
-    color: darken($pomegranate, 20%)
+    color: darken($pomegranate, 10%)
   }
   .meter {
     background: $alizarin;
-    border-right: 2px solid darken($alizarin, 10%);
+    border-right: 2px solid lighten($alizarin, 10%);
   }
 }
 
 .solved-content {
   p {
-    color: darken($nephritis, 20%)
+    color: darken($nephritis, 10%)
   }
   .meter {
     background: $emerland;
-    border-right: 2px solid darken($emerland, 10%);
+    border-right: 2px solid lighten($emerland, 10%);
   }
 }
 
