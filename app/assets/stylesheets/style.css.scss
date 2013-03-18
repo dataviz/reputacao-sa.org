@@ -212,39 +212,41 @@ section {
   &.ranking {
     @extend .background-turquoise;
     color: $white;
+    padding: 1em 0 3em 0;
   }
   &.time-matrices {
     @extend .background-concrete;
+    padding: 3em 0;
   }
   &.top-types {
     @extend .background-midnight-blue;
     color: $white;
+    padding: 3em 0;
   }
   &.choropleth-map {
     @extend .background-white;
+    padding: 3em 0;
   }
   &.nao-atendidos {
     @extend .background-pomegranate;
+    padding: 3em 0;
   }
   &.atendidos {
     @extend .background-emerland;
+    padding: 3em 0;
   }
   &.statistics {
-    @extend .background-peter-river;
-  }
-  &.social-trends {
-    @extend .background-carrot;
-  }
-  &.twitter-trends {
-    @extend .background-peter-river;
+    @extend .background-belize-hole;
     color: $white;
+    padding: 3em 0;
   }
-  &.google-plus-trends {
-    @extend .background-pomegranate;
-    color: $white;
+  &.social-share {
+    @extend .background-peter-river;
+    padding: 3em 0;
   }
-  &.comments {
+  &.share-social {
     @extend .background-silver;
+    padding: 3em 0 1em 0;
   }
 }
 

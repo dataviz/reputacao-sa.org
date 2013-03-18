@@ -8,7 +8,7 @@
           = link[:name]
 
 = render 'shared/header'
-section.ranking
+section.ranking.first
   .wrapper
     .section-info.first
       strong
@@ -16,7 +16,6 @@ section.ranking
       br
       h1#ranking
         = @company[:name]
-      /! incluir informações da empresa pela wikipedia?
       p.description
         strong
           | Descrição
@@ -29,13 +28,11 @@ section.ranking
           strong.big-number
             = @complaints.count
       .ranking
-        /! ❤ Média de reclamações mensais
         p
           | Reclamações por mês (média)
           strong.big-number
             = @complaints.count / 36
       .ranking
-        /! Atendimentos / Não atendimentos
         p
           | Proporção Atendimentos/Não-atendimentos
           strong.big-number
@@ -43,16 +40,13 @@ section.ranking
             small
               =  "(#{@solved.count}:#{@unsolved.count})"
       .ranking
-        /! Repetir esse efeito nos outros
         p
           | Ranking global
           strong.big-number
             =  (top_companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
             small
-              | /3400
+              | /20
 
-/! Can also be http://bl.ocks.org/mbostock/4063318
-/! OU ESSE » http://mbostock.github.com/d3/talk/20111116/iris-splom.html
 section.time-matrices
   .wrapper
     .section-info
@@ -90,54 +84,15 @@ section.solved-unsolved
             td[title="#{solved}% solucionados"]
               .solved-complaints.complaints[style="width:#{solved}%"]
               .unsolved-complaints.complaints[style="width:#{unsolved}%"]
-//
-  table.matrix
-    tr
-      th
-        | Mês\Ano
-      th[colspan=2]
-        | 2009
-      th[colspan=2]
-        | 2010
-      th[colspan=2]
-        | 2011
-    - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-    - months.each do |month|
-      tr
-        td
-          = month
-        - 3.times do
-          ruby:
-            yes = 100 - (rand * 100).to_i
-            no  = 100 - yes
-          td.nopad[title="Sim: #{yes}"]
-            p.yes
-              span.point[style="font-size: #{(yes*0.5).to_i}px;"] ●
-          td.nopad[title="Não: #{no}"]
-            p.no
-              span.point[style="font-size: #{(no*0.5).to_i}px;"] ●
 
 section.top-types
   .wrapper
     .section-info
       h2#top-10
         | Top 10: Tipos de reclamação mais frequentes
-      .context
-        a[href='#']
-          | Todos os anos
-        a[href='#']
-          | 2009
-        a[href='#']
-          | 2010
-        a[href='#']
-          | 2011
     .content.top-types-content
       table
-        // #REFACTOR LOG?
         - @max = @complaints_by_type.keys.first.to_i
-        /! animate bar to 50% from left to right
-        /! fade number
-        /! when scrolling reaches the UL element
         - @complaints_by_type.keys[0..9].each do |count|
           tr
             td
@@ -158,9 +113,6 @@ section.nao-atendidos
       h2#atendimentos
         | Tipos mais frequentes de problemas não-atendidos
     .content.nao-atendidos-content
-      /! bubble chart » http://en.wikipedia.org/wiki/Bubble_chart
-      /! http://bl.ocks.org/mbostock/4063269
-      /! AWESOME: http://bost.ocks.org/mike/miserables/
       ul
         - @unsolved_by_type.keys[0..9].each do |count|
           li
@@ -173,14 +125,11 @@ section.atendidos
       h2
         | Tipos mais frequentes de problemas atendidos
     .content.atendidos-content
-      /! bubble chart » http://en.wikipedia.org/wiki/Bubble_chart
-      /! http://bl.ocks.org/mbostock/4063269
       ul
         - @solved_by_type.keys[0..9].each do |count|
           li
             strong.big-number = count
             = @solved_by_type[count].first.DescricaoProblema
-
 
 section.choropleth-map
   .wrapper
@@ -227,33 +176,7 @@ section.statistics
       pre
         | Paired Bar chart
 
-//
-  section.social-trends
-    .wrapper
-      .section-info
-        h1#redes-sociais
-          | Tendências na rede
-        p
-          | Exibir o que as pessoas falam da empresa nas redes sociais.
-  section.twitter-trends
-    .wrapper
-      .section-info
-        h2
-          | O que estão falando da #empresa no Twitter
-  section.google-plus-trends
-    .wrapper
-      .section-info
-        h2
-          | O que estão falando da #empresa no GooglePlus
-  section.comments
-    .wrapper
-      .section-info
-        h1#comentarios
-          | Comentários
-      .content.comments-wrapper
-        h2
-          | Decidir por Disqus ou Facebook
-section.share-social
+section.share-social.last
   .wrapper
     .section-info
       h2
