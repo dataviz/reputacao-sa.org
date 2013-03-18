@@ -133,7 +133,7 @@ section.solved-unsolved
             - count = complaints.sum { |c| c['count'] }
             - solved = ((fulfilled * 100.0) / count).round rescue 0
             - unsolved = 100 - solved
-            td[title=solved.to_i]
+            td[title="#{solved.to_i} solucionados"]
               - if count.zero?
                 .zero-complaints.complaints[style="width:100%"]
               - else
