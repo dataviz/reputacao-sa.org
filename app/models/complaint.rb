@@ -21,8 +21,7 @@ class Complaint
     self.Atendida == 'true'
   end
 
-  def self.group_by_company(name)
-    regexp = /.*#{Regexp.quote(name.upcase)}.*/
+  def self.group_by_company(search_params)
     map = %Q{
       function() {
         emit(this.strNomeFantasia, {slug: this.slug, count: 1})
@@ -35,11 +34,15 @@ class Complaint
       }
     }
 
-    self.any_of(strNomeFantasia: regexp).map_reduce(map, reduce).out(inline: true)
+    query = if search_params
+              self.any_of(search_params)
+            else
+              self
+            end
+    query.map_reduce(map, reduce).out(inline: true)
   end
 
-  def self.group_by_fulfillment_month_year(name)
-    regexp = /.*#{Regexp.quote(name.upcase)}.*/
+  def self.group_by_fulfillment_month_year(search_params)
     map = %Q{
       function() {
         var month_year = this.DataArquivamento.slice(0, 7);
@@ -67,7 +70,7 @@ class Complaint
       }
     }
 
-    self.any_of(strNomeFantasia: regexp).map_reduce(map, reduce).out(inline: true)
+    self.any_of(search_params).map_reduce(map, reduce).out(inline: true)
   end
 
   def self.generate_slugs!
