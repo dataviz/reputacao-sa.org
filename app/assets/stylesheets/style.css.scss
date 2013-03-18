@@ -110,7 +110,7 @@ header {
       @include transition(all .25s ease-in-out);
       @include transform(translateY(-600px));
       position: absolute;
-      opacity: 0;
+      /*opacity: 0;*/
       background-color: $wet-asphalt;
       right: -.5em;
       top: 3em;
@@ -119,14 +119,14 @@ header {
       padding: 0;
       width: 200px;
       li {
-        font-size: 1.25em;
         font-weight: 300;
         margin: 0;
         padding: 0;
         display: block;
       }
       a {
-        padding: .5em .75em;
+        font-size: 1.15em;
+        padding: .25em .75em;
         display: block;
       }
     }
@@ -205,48 +205,43 @@ header {
 }
 
 section {
+  padding-bottom: 3em;
   h1, h2, h3 {
     margin: 0;
     padding: 0;
   }
+  h1 {
+    padding-top: 1.8em;
+  }
   &.ranking {
     @extend .background-turquoise;
     color: $white;
-    padding: 1em 0 3em 0;
   }
   &.time-matrices {
     @extend .background-concrete;
-    padding: 3em 0;
   }
   &.top-types {
     @extend .background-midnight-blue;
     color: $white;
-    padding: 3em 0;
   }
   &.choropleth-map {
     @extend .background-white;
-    padding: 3em 0;
   }
   &.nao-atendidos {
     @extend .background-pomegranate;
-    padding: 3em 0;
   }
   &.atendidos {
     @extend .background-emerland;
-    padding: 3em 0;
   }
   &.statistics {
     @extend .background-belize-hole;
     color: $white;
-    padding: 3em 0;
   }
   &.social-share {
     @extend .background-peter-river;
-    padding: 3em 0;
   }
   &.share-social {
     @extend .background-silver;
-    padding: 3em 0 1em 0;
   }
 }
 
@@ -299,6 +294,7 @@ footer {
     font-size: 3.5em;
     color: $white;
     small {
+      display: block;
       font-size: .5em;
       color: darken($white,10%);
     }
@@ -311,6 +307,7 @@ footer {
     padding: 0 5px 0 0;
     margin-bottom: 10px;
     font-size: .875em;
+    text-align: center;
     &:nth-child(2n+2) {
       padding: 0 0 0 5px;
     }

@@ -10,18 +10,22 @@
 = render 'shared/header'
 section.ranking.first
   .wrapper
-    .section-info.first
-      strong
-        | Empresa:
-      br
-      h1#ranking
-        = @company[:name]
-      p.description
+    .section-info
+      h1#informacoes-gerais
+        | Informações gerais
+    .content.ranking-content
+      p
+        strong
+          | Empresa
+        br
+        span.company-name
+          = @company[:name]
+      p
         strong
           | Descrição
         br
-        = @company[:descricao]
-    .content.ranking-content
+        span.description
+          = @company[:descricao]
       .ranking
         p
           | Total de reclamações
@@ -29,32 +33,56 @@ section.ranking.first
             = @complaints.count
       .ranking
         p
-          | Reclamações por mês (média)
+          | Reclamações por mês
+          br
+          small
+            | (média)
           strong.big-number
             = @complaints.count / 36
       .ranking
         p
-          | Proporção Atendimentos/Não-atendimentos
+          | Proporção
+          br
+          small
+            | atendimentos × não-atendimentos
           strong.big-number
             = ( @solved.count.to_f/ (@solved.count.to_f + @unsolved.count.to_f)).round(2)
             small
-              =  "(#{@solved.count}:#{@unsolved.count})"
+              = "(#{@solved.count}:#{@unsolved.count})"
       .ranking
         p
           | Ranking global
           strong.big-number
-            =  (top_companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
+            = (top_companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
             small
               | /20
+
+section.statistics
+  .wrapper
+    .section-info
+      h1#estatisticas-gerais
+        | Estatísticas gerais
+      p
+        | Tempo de resolução de atendimentos [abertura ao fechamento] // Sem ideia do que exibir
+    .content.statistics-wrapper
+      h2
+        | Média de tempo para atendimento geral
+      h2
+        | Média de tempo para atendimento por estado
+      h2
+        | Média de tempo para atendimento por região
+      h2
+        | Média de reclamações por sexo e idade
+        // Paired Bar chart
 
 section.time-matrices
   .wrapper
     .section-info
-      h1#por-tempo
-        | Média de ocorrências por mês
+      h1#ocorrencias-por-mes
+        | Ocorrências por mês
     .content.time-matrices-content
       table.matrix
-        - months = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
+        - months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
         - months.each_with_index do |month, month_index|
           tr
             td
@@ -67,11 +95,14 @@ section.time-matrices
 section.solved-unsolved
   .wrapper
     .section-info
-      h2#atendimentos-nao-atendimentos
-        | Média de atendimentos solucionados e não solucionados por mês
+      h1#solucionados-nao-solucionados
+        | Solucionados × não solucionados
+        br
+        small
+          | (média por mês)
     .content.solved-unsolved-content
       table.solved-unsolved-matrix
-        - months = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
+        - months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
         - months.each_with_index do |month, month_index|
           tr
             td[width=1]
@@ -88,8 +119,11 @@ section.solved-unsolved
 section.top-types
   .wrapper
     .section-info
-      h2#top-10
-        | Top 10: Tipos de reclamação mais frequentes
+      h1#reclamacoes-mais-frequentes
+        small
+          | Tipo de reclamação:
+        br
+        | Reclamações mais frequentes
     .content.top-types-content
       table
         - @max = @complaints_by_type.keys.first.to_i
@@ -99,7 +133,7 @@ section.top-types
               p
                 span.big-number
                   = count
-            td[width='75%']
+            td[width='90%']
               .meter[style="width: #{ (count).to_i * 100 / (@max).to_i }%;"]
           tr
             td[colspan=2]
@@ -107,11 +141,14 @@ section.top-types
                 small
                   = @complaints_by_type[count].first.DescricaoProblema
 
-section.nao-atendidos
+section.nao-solucionados
   .wrapper
     .section-info
-      h2#atendimentos
-        | Tipos mais frequentes de problemas não-atendidos
+      h1#nao-solucionados-mais-frequentes
+        small
+          | Tipo de reclamação:
+        br
+        | Não solucionados mais frequentes
     .content.nao-atendidos-content
       ul
         - @unsolved_by_type.keys[0..9].each do |count|
@@ -119,11 +156,14 @@ section.nao-atendidos
             strong.big-number = count
             = @unsolved_by_type[count].first.DescricaoProblema
 
-section.atendidos
+section.solucionados
   .wrapper
     .section-info
-      h2
-        | Tipos mais frequentes de problemas atendidos
+      h1#solucionados-mais-frequentes
+        small
+          | Tipo de reclamação:
+        br
+        | Solucionados mais frequentes
     .content.atendidos-content
       ul
         - @solved_by_type.keys[0..9].each do |count|
@@ -134,7 +174,7 @@ section.atendidos
 section.choropleth-map
   .wrapper
     .section-info
-      h1#mapa
+      h1#por-estados
         | Reclamações por estado
     .content.choropleth-map-content
       ul.statelybrazil
@@ -157,29 +197,10 @@ section.choropleth-map
                 = complaints_count
               = region.first
 
-section.statistics
-  .wrapper
-    .section-info
-      h1#estatisticas
-        | Estatísticas gerais
-      p
-        | Tempo de resolução de atendimentos [abertura ao fechamento] // Sem ideia do que exibir
-    .content.statistics-wrapper
-      h2
-        | Média de tempo para atendimento geral
-      h2
-        | Média de tempo para atendimento por estado
-      h2
-        | Média de tempo para atendimento por região
-      h2
-        | Média de reclamações por sexo e idade
-      pre
-        | Paired Bar chart
-
 section.share-social.last
   .wrapper
     .section-info
-      h2
+      h1#compartilhar
         | Compartilhar
     .content.share-social-content
       = render 'shared/social'

@@ -75,14 +75,24 @@ class CompaniesController < ApplicationController
   end
   def nav_links
     [
-      { name: 'Ranking',       url: '#ranking' },
-      { name: 'Por Tempo',     url: '#por-tempo' },
-      { name: 'Top 10',        url: '#top-10' },
-      { name: 'Atendimentos',  url: '#atendimentos' },
-      { name: 'Por Estado',    url: '#por-estado' },
-      { name: 'Estatísticas',  url: '#estatisticas' },
-      { name: 'Redes Sociais', url: '#redes-sociais' },
-      { name: 'Comentários',   url: '#comentarios' }
+      { name: 'Informações gerais',
+        url: '#informacoes-gerais' },
+      { name: 'Estatísticas gerais',
+        url: '#estatisticas-gerais' },
+      { name: 'Ocorrências por mês',
+        url: '#ocorrencias-por-mes' },
+      { name: 'Solucionados × não solucionados',
+        url: '#solucionados-nao-solucionados' },
+      { name: 'Reclamações mais frequentes',
+        url: '#reclamacoes-mais-frequentes' },
+      { name: 'Não solucionados mais frequentes',
+        url: '#nao-solucionados-mais-frequentes' },
+      { name: 'Solucionados mais frequentes',
+        url: '#solucionados-mais-frequentes' },
+      { name: 'Reclamações por estados',
+        url: '#por-estados' },
+      { name: 'Compartilhar',
+        url: '#compartilhar' }
     ]
   end
 
