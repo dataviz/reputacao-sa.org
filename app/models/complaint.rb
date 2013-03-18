@@ -49,7 +49,7 @@ class Complaint
   def self.group_by_fulfillment_month_year(search_params)
     map = %Q{
       function() {
-        var month_year = this.DataArquivamento.slice(0, 7);
+        var month_year = this.DataAbertura.slice(0, 7);
         var fulfilled = 0;
 
         if (this.Atendida === "true") {

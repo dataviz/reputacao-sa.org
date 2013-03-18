@@ -30,7 +30,11 @@ class CompaniesController < ApplicationController
     max_complaints_count_state = @states.max_by { |state| state.last.length }
     @max_complaints_count = @states[max_complaints_count_state[0]].length
 
-    @complaints_by_fulfillment = complaints_by_fulfillment(params[:slug])
+    @complaints_by_month_year = complaints_by_month_year(params[:slug])
+
+    @complaints_histogram = complaints_histogram(params[:slug])
+    @from = @complaints_histogram.first[0..1]
+    @to = @complaints_histogram.last[0..1]
 
 
     expires_in 24.hours, :public => true
@@ -109,15 +113,27 @@ class CompaniesController < ApplicationController
   end
 
   private
-  def complaints_by_fulfillment(slug)
+  def complaints_by_month_year(slug)
     results = {}
-    complaints = Complaint.group_by_fulfillment_month_year(slug: slug)
-    complaints.each do |complaint|
+    complaints_by_fulfillment(slug).each do |complaint|
       year, month = complaint['_id'].split('-')
       results[month.to_i] ||= {}
       results[month.to_i][year] = complaint['value']
     end
     results
+  end
+
+  def complaints_histogram(slug)
+    results = []
+    complaints_by_fulfillment(slug).each do |complaint|
+      year, month = complaint['_id'].split('-').map(&:to_i)
+      results << [year, month, complaint['value']['count'].to_i]
+    end
+    results.sort
+  end
+
+  def complaints_by_fulfillment(slug)
+    @_complaints_cache ||= Complaint.group_by_fulfillment_month_year(slug: slug)
   end
 
   def top_companies(search_params=nil)
