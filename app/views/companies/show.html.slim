@@ -219,31 +219,38 @@ section.statistics
       pre
         | Paired Bar chart
 
-section.social-trends
-  .wrapper
-    .section-info
-      h1#redes-sociais
-        | Tendências na rede
-      p
-        | Exibir o que as pessoas falam da empresa nas redes sociais.
-section.twitter-trends
-  .wrapper
-    .section-info
-      h2
-        | O que estão falando da #empresa no Twitter
-section.google-plus-trends
-  .wrapper
-    .section-info
-      h2
-        | O que estão falando da #empresa no GooglePlus
+/
+  section.social-trends
+    .wrapper
+      .section-info
+        h1#redes-sociais
+          | Tendências na rede
+        p
+          | Exibir o que as pessoas falam da empresa nas redes sociais.
+  section.twitter-trends
+    .wrapper
+      .section-info
+        h2
+          | O que estão falando da #empresa no Twitter
+  section.google-plus-trends
+    .wrapper
+      .section-info
+        h2
+          | O que estão falando da #empresa no GooglePlus
 
-section.comments
+  section.comments
+    .wrapper
+      .section-info
+        h1#comentarios
+          | Comentários
+      .content.comments-wrapper
+        h2
+          | Decidir por Disqus ou Facebook
+section.share-social
   .wrapper
     .section-info
-      h1#comentarios
-        | Comentários
-    .content.comments-wrapper
       h2
-        | Decidir por Disqus ou Facebook
-
+        | Compartilhar
+    .content.share-social-content
+      = render 'shared/social'
 = render 'shared/footer'
