@@ -6,7 +6,7 @@ section.companies
     .complaint-count
       | Reclamações
   - @companies.each do |company|
-    a.company[href=companies_show_path(company[:slug])]
+    a.company[href=companies_show_path(company[:slug]) target="_self"]
       strong.company-name
         = company[:name]
       span.arrow
@@ -16,3 +16,8 @@ section.companies
   a.more-companies
     | Carregar mais 20 empresas
 = render 'shared/footer'
+- content_for :moar_scripts do
+  javascript:
+    $(function(){
+      $.stayInWebApp();
+    })
