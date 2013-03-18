@@ -17,3 +17,7 @@ group :assets do
 end
 gem 'jquery-rails'
 gem 'backbone-on-rails'
+
+group :production do
+  gem 'dalli'
+end
