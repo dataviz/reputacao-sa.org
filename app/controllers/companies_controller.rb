@@ -1,8 +1,12 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
+
+
   def index
     @nav_links = nav_links
     @companies = top_companies
+
+    expires_in 24.hours, :public => true
 
     render :stream => true
   end
@@ -28,6 +32,9 @@ class CompaniesController < ApplicationController
     @slice = (@max_complaints_count/number_of_slices.to_f).ceil
 
     @complaints_by_fulfillment = complaints_by_fulfillment(params[:slug])
+
+
+    expires_in 24.hours, :public => true
 
     render :stream => true
   end
