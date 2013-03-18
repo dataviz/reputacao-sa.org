@@ -57,49 +57,39 @@ section.time-matrices
   .wrapper
     .section-info
       h1#por-tempo
-        | Número de ocorrências por mês
+        | Média de ocorrências por mês
     .content.time-matrices-content
       table.matrix
-        tr
-          th
-            | Mês\Ano
-          - @complaints_by_fulfillment.first.last.each_key do |year|
-            th
-              = year
         - months = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
         - months.each_with_index do |month, month_index|
           tr
             td
               = month
-            - @complaints_by_fulfillment[month_index + 1].each_value do |complaint|
-              - x = complaint["count"] || 0
-              td[title=x]
-                span.point[style="font-size:#{(x*0.5).to_i}px;"] ●
+            - complaints = @complaints_by_fulfillment[month_index + 1].values
+            - x = complaints.sum { |c| c["count"] }
+            td[title=x]
+              span.point[style="font-size:#{(x*0.5).to_i}px;"] ●
 
 section.solved-unsolved
   .wrapper
     .section-info
       h2#atendimentos-nao-atendimentos
-        | Atendimentos e não atendimentos por mês
+        | Média de atendimentos solucionados e não solucionados por mês
     .content.solved-unsolved-content
       table.solved-unsolved-matrix
-        tr
-          th
-            | Mês\Ano
-          - @complaints_by_fulfillment.first.last.each_key do |year|
-            th
-              = year
         - months = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
         - months.each_with_index do |month, month_index|
           tr
             td[width=1]
               = month
-            - @complaints_by_fulfillment[month_index + 1].each_value do |complaint|
-              - solved = ((complaint['fulfilled'] * 100.0) / complaint["count"]).round
-              - unsolved = 100 - solved
-              td[title="#{solved}% solucionados"]
-                .solved-complaints.complaints[style="width:#{solved}%"]
-                .unsolved-complaints.complaints[style="width:#{unsolved}%"]
+            - complaints = @complaints_by_fulfillment[month_index + 1].values
+            - fulfilled = complaints.sum { |c| c['fulfilled'] }
+            - count = complaints.sum { |c| c['count'] }
+            - solved = ((fulfilled * 100.0) / count).round
+            - unsolved = 100 - solved
+            td[title="#{solved}% solucionados"]
+              .solved-complaints.complaints[style="width:#{solved}%"]
+              .unsolved-complaints.complaints[style="width:#{unsolved}%"]
 //
   table.matrix
     tr
