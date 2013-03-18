@@ -6,9 +6,10 @@ header
           | Reputação S/A
       p.main-description
         | Consumidores brasileiros agora têm acesso à uma ferramenta que 
-        | descomplica a visualização de reclamações contra fornecedores.
+        | descomplica a visualização de reclamações contra fornecedores 
+        | abertas no Procon.
         br
-        = link_to 'Ver lista de empresas mais reclamadas', '/empresas', class: 'button main-cta'
+        = link_to 'Acessar o app', '/empresas', class: 'button main-cta'
     .showcase-image
     = render 'shared/social'
 section.main
@@ -19,7 +20,7 @@ section.main
           h2
             | O que é?
           p
-            | ReputaçãoS/A é um aplicativo para a visualização de dados de empresas 
+            | Reputação S/A é um aplicativo para a visualização de dados de empresas 
             | reclamadas no PROCON.
           - empresas = ['LG','Claro','Oi','Vivo','Brastemp','Ford','Volkswagen','GVT','Net']
           = link_to 'Veja um exemplo aleatório', "/#{empresas.shuffle.first}"
@@ -28,69 +29,73 @@ section.main
           h2
             | Conheça as empresas campeãs em reclamações
           p
-            | Confira as 20 empresas mais reclamadas e suas informações.
+            | Confira as 20 empresas mais reclamadas.
           = link_to 'Campeãs em reclamações', '/empresas'
       .info-box
         .content.info
           h2
-            | Compartilhe os resultados com seus amigos
+            | Encontre empresas com reclamações
           p
-            | Ajude a divulgar o projeto! 
-          = link_to 'Compartilhar o site', '#', class: 'share-reclamacao-sa'
+            | Utilize a ferramenta de busca e encontre 
+            | empresas com reclamações no Procon.
+          form[action=companies_search_path]
+            input[type='text' name='name' placeholder='Nome da empresa']
       .info-box
         .content.now
           h2
             | Dados completos ao alcance dos seus dedos
           p
             | Aprenda como instalar em seu smartphone Android ou iPhone.
-          = link_to 'Como instalar?', '#guia-de-instalacao'
-    #guia-de-instalacao.install
-      h2
-        | Como instalar?
-      p.main-instruction
-        | Acesse o link
-        br
-        = link_to 'http://reputacao-sa.org/empresas', 'http://reputacao-sa.org/empresas'
-        = image_tag 'install/qrcode-link.png'
-      .ios
-        h3
-          | iPhone/iPad
-        ol
-          li.no-border
-            p
-              | Pressione o o botão #{image_tag 'install/ios-safari-share-button.png', width: 42, alt: 'Compartilhar', title: 'Compartilhar'} para acessar as opções de página …
-            = image_tag 'install/install-ios-step-one.png'
-          li
-            p
-              | … selecione a opção <samp>Adicionar à Tela de Início</samp> …
-            = image_tag 'install/install-ios-step-two.png'
-          li
-            p
-              | … e por fim pressione <samp>Adicionar</samp> no topo da tela.
-            = image_tag 'install/install-ios-step-three.png'
-          li.no-border
-            p
-              | Pronto! =)
-      .android
-        h3
-          | Android
-        ol
-          li.no-border
-            p
-              | Pressione o botão #{image_tag 'install/android-button.png', width: 42} para acessar as opções de página …
-            = image_tag 'install/install-android-step-one.png'
-          li
-            p
-              | … selecione a opção <samp>Salvar nos favoritos</samp> …
-            = image_tag 'install/install-android-step-two.png'
-          li
-            p
-              | … e por fim pressione <samp>OK</samp> no rodapé da página.
-            = image_tag 'install/install-android-step-three.png'
-          li.no-border
-            p
-              | Pronto! =)
+          = link_to 'Como instalar?', '#guia-de-instalacao', class: 'open-installation-guide'
+    #guia-de-instalacao
+      .install
+        h2
+          | Como instalar?
+        p.main-instruction
+          | Acesse o link
+          br
+          = link_to 'http://reputacao-sa.org/empresas', 'http://reputacao-sa.org/empresas'
+          = image_tag 'install/qrcode-link.png'
+        .ios
+          h3
+            | iPhone/iPad
+          ol
+            li
+              = image_tag 'install/install-ios-step-one.png'
+              p
+                | Pressione o o botão #{image_tag 'install/ios-safari-share-button.png', width: 42, alt: 'Compartilhar', title: 'Compartilhar'} para acessar as opções de página …
+            li
+              p
+                | … selecione a opção <samp>Adicionar à Tela de Início</samp> …
+              = image_tag 'install/install-ios-step-two.png'
+            li
+              p
+                | … e por fim pressione <samp>Adicionar</samp> no topo da tela.
+              = image_tag 'install/install-ios-step-three.png'
+        .android
+          h3
+            | Android
+          ol
+            li
+              = image_tag 'install/install-android-step-one.png'
+              p
+                | Pressione o botão #{image_tag 'install/android-button.png', width: 42} para acessar as opções de página …
+            li
+              p
+                | … selecione a opção <samp>Salvar nos favoritos</samp> …
+              = image_tag 'install/install-android-step-two.png'
+            li
+              p
+                | … e por fim pressione <samp>OK</samp> no rodapé da página.
+              = image_tag 'install/install-android-step-three.png'
 
+- content_for :moar_scripts do
+  javascript:
+    $(function(){
+      $('.open-installation-guide').on('click', function (){
+        $('.install').slideDown();
+      });
+    });
 
 = render 'shared/footer'
 // IDEA DUMP

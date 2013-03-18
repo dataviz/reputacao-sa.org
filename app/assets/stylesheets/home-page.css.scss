@@ -146,6 +146,14 @@ h1 {
       background-color: $white;
       color: $peter-river;
     }
+    input {
+      @include box-sizing;
+      border: 0 none;
+      border-radius: 4px;
+      background: $white;
+      padding: .5em;
+      width: 100%;
+    }
   }
   .now {
     background-color: $amethyst;
@@ -161,6 +169,7 @@ h1 {
 }
 
 .install {
+  display: none;
   overflow: hidden;
   p.main-instruction {
     text-align: center;
@@ -173,12 +182,13 @@ h1 {
   ol {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0 10px;
     li {
-      margin-bottom: 4em;
-      border-bottom: 1px solid $silver;
-      &.no-border {
-        border: 0 none;
+      margin-bottom: 1em;
+      background-color: darken($clouds, 5%);
+      border-radius: 6px;
+      p {
+        padding: 1em 0;
       }
     }
     samp {
@@ -268,7 +278,7 @@ footer {
   h1 a,
   .main-copy,
   .showcase-image {
-    width: 100%;
+    width: 100% !important;
   }
   header {
     padding-top: 0;
@@ -279,6 +289,9 @@ footer {
       display: block;
       position: static;
       text-align: center;
+      clear: both;
+      margin: 0 -5px;
+      background-color: $peter-river;
     }
   }
   .info-box {
@@ -297,6 +310,7 @@ footer {
   }
   .showcase-image {
     margin-right: 0;
+    height: 300px;
   }
   .main-copy {
     text-align: center;
