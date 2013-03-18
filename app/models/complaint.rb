@@ -20,7 +20,7 @@ class Complaint
     regexp = /.*#{Regexp.quote(name.upcase)}.*/
     map = %Q{
       function() {
-        emit(this.strNomeFantasia, {})
+        emit(this.strNomeFantasia, {count: 1})
       }
     }
 
@@ -38,7 +38,13 @@ class Complaint
     map = %Q{
       function() {
         var month_year = this.DataArquivamento.slice(0, 7);
-        emit(month_year, {fulfilled: this.Atendida})
+        var fulfilled = 0;
+
+        if (this.Atendida === "true") {
+          fulfilled = 1;
+        }
+
+        emit(month_year, {fulfilled: fulfilled, count: 1})
       }
     }
 
@@ -47,9 +53,7 @@ class Complaint
         var fulfilled = 0;
 
         for (var i in values) {
-          if (values[i].fulfilled === "true") {
-            fulfilled += 1;
-          }
+          fulfilled += values[i].fulfilled;
         }
 
         return {fulfilled: fulfilled, count: values.length};

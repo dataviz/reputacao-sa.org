@@ -60,7 +60,7 @@ section.time-matrices
             td
               = month
             - complaints = @complaints_by_fulfillment[month_index + 1].values
-            - x = complaints.sum { |c| c["count"] }
+            - x = complaints.sum { |c| c["count"] || 0 }
             td[title=x]
               span.point[style="font-size:#{(x*0.5).to_i}px;"] ●
 
