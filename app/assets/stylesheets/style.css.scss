@@ -325,6 +325,9 @@ footer {
     margin-bottom: 10px;
     font-size: .875em;
     text-align: center;
+    &.solved-unsolved-ratio {
+      width: 100%;
+    }
     &:nth-child(2n+2) {
       padding: 0 0 0 5px;
     }

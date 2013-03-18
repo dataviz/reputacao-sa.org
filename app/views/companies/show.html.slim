@@ -34,6 +34,7 @@ section.ranking.first
             =  (@companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
             small
               | /20
+      br
       .ranking
         p
           | Total de reclamações
@@ -53,7 +54,7 @@ section.ranking.first
       - solved_unsolved_ratio = ( @solved.count.to_f/ (@solved.count.to_f + @unsolved.count.to_f)).round(2)
       .ranking.solved-unsolved-ratio[class="#{solved_unsolved_ratio > 0.5 ? 'good' : 'bad'}"]
         p
-          | Proporção
+          | Proporção de solucionamentos
           br
           small
             | atendimentos × não-atendimentos
