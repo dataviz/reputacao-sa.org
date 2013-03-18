@@ -7,8 +7,9 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @name = unslugfy(params[:name]).upcase
-    @complaints = Complaint.where(strNomeFantasia: @name)
+    @companies = top_companies
+    @complaints = Complaint.where(slug: params[:slug])
+    @name = @complaints[0].strNomeFantasia
     @complaints_by_type = Hash[group(@complaints).sort.reverse]
     c = @complaints.first
     @company = {name: c.strNomeFantasia, descricao: c.DescCNAEPrincipal}
@@ -29,11 +30,7 @@ class CompaniesController < ApplicationController
   end
 
   def search
-    companies = Complaint.group_by_company(params[:name])
-                         .sort { |a, b| b["value"]["count"] <=> a["value"]["count"] }
-    @companies = companies[0, 20].map do |company|
-      { name: company["_id"], count: company["value"]["count"].to_i }
-    end
+    @companies = top_companies(params[:name])
     render :index
   end
 
@@ -107,5 +104,11 @@ class CompaniesController < ApplicationController
       results[month.to_i][year] = complaint['value']
     end
     results
+  end
+
+  def top_companies(name='')
+    Complaint.group_by_company(name).map do |complaint|
+      { name: complaint['_id'], slug: complaint['value']['slug'], count: complaint['value']['count'].to_i }
+    end.sort_by {|company| company[:count] * -1 }[0, 20]
   end
 end

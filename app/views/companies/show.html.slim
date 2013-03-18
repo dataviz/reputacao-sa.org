@@ -54,7 +54,7 @@ section.ranking.first
         p
           | Ranking global
           strong.big-number
-            = (top_companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
+            =  (@companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
             small
               | /20
 
