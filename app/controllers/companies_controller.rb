@@ -1,8 +1,6 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
 
-  caches_action :index
-  caches_action :show, :layout => false
 
   def index
     @nav_links = nav_links
