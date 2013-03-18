@@ -24,13 +24,17 @@ class Complaint
   def self.group_by_company(search_params)
     map = %Q{
       function() {
-        emit(this.strNomeFantasia, {slug: this.slug, count: 1})
+        emit(this.slug, {name: this.strNomeFantasia, slug: this.slug, count: 1})
       }
     }
 
     reduce = %Q{
       function(key, values) {
-        return {slug: values[0].slug, count: values.length};
+        var count = 0;
+        values.forEach(function (v) {
+          count += v.count;
+        });
+        return {name: values[0].name, slug: values[0].slug, count: count};
       }
     }
 
@@ -58,15 +62,15 @@ class Complaint
 
     reduce = %Q{
       function(key, values) {
+        var count = 0;
         var fulfilled = 0;
 
-        for (var i in values) {
-          if (values[i].fulfilled == 1) {
-            fulfilled += 1;
-          }
-        }
+        values.forEach(function (v) {
+          count += v.count;
+          fulfilled += v.fulfilled;
+        });
 
-        return {fulfilled: fulfilled, count: values.length};
+        return {fulfilled: fulfilled, count: count};
       }
     }
 
