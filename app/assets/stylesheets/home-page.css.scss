@@ -124,6 +124,9 @@ h1 {
       &:hover {
         opacity: .75;
       }
+      &:focus {
+        outline: 2px solid $sun-flower;
+      }
     }
   }
   .good {
@@ -148,11 +151,18 @@ h1 {
     }
     input {
       @include box-sizing;
+      margin-top: .75em;
       border: 0 none;
       border-radius: 4px;
-      background: $white;
+      background: darken($white, 5%);
       padding: .5em;
       width: 100%;
+      &:focus {
+        background: $white;
+        color: $peter-river;
+        box-shadow: $white 0 0 4px;
+        outline: none;
+      }
     }
   }
   .now {
