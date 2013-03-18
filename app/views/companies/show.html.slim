@@ -154,15 +154,16 @@ section.top-types
         | Reclamações mais frequentes
     .content.top-types-content
       ul
-        - @max = @complaints_by_type.keys.first.to_i
-        - @complaints_by_type.keys[0..9].each do |count|
+        - max = @complaints_by_type.first.last.length
+        - @complaints_by_type.keys[0..9].each do |key|
           li
-            .meter[style="width: #{ (count).to_i * 100 / (@max).to_i }%;"]
+            - count = @complaints_by_type[key].length
+            .meter[style="width: #{ ((count * 100) / max).to_i }%;"]
               span.big-number
                 = count
             p
               small
-                = @complaints_by_type[count].first.DescricaoProblema
+                = @complaints_by_type[key].first.DescricaoProblema
 
 section.nao-solucionados
   .wrapper
@@ -174,15 +175,16 @@ section.nao-solucionados
         | Não solucionados mais frequentes
     .content.unsolved-content
       ul
-        - @max_unsolved = @unsolved_by_type.keys.first.to_i
-        - @unsolved_by_type.keys[0..9].each do |count|
+        - max = @unsolved_by_type.first.last.length
+        - @unsolved_by_type.keys[0..9].each do |key|
           li
-            .meter[style="width: #{ (count).to_i * 100 / (@max_unsolved).to_i}%"]
+            - count = @unsolved_by_type[key].length
+            .meter[style="width: #{ ((count * 100) / max).to_i }%;"]
               span.big-number
                 = count
             p
               small
-                = @unsolved_by_type[count].first.DescricaoProblema
+                = @unsolved_by_type[key].first.DescricaoProblema
 
 section.solucionados
   .wrapper
@@ -194,15 +196,16 @@ section.solucionados
         | Solucionados mais frequentes
     .content.solved-content
       ul
-        - @max_solved = @solved_by_type.keys.first.to_i
-        - @solved_by_type.keys[0..9].each do |count|
+        - max = @solved_by_type.first.last.length
+        - @solved_by_type.keys[0..9].each do |key|
           li
-            .meter[style="width: #{ (count).to_i * 100 / (@max_solved).to_i}%"]
+            - count = @solved_by_type[key].length
+            .meter[style="width: #{ ((count * 100) / max).to_i }%;"]
               span.big-number
                 = count
             p
               small
-                = @solved_by_type[count].first.DescricaoProblema
+                = @solved_by_type[key].first.DescricaoProblema
 
 section.choropleth-map
   .wrapper

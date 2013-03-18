@@ -12,15 +12,15 @@ class CompaniesController < ApplicationController
     @companies = top_companies
     @complaints = Complaint.where(slug: params[:slug])
     @name = @complaints[0].strNomeFantasia
-    @complaints_by_type = Hash[group(@complaints).sort.reverse]
+    @complaints_by_type = Hash[group(@complaints)]
     c = @complaints.first
     @company = {name: c.strNomeFantasia, descricao: c.DescCNAEPrincipal}
     @regions  = regions
     @states   = @complaints.group_by {|comp| comp.UF}
     @solved = @complaints.select{|c| c.atendida? }
     @unsolved = @complaints.reject{|c| c.atendida? }
-    @unsolved_by_type = Hash[group(@unsolved).sort.reverse]
-    @solved_by_type = Hash[group(@solved).sort.reverse]
+    @unsolved_by_type = Hash[group(@unsolved)]
+    @solved_by_type = Hash[group(@solved)]
     @nav_links = nav_links
 
     @number_of_slices = 10
@@ -47,7 +47,7 @@ class CompaniesController < ApplicationController
     # SAY WHATTTTT??
     # SAY WHAT ONE MORE TIME. I DARE YOU.
     # I DOUBLE DARE YOU!
-    complaints.group_by {|compl| compl.CodigoProblema }
+    complaints.group_by {|compl| compl.CodigoProblema }.sort_by { |k, v| v.length * -1 }
   end
 
   def regions
