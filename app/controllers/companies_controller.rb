@@ -113,8 +113,33 @@ class CompaniesController < ApplicationController
   end
 
   def top_companies(search_params=nil)
+    return top_20 if search_params.nil?
+
     Complaint.group_by_company(search_params).map do |complaint|
       { name: complaint['_id'], slug: complaint['value']['slug'], count: complaint['value']['count'].to_i }
     end.sort_by {|company| company[:count] * -1 }[0, 20]
+  end
+
+  def top_20
+    [{:name=>"CLARO", :slug=>"claro", :count=>1052},
+     {:name=>"OI", :slug=>"oi", :count=>843},
+     {:name=>"PONTO FRIO", :slug=>"ponto-frio", :count=>785},
+     {:name=>"AMERICANAS.COM/SUBMARINO/SHOPTIME", :slug=>"americanas-dot-com-slash-submarino-slash-shoptime", :count=>731},
+     {:name=>"RICARDO ELETRO", :slug=>"ricardo-eletro", :count=>709},
+     {:name=>"LG ELETRONICS", :slug=>"lg-eletronics", :count=>688},
+     {:name=>"TIM CELULAR", :slug=>"tim-celular", :count=>644},
+     {:name=>"LG", :slug=>"lg", :count=>591},
+     {:name=>"SAMSUNG", :slug=>"samsung", :count=>544},
+     {:name=>"VIVO", :slug=>"vivo", :count=>463},
+     {:name=>"SAMSUNG ELETRONICA DA AMAZONIA LTDA", :slug=>"samsung-eletronica-da-amazonia-ltda", :count=>439},
+     {:name=>"LOJAS INSINUANTE", :slug=>"lojas-insinuante", :count=>427},
+     {:name=>"CASAS BAHIA", :slug=>"casas-bahia", :count=>404},
+     {:name=>"TELEFONICA", :slug=>"telefonica", :count=>386},
+     {:name=>"ELETROPAULO METROPOLITANA", :slug=>"eletropaulo-metropolitana", :count=>375},
+     {:name=>"BANCO PANAMERICANO S/A", :slug=>"banco-panamericano-s-slash-a", :count=>358},
+     {:name=>"NOKIA", :slug=>"nokia", :count=>350},
+     {:name=>"OI CELULAR/OI MÓVEL", :slug=>"oi-celular-slash-oi-m-vel", :count=>342},
+     {:name=>"COELBA", :slug=>"coelba", :count=>334},
+     {:name=>"LG ELECTRONICS", :slug=>"lg-electronics", :count=>332}]
   end
 end
