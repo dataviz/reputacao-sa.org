@@ -385,16 +385,21 @@ footer {
 }
 
 .histogram-content {
+  overflow: hidden;
   .histogram-view {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0 0;
-    td {
+    td, th {
       padding: 0;
+    }
+    th {
+      font-size: smaller;
+      color: $asbestos;
     }
     .bar-wrapper {
       vertical-align: bottom;
-      width: 4px;
+      width: 2px;
       padding: 0;
     }
     .bar {
