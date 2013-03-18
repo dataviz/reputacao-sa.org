@@ -26,11 +26,13 @@ class CompaniesController < ApplicationController
     @max_complaints_count = @states[max_complaints_count_state[0]].length
     @slice = (@max_complaints_count/number_of_slices.to_f).ceil
 
-    @complaints_by_fulfillment = complaints_by_fulfillment(@name)
+    @complaints_by_fulfillment = complaints_by_fulfillment(params[:slug])
   end
 
   def search
-    @companies = top_companies(params[:name])
+    regexp = /.*#{Regexp.quote(params[:name].upcase)}.*/
+    search_params = { strNomeFantasia: regexp }
+    @companies = top_companies(search_params)
     render :index
   end
 
@@ -95,9 +97,9 @@ class CompaniesController < ApplicationController
   end
 
   private
-  def complaints_by_fulfillment(name)
+  def complaints_by_fulfillment(slug)
     results = {}
-    complaints = Complaint.group_by_fulfillment_month_year(name)
+    complaints = Complaint.group_by_fulfillment_month_year(slug: slug)
     complaints.each do |complaint|
       year, month = complaint['_id'].split('-')
       results[month.to_i] ||= {}
@@ -106,8 +108,8 @@ class CompaniesController < ApplicationController
     results
   end
 
-  def top_companies(name='')
-    Complaint.group_by_company(name).map do |complaint|
+  def top_companies(search_params=nil)
+    Complaint.group_by_company(search_params).map do |complaint|
       { name: complaint['_id'], slug: complaint['value']['slug'], count: complaint['value']['count'].to_i }
     end.sort_by {|company| company[:count] * -1 }[0, 20]
   end
