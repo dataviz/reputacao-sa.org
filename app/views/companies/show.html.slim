@@ -50,7 +50,7 @@ section.ranking.first
           | Proporção de solucionamentos
           br
           small
-            | solucionados × não-solucionados
+            | solucionadas × não-solucionadas
           strong.big-number
             = solved_unsolved_ratio
             small
@@ -60,10 +60,10 @@ section.time-matrices
   .wrapper
     .section-info
       h1#ocorrencias-por-mes
-        | Ocorrências por mês
+        | Reclamações por mês
         br
         small
-          = "Média mensal de #{@from[1]}/#{@from[0]} à #{@to[1]}/#{@to[0]}"
+          = "Média entre #{@from[1]}/#{@from[0]} e #{@to[1]}/#{@to[0]}"
     .content.time-matrices-content
       table.matrix
         tr
@@ -117,7 +117,7 @@ section.solved-unsolved
   .wrapper
     .section-info
       h1#solucionados-nao-solucionados
-        | Solucionados × não solucionados
+        | Reclamações solucionadas × não solucionadas
         br
         small
           | (média por mês)
@@ -148,8 +148,6 @@ section.top-types
   .wrapper
     .section-info
       h1#reclamacoes-mais-frequentes
-        small
-          | Tipo de reclamação:
         br
         | Reclamações mais frequentes
     .content.top-types-content
@@ -169,10 +167,8 @@ section.nao-solucionados
   .wrapper
     .section-info
       h1#nao-solucionados-mais-frequentes
-        small
-          | Tipo de reclamação:
         br
-        | Não solucionados mais frequentes
+        | Reclamações não-solucionadas mais frequentes
     .content.unsolved-content
       ul
         - max = @unsolved_by_type.first.last.length
@@ -190,10 +186,8 @@ section.solucionados
   .wrapper
     .section-info
       h1#solucionados-mais-frequentes
-        small
-          | Tipo de reclamação:
         br
-        | Solucionados mais frequentes
+        | Reclamações solucionadas mais frequentes
     .content.solved-content
       ul
         - max = @solved_by_type.first.last.length
