@@ -23,6 +23,8 @@ class CompaniesController < ApplicationController
     max_complaints_count_state = @states.max_by { |state| state.last.length }
     @max_complaints_count = @states[max_complaints_count_state[0]].length
     @slice = @max_complaints_count/number_of_slices
+
+    @complaints_by_fulfillment = complaints_by_fulfillment(@name)
   end
 
   def search
@@ -84,4 +86,15 @@ class CompaniesController < ApplicationController
     ]
   end
 
+  private
+  def complaints_by_fulfillment(name)
+    results = {}
+    complaints = Complaint.group_by_fulfillment_month_year(name)
+    complaints.each do |complaint|
+      year, month = complaint['_id'].split('-')
+      results[month.to_i] ||= {}
+      results[month.to_i][year] = complaint['value']
+    end
+    results
+  end
 end

@@ -20,13 +20,39 @@ class Complaint
     regexp = /.*#{Regexp.quote(name.upcase)}.*/
     map = %Q{
       function() {
-        emit(this.strNomeFantasia, {count: 1})
+        emit(this.strNomeFantasia, {})
       }
     }
 
     reduce = %Q{
       function(key, values) {
         return {count: values.length};
+      }
+    }
+
+    self.any_of(strNomeFantasia: regexp).map_reduce(map, reduce).out(inline: true)
+  end
+
+  def self.group_by_fulfillment_month_year(name)
+    regexp = /.*#{Regexp.quote(name.upcase)}.*/
+    map = %Q{
+      function() {
+        var month_year = this.DataArquivamento.slice(0, 7);
+        emit(month_year, {fulfilled: this.Atendida})
+      }
+    }
+
+    reduce = %Q{
+      function(key, values) {
+        var fulfilled = 0;
+
+        for (var i in values) {
+          if (values[i].fulfilled === "true") {
+            fulfilled += 1;
+          }
+        }
+
+        return {fulfilled: fulfilled, count: values.length};
       }
     }
 

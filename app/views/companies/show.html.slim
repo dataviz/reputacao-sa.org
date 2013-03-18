@@ -63,19 +63,16 @@ section.time-matrices
         tr
           th
             | Mês\Ano
-          th
-            | 2009
-          th
-            | 2010
-          th
-            | 2011
+          - @complaints_by_fulfillment.first.last.each_key do |year|
+            th
+              = year
         - months = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
-        - months.each do |month|
+        - months.each_with_index do |month, month_index|
           tr
             td
               = month
-            - 3.times do
-              - x = (rand*100).to_i
+            - @complaints_by_fulfillment[month_index + 1].each_value do |complaint|
+              - x = complaint["count"] || 0
               td[title=x]
                 span.point[style="font-size:#{(x*0.5).to_i}px;"] ●
 
