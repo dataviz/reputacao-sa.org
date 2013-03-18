@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
     number_of_slices = 5
     max_complaints_count_state = @states.max_by { |state| state.last.length }
     @max_complaints_count = @states[max_complaints_count_state[0]].length
-    @slice = @max_complaints_count/number_of_slices
+    @slice = (@max_complaints_count/number_of_slices.to_f).ceil
 
     @complaints_by_fulfillment = complaints_by_fulfillment(@name)
   end
