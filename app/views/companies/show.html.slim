@@ -73,14 +73,19 @@ section.time-matrices
     .content.time-matrices-content
       table.matrix
         - months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+        - max_complaints_month = @complaints_by_fulfillment.values.map { |x, y| x.values.map { |y| y["count"] }.inject(:+) }.max.to_i
+        - slice = (max_complaints_month/@number_of_slices.to_f).ceil
         - months.each_with_index do |month, month_index|
           tr
             td
               = month
             - complaints = @complaints_by_fulfillment[month_index + 1].values
-            - x = complaints.sum { |c| c["count"] || 0 }
-            td[title=x]
-              span.point[style="font-size:#{(x*0.5).to_i}px;"] ●
+            - complaints_count = complaints.sum { |c| c["count"] || 0 }
+            - css_category = if complaints_count.zero? then 0 else 1 + complaints_count/slice end
+            - css_category = complaints_count/slice if complaints_count == max_complaints_month
+            - css_class = "size-#{css_category.floor}"
+            td[title=complaints_count]
+              span.point[class=css_class] ●
 
 section.solved-unsolved
   .wrapper
@@ -177,10 +182,11 @@ section.choropleth-map
         | Reclamações por estado
     .content.choropleth-map-content
       ul.statelybrazil
+        - slice = (@max_complaints_count/@number_of_slices.to_f).ceil
         - @regions.each_pair do |uf, region|
           - complaints_count = @states.fetch(uf, []).length
-          - css_category = if complaints_count.zero? then 0 else 1 + complaints_count/@slice end
-          - css_category = complaints_count/@slice if complaints_count == @max_complaints_count
+          - css_category = if complaints_count.zero? then 0 else 1 + complaints_count/slice end
+          - css_category = complaints_count/slice if complaints_count == @max_complaints_count
           - css_class = "color-#{css_category}"
           li[data-state-acronym=uf
             class="statelybrazil-state-#{uf} statelybrazil-state #{css_class}"

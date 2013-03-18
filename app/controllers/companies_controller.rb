@@ -22,10 +22,9 @@ class CompaniesController < ApplicationController
     @solved_by_type = Hash[group(@solved).sort.reverse]
     @nav_links = nav_links
 
-    number_of_slices = 5
+    @number_of_slices = 5
     max_complaints_count_state = @states.max_by { |state| state.last.length }
     @max_complaints_count = @states[max_complaints_count_state[0]].length
-    @slice = (@max_complaints_count/number_of_slices.to_f).ceil
 
     @complaints_by_fulfillment = complaints_by_fulfillment(params[:slug])
 
