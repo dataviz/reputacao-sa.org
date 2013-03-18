@@ -6,10 +6,6 @@ class CompaniesController < ApplicationController
   def index
     @nav_links = nav_links
     @companies = top_companies
-
-    expires_in 24.hours, :public => true
-
-    render :stream => true
   end
 
   def show
@@ -36,11 +32,6 @@ class CompaniesController < ApplicationController
     @complaints_histogram = complaints_histogram(params[:slug])
     @from = @complaints_histogram.first[0..1]
     @to = @complaints_histogram.last[0..1]
-
-
-    expires_in 24.hours, :public => true
-
-    render :stream => true
   end
 
   def search
@@ -48,7 +39,7 @@ class CompaniesController < ApplicationController
     search_params = { strNomeFantasia: regexp }
     @companies = top_companies(search_params)
 
-    render :index, :stream => true
+    render :index
   end
 
   def group(complaints)
