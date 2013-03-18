@@ -372,6 +372,29 @@ footer {
   }
 }
 
+.histogram-content {
+  .histogram-view {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0 0;
+    td {
+      padding: 0;
+    }
+    .bar-wrapper {
+      vertical-align: bottom;
+      width: 4px;
+      padding: 0;
+    }
+    .bar {
+      display: inline-block;
+      vertical-align: bottom;
+      width: 4px;
+      background-color: $black;
+    }
+  }
+}
+
+
 
 .time-matrices-content {
   table,
@@ -406,6 +429,23 @@ footer {
     }
     .no {
       color: $pomegranate;
+    }
+    .point {
+      &.size-1 {
+        font-size: 3em;
+      }
+      &.size-2 {
+        font-size: 2.5em;
+      }
+      &.size-3 {
+        font-size: 2em;
+      }
+      &.size-4 {
+        font-size: 1.5em;
+      }
+      &.size-5 {
+        font-size: 1em;
+      }
     }
     tr {
       td.nopad {

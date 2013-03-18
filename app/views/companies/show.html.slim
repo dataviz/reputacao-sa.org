@@ -73,6 +73,15 @@ section.time-matrices
           | Média mensal entre 2009–2011
     .content.time-matrices-content
       table.matrix
+        tr
+          th
+            | Mês
+          th
+            | Média
+          th
+            | Média de reclamações
+          th
+            | Total de reclamações
         - months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
         - max_complaints_month = @complaints_by_fulfillment.values.map { |x, y| x.values.map { |y| y["count"] }.inject(:+) }.max.to_i
         - slice = (max_complaints_month/@number_of_slices.to_f).ceil
@@ -85,8 +94,29 @@ section.time-matrices
             - css_category = if complaints_count.zero? then 0 else 1 + complaints_count/slice end
             - css_category = complaints_count/slice if complaints_count == max_complaints_month
             - css_class = "size-#{css_category.floor}"
-            td[title=complaints_count]
-              span.point[class=css_class] ●
+            td
+              span.point[class=css_class]
+                | ●
+            td
+              | #{(complaints_count / 3).to_i}
+            td
+              | #{(complaints_count).to_i}
+
+section.histogram
+  .wrapper
+    .section-info
+      h1#historico-detalhado
+        | Histórico detalhado
+    .content.histogram-content
+      table.histogram-view
+        tr
+          - 72.times do
+            td.bar-wrapper
+              .bar[style="height: #{(rand*80).to_i}px"]
+        tr
+          - [2006,2007,2008,2009,2010,2011].each_with_index do |y, index|
+            th[colspan=12]
+              = y
 
 section.solved-unsolved
   .wrapper
