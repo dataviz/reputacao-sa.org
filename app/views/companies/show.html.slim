@@ -200,14 +200,13 @@ section.choropleth-map
             data-state-complaints=complaints_count]
             | #{region.last}
       ul.state-list
-        - @regions.each_pair do |uf, region|
-          - complaints_count = @states.fetch(uf, []).length
-          - unless complaints_count == 0
-            li
-              h3
-                span.big-number
-                  = complaints_count
-                = region.first
+        - sorted_states = @states.map { |uf, values| [uf, values.length] }.sort_by { |uf, values| values * -1 }
+        - sorted_states.each do |uf, count|
+          li
+            h3
+              span.big-number
+                = count
+              = @regions[uf].first
 
 section.share-social.last
   .wrapper
