@@ -21,8 +21,8 @@ SindecProcon::Application.configure do
   config.assets.digest = true
 
   config.assets.precompile += %w( home.js home.css )
-  
-  
+
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
@@ -44,6 +44,7 @@ SindecProcon::Application.configure do
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"

@@ -42,6 +42,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.1)
+    dalli (2.0.5)
     eco (1.0.0)
       coffee-script
       eco-source
@@ -139,6 +140,7 @@ PLATFORMS
 DEPENDENCIES
   backbone-on-rails
   coffee-rails (~> 3.2.1)
+  dalli
   jquery-rails
   mongoid (~> 3.0.0)
   rails (= 3.2.11)
