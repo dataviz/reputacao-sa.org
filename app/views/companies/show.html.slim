@@ -80,7 +80,7 @@ section.time-matrices
           tr
             td
               = month
-            - complaints = @complaints_by_month_year[month_index + 1].values
+            - complaints = (@complaints_by_month_year[month_index + 1] || {}).values
             - complaints_count = complaints.sum { |c| c["count"] || 0 }.to_i
             - css_category = if complaints_count.zero? then 0 else 1 + complaints_count/slice end
             - css_category = complaints_count/slice if complaints_count == max_complaints_month
@@ -89,7 +89,7 @@ section.time-matrices
               span.point[class=css_class]
                 | ●
             td
-              | #{(complaints_count / complaints.length).to_i}
+              | #{(complaints_count / complaints.length).to_i rescue 0}
               small
                 | (#{(complaints_count).to_i})
 
@@ -128,18 +128,21 @@ section.solved-unsolved
           tr
             td[width=1]
               = month
-            - complaints = @complaints_by_month_year[month_index + 1].values
+            - complaints = (@complaints_by_month_year[month_index + 1] || {}).values
             - fulfilled = complaints.sum { |c| c['fulfilled'] }
             - count = complaints.sum { |c| c['count'] }
-            - solved = ((fulfilled * 100.0) / count).round
+            - solved = ((fulfilled * 100.0) / count).round rescue 0
             - unsolved = 100 - solved
-            td[title="#{solved}% solucionados"]
-              .solved-complaints.complaints[style="width:#{solved}%"]
-                span.percentage
-                  | #{solved}%
-              .unsolved-complaints.complaints[style="width:#{unsolved}%"]
-                span.percentage
-                  | #{unsolved}%
+            td[title=solved.to_i]
+              - if count.zero?
+                .zero-complaints.complaints[style="width:100%"]
+              - else
+                .solved-complaints.complaints[style="width:#{solved}%"]
+                  span.percentage
+                    | #{solved}%
+                .unsolved-complaints.complaints[style="width:#{unsolved}%"]
+                  span.percentage
+                    | #{unsolved}%
 
 section.top-types
   .wrapper
