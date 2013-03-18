@@ -315,7 +315,19 @@ footer {
       color: darken($white,10%);
     }
   }
-  .company-info-box,
+  .company-info-box {
+    @include box-sizing;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    text-align: center;
+    .company-name {
+      font-size: 1.5em;
+    }
+    .description {
+      font-size: 1.25em;
+    }
+  }
   .ranking {
     @include box-sizing;
     display: inline-block;
@@ -504,7 +516,7 @@ footer {
 
 .top-types-content {
   p {
-    color: darken($wisteria, 20%)
+    color: lighten($wisteria, 30%)
   }
   .meter {
     background: $amethyst;
@@ -515,7 +527,7 @@ footer {
 
 .unsolved-content {
   p {
-    color: darken($pomegranate, 10%)
+    color: lighten($pomegranate, 30%)
   }
   .meter {
     background: $alizarin;
@@ -525,7 +537,7 @@ footer {
 
 .solved-content {
   p {
-    color: darken($nephritis, 10%)
+    color: lighten($nephritis, 30%)
   }
   .meter {
     background: $emerland;

@@ -91,6 +91,8 @@ class CompaniesController < ApplicationController
         url: '#estatisticas-gerais' },
       { name: 'Ocorrências por mês',
         url: '#ocorrencias-por-mes' },
+      { name: 'Histórico detalhado',
+        url: '#historico-detalhado' },
       { name: 'Solucionados × não solucionados',
         url: '#solucionados-nao-solucionados' },
       { name: 'Reclamações mais frequentes',

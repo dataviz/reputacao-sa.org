@@ -27,13 +27,6 @@ section.ranking.first
           br
           span.description
             = @company[:descricao]
-      .ranking
-        p
-          | Ranking global
-          strong.big-number
-            =  (@companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
-            small
-              | /20
       br
       .ranking
         p
@@ -79,9 +72,7 @@ section.time-matrices
           th
             | Média
           th
-            | Média de reclamações
-          th
-            | Total de reclamações
+            | Média de reclamações (total)
         - months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
         - max_complaints_month = @complaints_by_fulfillment.values.map { |x, y| x.values.map { |y| y["count"] }.inject(:+) }.max.to_i
         - slice = (max_complaints_month/@number_of_slices.to_f).ceil
@@ -98,9 +89,9 @@ section.time-matrices
               span.point[class=css_class]
                 | ●
             td
-              | #{(complaints_count / 3).to_i}
-            td
-              | #{(complaints_count).to_i}
+              | #{(complaints_count / 3).to_i} 
+              small
+                | (#{(complaints_count).to_i})
 
 section.histogram
   .wrapper
