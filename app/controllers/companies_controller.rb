@@ -1,9 +1,10 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
-
   def index
     @nav_links = nav_links
     @companies = top_companies
+
+    render :stream => true
   end
 
   def show
@@ -27,13 +28,16 @@ class CompaniesController < ApplicationController
     @slice = (@max_complaints_count/number_of_slices.to_f).ceil
 
     @complaints_by_fulfillment = complaints_by_fulfillment(params[:slug])
+
+    render :stream => true
   end
 
   def search
     regexp = /.*#{Regexp.quote(params[:name].upcase)}.*/
     search_params = { strNomeFantasia: regexp }
     @companies = top_companies(search_params)
-    render :index
+
+    render :index, :stream => true
   end
 
   def group(complaints)
