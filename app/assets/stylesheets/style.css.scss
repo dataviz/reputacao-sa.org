@@ -315,6 +315,22 @@ footer {
   }
 }
 
+.solved-unsolved-matrix {
+  width: 100%;
+  .complaints {
+    @include box-sizing;
+    display: inline-block;
+    height: 2em;
+  }
+  .solved-complaints {
+    background-color: $emerland;
+  }
+  .unsolved-complaints {
+    background-color: $alizarin;
+  }
+}
+
+
 .time-matrices-content {
   table,
   th,
@@ -429,9 +445,31 @@ footer {
   .statelybrazil {
     color: $alizarin;
   }
-  .zero-complaints {
+  .color-0 {
     color: $midnight-blue;
-    opacity: 0.5;
+    opacity: 0.2;
+  }
+  .color-1,
+  .color-2,
+  .color-3,
+  .color-4,
+  .color-5 {
+    color: $alizarin;
+  }
+  .color-1 {
+    opacity: .2;
+  }
+  .color-2 {
+    opacity: .4;
+  }
+  .color-3 {
+    opacity: .6;
+  }
+  .color-4 {
+    opacity: .8;
+  }
+  .color-5 {
+    opacity: 1;
   }
   h3 {
     margin: 0;

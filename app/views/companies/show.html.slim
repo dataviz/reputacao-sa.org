@@ -51,18 +51,14 @@ section.ranking
             small
               | /3400
 
+/! Can also be http://bl.ocks.org/mbostock/4063318
+/! OU ESSE » http://mbostock.github.com/d3/talk/20111116/iris-splom.html
 section.time-matrices
   .wrapper
     .section-info
       h1#por-tempo
-        | Ocorrências <span class="versus">×</span> Tempo
-      p
-        | Matrizes para exibição de ocorrências por tempo e relação atendidas e não-atendidas.
+        | Número de ocorrências por mês
     .content.time-matrices-content
-      /! Can also be http://bl.ocks.org/mbostock/4063318
-      /! OU ESSE » http://mbostock.github.com/d3/talk/20111116/iris-splom.html
-      h2
-        | Número de reclamações por mês
       table.matrix
         tr
           th
@@ -73,7 +69,7 @@ section.time-matrices
             | 2010
           th
             | 2011
-        - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        - months = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
         - months.each do |month|
           tr
             td
@@ -82,34 +78,58 @@ section.time-matrices
               - x = (rand*100).to_i
               td[title=x]
                 span.point[style="font-size:#{(x*0.5).to_i}px;"] ●
-      h2
-        | Proporção de atendimentos e não atendimentos <span class="versus">×</span> tempo
-      // #REFACTOR
-      table.matrix
+
+section.solved-unsolved
+  .wrapper
+    .section-info
+      h2#atendimentos-nao-atendimentos
+        | Atendimentos e não atendimentos por mês
+    .content.solved-unsolved-content
+      table.solved-unsolved-matrix
         tr
           th
             | Mês\Ano
-          th[colspan=2]
-            | 2009
-          th[colspan=2]
-            | 2010
-          th[colspan=2]
-            | 2011
-        - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-        - months.each do |month|
+          - years = ['2009', '2010', '2011']
+          - years.each do |y|
+            th
+              = y
+        - months.each do |m|
           tr
-            td
-              = month
+            td[width=1]
+              = m
+            ruby:
+              yes = 100 - (rand * 100).to_i
+              no  = 100 - yes
             - 3.times do
-              ruby:
-                yes = 100 - (rand * 100).to_i
-                no  = 100 - yes
-              td.nopad[title="Sim: #{yes}"]
-                p.yes
-                  span.point[style="font-size: #{(yes*0.5).to_i}px;"] ●
-              td.nopad[title="Não: #{no}"]
-                p.no
-                  span.point[style="font-size: #{(no*0.5).to_i}px;"] ●
+              td
+                .solved-complaints.complaints[style="width:#{yes}%"]
+                .unsolved-complaints.complaints[style="width:#{no}%"]
+//
+  table.matrix
+    tr
+      th
+        | Mês\Ano
+      th[colspan=2]
+        | 2009
+      th[colspan=2]
+        | 2010
+      th[colspan=2]
+        | 2011
+    - months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+    - months.each do |month|
+      tr
+        td
+          = month
+        - 3.times do
+          ruby:
+            yes = 100 - (rand * 100).to_i
+            no  = 100 - yes
+          td.nopad[title="Sim: #{yes}"]
+            p.yes
+              span.point[style="font-size: #{(yes*0.5).to_i}px;"] ●
+          td.nopad[title="Não: #{no}"]
+            p.no
+              span.point[style="font-size: #{(no*0.5).to_i}px;"] ●
 
 section.top-types
   .wrapper
@@ -221,7 +241,7 @@ section.statistics
       pre
         | Paired Bar chart
 
-/
+//
   section.social-trends
     .wrapper
       .section-info
@@ -239,7 +259,6 @@ section.statistics
       .section-info
         h2
           | O que estão falando da #empresa no GooglePlus
-
   section.comments
     .wrapper
       .section-info
