@@ -315,6 +315,7 @@ footer {
       color: darken($white,10%);
     }
   }
+  .company-info-box,
   .ranking {
     @include box-sizing;
     display: inline-block;
