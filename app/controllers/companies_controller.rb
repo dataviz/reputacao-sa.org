@@ -2,14 +2,12 @@
 class CompaniesController < ApplicationController
 
   def index
-    @companies = top_companies
     @nav_links = nav_links
   end
 
   def show
-
-    @name = params[:name]
-    @complaints = Complaint.where(strNomeFantasia: params[:name].upcase)
+    @name = unslugfy(params[:name]).upcase
+    @complaints = Complaint.where(strNomeFantasia: @name)
     @complaints_by_type = Hash[group(@complaints).sort.reverse]
     c = @complaints.first
     @company = {name: c.strNomeFantasia, descricao: c.DescCNAEPrincipal}
@@ -20,6 +18,11 @@ class CompaniesController < ApplicationController
     @unsolved_by_type = Hash[group(@unsolved).sort.reverse]
     @solved_by_type = Hash[group(@solved).sort.reverse]
     @nav_links = nav_links
+
+    number_of_slices = 5
+    max_complaints_count_state = @states.max_by { |state| state.last.length }
+    @max_complaints_count = @states[max_complaints_count_state[0]].length
+    @slice = @max_complaints_count/number_of_slices
   end
 
   def search
