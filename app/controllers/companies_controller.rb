@@ -1,6 +1,7 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
 
+  caches_action :index, :show
 
   def index
     @nav_links = nav_links
