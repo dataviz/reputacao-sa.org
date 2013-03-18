@@ -14,21 +14,32 @@ section.ranking.first
       h1#informacoes-gerais
         | Informações gerais
     .content.ranking-content
-      p
-        strong
-          | Empresa
-        br
-        span.company-name
-          = @company[:name]
-      p
-        strong
-          | Descrição
-        br
-        span.description
-          = @company[:descricao]
+      .company-info-box
+        p
+          strong
+            | Empresa
+          br
+          span.company-name
+            = @company[:name]
+        p
+          strong
+            | Descrição
+          br
+          span.description
+            = @company[:descricao]
+      .ranking
+        p
+          | Ranking global
+          strong.big-number
+            =  (@companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
+            small
+              | /20
       .ranking
         p
           | Total de reclamações
+          br
+          small
+            | (2009–2011)
           strong.big-number
             = @complaints.count
       .ranking
@@ -50,38 +61,15 @@ section.ranking.first
             = solved_unsolved_ratio
             small
               | (<span class='solved'>#{@solved.count}</span>:<span class='unsolved'>#{@unsolved.count}</span>)
-      .ranking
-        p
-          | Ranking global
-          strong.big-number
-            =  (@companies.select{|tc| tc[:name].upcase == @company[:name] }.first || {})[:position]
-            small
-              | /20
-
-section.statistics
-  .wrapper
-    .section-info
-      h1#estatisticas-gerais
-        | Estatísticas gerais
-    .content.statistics-wrapper
-      p
-        | Tempo de resolução de atendimentos [abertura ao fechamento]
-        // Sem ideia de como exibir
-      p
-        | Média de tempo para atendimento geral
-      p
-        | Média de tempo para atendimento por estado
-      p
-        | Média de tempo para atendimento por região
-      p
-        | Média de reclamações por sexo e idade
-        // Paired Bar chart
 
 section.time-matrices
   .wrapper
     .section-info
       h1#ocorrencias-por-mes
         | Ocorrências por mês
+        br
+        small
+          | Média mensal entre 2009–2011
     .content.time-matrices-content
       table.matrix
         - months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
